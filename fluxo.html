@@ -5,7 +5,10 @@
 <html lang="pt-br">
 <link rel="icon" type="image/x-icon" href="icon.png">
 <header>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+	<script src=https://cdn.jsdelivr.net/npm/chart.js></script>
+
+	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webson | MW Consultoria Financeira</title>
@@ -80,7 +83,7 @@ hr {
             margin: 50;
             padding: 50;
             background-color: #999;
-            color: #fff;
+            color: #000;
 			
         }
         header {
@@ -94,6 +97,7 @@ hr {
             background-color: #999;
             color: white;
             width: 200px;
+			padding: 10px
             height: 100%;
             position: fixed;
 			text-align: right;
@@ -117,10 +121,10 @@ hr {
         nav img {
             display: block;
             margin: 0 auto;
-            padding: 0px 0;
+            padding: 5px 0;
         }
         section {
-            padding: px;
+            padding: 10px;
             margin-left: 800 px;
             text-align: left;
 		}
@@ -178,9 +182,9 @@ hr {
 		
 		.box {
             width: 100%;
-            padding: 0px;
+            padding: 20px;
             box-sizing: border-box;
-			border: 2px 
+			border: 20px 
 			solid black;
             position: relative;
 			
@@ -194,7 +198,7 @@ hr {
 			border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: flex;
-			transition: transform 0.3s ease;
+			transition: transform 0.1s ease;
 			box-sizing: border-box;
 			}
 			
@@ -215,7 +219,7 @@ hr {
 
             
         button.menu-btn:hover {
-            color: #ccc;
+            color: #888;
         }
 
     </style>
@@ -247,7 +251,7 @@ hr {
 
       background-color: #333;
 
-      padding: 10px 20px;
+      padding: 10px 10px;
 
       display: flex;
 
@@ -259,8 +263,10 @@ hr {
 
     #filtro {
 
-      padding: 10px 100px;
-
+      padding: 10px 10px;
+	  
+      background-color: #999
+	  
       display: flex;
 
       justify-content: space-between;
@@ -289,14 +295,14 @@ hr {
 
     .form-inline input {
 
-      margin-right: 10px;
+      margin-right: 50px;
 
     }
 
     
 
   </style>
-	<script src=https://cdn.jsdelivr.net/npm/chart.js></script>
+	
     <body>
               
     
@@ -310,14 +316,14 @@ hr {
         <br>
         <br>
 		
-    <a href="index.html" > Página Inicial</a>
-    <a href="QUEMSOMOSNOS.HTML"class="yellow-text">Sobre Nós</a>
-    <a href="SERVICOS.HTML">Serviços</a>
-    <a href="CONTATO.HTML">Contato</a>
+    <a href="index.html" class="yellow-text"> Página Inicial</a>
+    <a href="#">Sobre Nós</a>
+    <a href="#">Treinamento</a>
+    <a href="#">Contato</a>
     		<br>
 		<br>
 		<br>
-	  <a class="yellow-text"><center><h4>Transformando e Inovando</h4> </center>  </a>
+	  <a class="yellow-text"><center><h6>Direcionando seu caminho para vida financeira estável</h6> </center>  </a>
         </nav>
     <section>
  <div id="cliente">
@@ -385,7 +391,7 @@ hr {
       </div>
 
     </div>
-
+<div class "container">
     <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
 	    <hr>
 
@@ -424,6 +430,8 @@ hr {
       <ul id="listaSaidas"></ul>
 
     </div>
+    </div>
+	<button onclick="gerarPDF()">Gerar PDF</button>
 
     
   </div>
@@ -435,8 +443,97 @@ hr {
     </footer>
 	    <br>
 	    
-   
-	    
+   <script>
+async function gerarPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Adiciona a logotipo.png no PDF
+    const imgData = await getImageData('logotopo.png');
+    doc.addImage(imgData, 'PNG', 60, 10, 90, 30); // Centralizado com ajuste na posição e tamanho
+
+    // Adiciona o título
+    doc.setFontSize(18);
+    doc.text("Gestão Financeira", 105, 50, null, null, 'center'); // Centralizado
+
+    const clienteNome = "Webson Santana";  // Substitua com a lógica para obter o nome do cliente se necessário
+    const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+    const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+    const saldo = parseFloat(document.getElementById('saldo').textContent.replace('Saldo R$ ', '').replace(',', '.'));
+
+    let totalEntradas = 0;
+    let totalSaidas = 0;
+
+    entradas.forEach(entrada => {
+        totalEntradas += entrada.valor;
+    });
+
+    saidas.forEach(saida => {
+        totalSaidas += saida.valor;
+    });
+
+    doc.setFontSize(12);
+    doc.text(`Nome do Cliente: ${clienteNome}`, 10, 70);
+    doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 80);
+    doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 90);
+    doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 100);
+
+    // Adiciona a data e hora no rodapé
+    const dataHora = new Date().toLocaleString();
+    doc.text(`Gerado em: ${dataHora}`, 105, 290, null, null, 'center'); // Centralizado no rodapé
+
+    doc.save(`${clienteNome}_relatorio_financeiro.pdf`);
+}
+
+function getImageData(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = function () {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = this.naturalWidth;
+            canvas.height = this.naturalHeight;
+            ctx.drawImage(this, 0, 0);
+            resolve(canvas.toDataURL('image/png'));
+        };
+        img.src = url;
+    });
+}
+</script>
+
+	  <script>
+	  
+	  
+function gerarPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const clienteNome = "Webson Santana";  // Substitua com a lógica para obter o nome do cliente se necessário
+    const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+    const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+    const saldo = parseFloat(document.getElementById('saldo').textContent.replace('Saldo R$ ', '').replace(',', '.'));
+
+    let totalEntradas = 0;
+    let totalSaidas = 0;
+
+    entradas.forEach(entrada => {
+        totalEntradas += entrada.valor;
+    });
+
+    saidas.forEach(saida => {
+        totalSaidas += saida.valor;
+    });
+
+    doc.text(`Nome do Cliente: ${clienteNome}`, 10, 10);
+    doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 20);
+    doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 30);
+    doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 40);
+
+    doc.save(`${clienteNome}_relatorio_financeiro.pdf`);
+}
+</script>
+  
     <script>
         function toggleMenu() {
             var nav = document.getElementById('sideNav');
