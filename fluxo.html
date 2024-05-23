@@ -176,183 +176,209 @@
         <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
     </footer>
 
-    <script>
-        document.getElementById('dataHora').textContent = new Date().toLocaleString();
+   <script>
+    document.getElementById('dataHora').textContent = new Date().toLocaleString();
 
-        function toggleSaldoVisibility() {
-            var saldoDiv = document.getElementById('saldo');
-            if (saldoDiv.style.display === 'none') {
-                saldoDiv.style.display = 'block';
-            } else {
-                saldoDiv.style.display = 'none';
-            }
+    function toggleSaldoVisibility() {
+        var saldoDiv = document.getElementById('saldo');
+        if (saldoDiv.style.display === 'none') {
+            saldoDiv.style.display = 'block';
+        } else {
+            saldoDiv.style.display = 'none';
         }
+    }
 
-        function openNav() {
-            document.getElementById('sideNav').style.width = '250px';
+    function openNav() {
+        document.getElementById('sideNav').style.width = '250px';
+    }
+
+    function closeNav() {
+        document.getElementById('sideNav').style.width = '0';
+    }
+
+    window.onclick = function(event) {
+        if (event.target !== document.getElementById('sideNav') && !document.getElementById('sideNav').contains(event.target) && event.target !== document.getElementById('menuBtn')) {
+            closeNav();
         }
+    }
 
-        function closeNav() {
-            document.getElementById('sideNav').style.width = '0';
-        }
+    function gerarPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
 
-        window.onclick = function(event) {
-            if (event.target !== document.getElementById('sideNav') && !document.getElementById('sideNav').contains(event.target) && event.target !== document.getElementById('menuBtn')) {
-                closeNav();
-            }
-        }
+        const imgData = 'logofinanceiro.png';
+        const clienteNome = "Webson Santana";
+        const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+        const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+        const saldo = parseFloat(document.getElementById('saldo').textContent.replace('Saldo R$ ', '').replace(',', '.'));
 
-        function gerarPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+        const mes = document.getElementById('filtroMes').value;
+        const ano = document.getElementById('filtroAno').value;
 
-            const imgData = 'logofinanceiro.png';
-            const clienteNome = "Webson Santana";
-            const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            const saldo = parseFloat(document.getElementById('saldo').textContent.replace('Saldo R$ ', '').replace(',', '.'));
+        const entradasFiltradas = entradas.filter(entrada => entrada.mes === mes && entrada.ano === ano);
+        const saidasFiltradas = saidas.filter(saida => saida.mes === mes && saida.ano === ano);
 
-            let totalEntradas = 0;
-            let totalSaidas = 0;
+        let totalEntradas = 0;
+        let totalSaidas = 0;
 
-            entradas.forEach(entrada => {
-                totalEntradas += entrada.valor;
-            });
+        entradasFiltradas.forEach(entrada => {
+            totalEntradas += entrada.valor;
+        });
 
-            saidas.forEach(saida => {
-                totalSaidas += saida.valor;
-            });
+        saidasFiltradas.forEach(saida => {
+            totalSaidas += saida.valor;
+        });
 
-            const dataHoraAtual = new Date().toLocaleString();
-            doc.addImage(imgData, 'PNG', 80, 20, 50, 40);
-            doc.text(`Nome do Cliente: ${clienteNome}`, 10, 75);
-            doc.text(`${dataHoraAtual}`, 150, 270, null, null, 'center');
-            doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 95);
-            doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 105);
-            doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 115);
+        const dataHoraAtual = new Date().toLocaleString();
+        doc.addImage(imgData, 'PNG', 10, 10, 30, 30);
+        doc.setFontSize(12);
+        doc.text(`Cliente: ${clienteNome}`, 10, 50);
+        doc.text(`Data/Hora: ${dataHoraAtual}`, 10, 60);
+        doc.text(`Período: ${mes}/${ano}`, 10, 70);
+        doc.text(`Saldo: R$ ${saldo.toFixed(2).replace('.', ',')}`, 10, 80);
 
-            doc.save(`${clienteNome}_relatorio_financeiro.pdf`);
-        }
+        doc.setFontSize(16);
+        doc.text('Fluxo de Caixa', 10, 100);
 
-        function inserirEntrada() {
-            var descricao = document.getElementById('entradaDescricao').value;
-            var valor = document.getElementById('entradaValor').value;
-            var mes = document.getElementById('filtroMes').value;
-            var ano = document.getElementById('filtroAno').value;
+        doc.setFontSize(12);
+        doc.text('Entradas', 10, 110);
+        let y = 120;
+        entradasFiltradas.forEach(entrada => {
+            doc.text(`${entrada.descricao}: R$ ${entrada.valor.toFixed(2).replace('.', ',')}`, 10, y);
+            y += 10;
+        });
 
-            if (descricao && valor) {
-                var entrada = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
-                var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-                entradas.push(entrada);
-                localStorage.setItem('entradas', JSON.stringify(entradas));
-                filtrarMovimentacoes();
-            }
-        }
+        y += 10;
+        doc.text('Saídas', 10, y);
+        y += 10;
+        saidasFiltradas.forEach(saida => {
+            doc.text(`${saida.descricao}: R$ ${saida.valor.toFixed(2).replace('.', ',')}`, 10, y);
+            y += 10;
+        });
 
-        function inserirSaida() {
-            var descricao = document.getElementById('saidaDescricao').value;
-            var valor = document.getElementById('saidaValor').value;
-            var mes = document.getElementById('filtroMes').value;
-            var ano = document.getElementById('filtroAno').value;
+        doc.save(`fluxo_caixa_${clienteNome}_${mes}_${ano}.pdf`);
+    }
 
-            if (descricao && valor) {
-                var saida = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
-                var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-                saidas.push(saida);
-                localStorage.setItem('saidas', JSON.stringify(saidas));
-                filtrarMovimentacoes();
-            }
-        }
+    function inserirEntrada() {
+        var descricao = document.getElementById('entradaDescricao').value;
+        var valor = document.getElementById('entradaValor').value;
+        var mes = document.getElementById('filtroMes').value;
+        var ano = document.getElementById('filtroAno').value;
 
-        function filtrarMovimentacoes() {
-            exibirEntradas();
-            exibirSaidas();
-            atualizarSaldo();
-        }
-
-        function exibirEntradas() {
-            var mes = document.getElementById('filtroMes').value;
-            var ano = document.getElementById('filtroAno').value;
+        if (descricao && valor) {
+            var entrada = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
             var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            var listaEntradas = document.getElementById('listaEntradas');
-            listaEntradas.innerHTML = '';
-            entradas.forEach(function (entrada, index) {
-                if (entrada.mes === mes && entrada.ano === ano) {
-                    var li = document.createElement('li');
-                    li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`;
-                    
-                    // Botão de excluir
-                    var btnExcluir = document.createElement('button');
-                    btnExcluir.textContent = 'Excluir';
-                    btnExcluir.onclick = function() { excluirEntrada(index); };
-                    
-                    li.appendChild(btnExcluir);
-                    listaEntradas.appendChild(li);
-                }
-            });
-        }
-
-        function exibirSaidas() {
-            var mes = document.getElementById('filtroMes').value;
-            var ano = document.getElementById('filtroAno').value;
-            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            var listaSaidas = document.getElementById('listaSaidas');
-            listaSaidas.innerHTML = '';
-            saidas.forEach(function (saida, index) {
-                if (saida.mes === mes && saida.ano === ano) {
-                    var li = document.createElement('li');
-                    li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2)}`;
-                    
-                    // Botão de excluir
-                    var btnExcluir = document.createElement('button');
-                    btnExcluir.textContent = 'Excluir';
-                    btnExcluir.onclick = function() { excluirSaida(index); };
-                    
-                    li.appendChild(btnExcluir);
-                    listaSaidas.appendChild(li);
-                }
-            });
-        }
-
-        function atualizarSaldo() {
-            var mes = document.getElementById('filtroMes').value;
-            var ano = document.getElementById('filtroAno').value;
-            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            var saldo = 0;
-
-            entradas.forEach(function (entrada) {
-                if (entrada.mes === mes && entrada.ano === ano) {
-                    saldo += entrada.valor;
-                }
-            });
-
-            saidas.forEach(function (saida) {
-                if (saida.mes === mes && saida.ano === ano) {
-                    saldo -= saida.valor;
-                }
-            });
-
-            document.getElementById('saldo').textContent = `Saldo R$ ${saldo.toFixed(2)}`;
-        }
-
-        // Função para excluir uma entrada específica
-        function excluirEntrada(index) {
-            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            entradas.splice(index, 1);
+            entradas.push(entrada);
             localStorage.setItem('entradas', JSON.stringify(entradas));
             filtrarMovimentacoes();
         }
+    }
 
-        // Função para excluir uma saída específica
-        function excluirSaida(index) {
+    function inserirSaida() {
+        var descricao = document.getElementById('saidaDescricao').value;
+        var valor = document.getElementById('saidaValor').value;
+        var mes = document.getElementById('filtroMes').value;
+        var ano = document.getElementById('filtroAno').value;
+
+        if (descricao && valor) {
+            var saida = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
             var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            saidas.splice(index, 1);
+            saidas.push(saida);
             localStorage.setItem('saidas', JSON.stringify(saidas));
             filtrarMovimentacoes();
         }
+    }
 
+    function filtrarMovimentacoes() {
+        exibirEntradas();
+        exibirSaidas();
+        atualizarSaldo();
+    }
+
+    function exibirEntradas() {
+        var mes = document.getElementById('filtroMes').value;
+        var ano = document.getElementById('filtroAno').value;
+        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+        var listaEntradas = document.getElementById('listaEntradas');
+        listaEntradas.innerHTML = '';
+        entradas.forEach(function (entrada, index) {
+            if (entrada.mes === mes && entrada.ano === ano) {
+                var li = document.createElement('li');
+                li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`;
+
+                // Botão de excluir
+                var btnExcluir = document.createElement('button');
+                btnExcluir.textContent = 'Excluir';
+                btnExcluir.onclick = function() { excluirEntrada(index); };
+
+                li.appendChild(btnExcluir);
+                listaEntradas.appendChild(li);
+            }
+        });
+    }
+
+    function exibirSaidas() {
+        var mes = document.getElementById('filtroMes').value;
+        var ano = document.getElementById('filtroAno').value;
+        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+        var listaSaidas = document.getElementById('listaSaidas');
+        listaSaidas.innerHTML = '';
+        saidas.forEach(function (saida, index) {
+            if (saida.mes === mes && saida.ano === ano) {
+                var li = document.createElement('li');
+                li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2)}`;
+
+                // Botão de excluir
+                var btnExcluir = document.createElement('button');
+                btnExcluir.textContent = 'Excluir';
+                btnExcluir.onclick = function() { excluirSaida(index); };
+
+                li.appendChild(btnExcluir);
+                listaSaidas.appendChild(li);
+            }
+        });
+    }
+
+    function atualizarSaldo() {
+        var mes = document.getElementById('filtroMes').value;
+        var ano = document.getElementById('filtroAno').value;
+        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+        var saldo = 0;
+
+        entradas.forEach(function (entrada) {
+            if (entrada.mes === mes && entrada.ano === ano) {
+                saldo += entrada.valor;
+            }
+        });
+
+        saidas.forEach(function (saida) {
+            if (saida.mes === mes && saida.ano === ano) {
+                saldo -= saida.valor;
+            }
+        });
+
+        document.getElementById('saldo').textContent = `Saldo R$ ${saldo.toFixed(2)}`;
+    }
+
+    // Função para excluir uma entrada específica
+    function excluirEntrada(index) {
+        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+        entradas.splice(index, 1);
+        localStorage.setItem('entradas', JSON.stringify(entradas));
         filtrarMovimentacoes();
-    </script>
+    }
+
+    // Função para excluir uma saída específica
+    function excluirSaida(index) {
+        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+        saidas.splice(index, 1);
+        localStorage.setItem('saidas', JSON.stringify(saidas));
+        filtrarMovimentacoes();
+    }
+
+    filtrarMovimentacoes();
+</script>
+
 </body>
 </html>
