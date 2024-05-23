@@ -226,7 +226,7 @@
 
             const dataHoraAtual = new Date().toLocaleString();
 
-            doc.addImage(imgData, 'PNG', 80, 50,10, 50, 15);
+            doc.addImage(imgData, 'PNG', 80,10, 50, 15);
             doc.text(`Nome do Cliente: ${clienteNome}`, 10, 30);
             doc.text(`Data/Hora: ${dataHoraAtual}`, 150, 30, null, null, 'right');
             doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 40);
@@ -326,5 +326,75 @@
 
         filtrarMovimentacoes();
     </script>
+	<script>
+	// Função para excluir uma entrada específica
+function excluirEntrada(index) {
+    var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+    entradas.splice(index, 1);
+    localStorage.setItem('entradas', JSON.stringify(entradas));
+    filtrarMovimentacoes();
+}
+
+// Modificação na função exibirEntradas para incluir o botão de excluir
+function exibirEntradas() {
+    var mes = document.getElementById('filtroMes').value;
+    var ano = document.getElementById('filtroAno').value;
+    var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+    var listaEntradas = document.getElementById('listaEntradas');
+    listaEntradas.innerHTML = '';
+    entradas.forEach(function (entrada, index) {
+        if (entrada.mes === mes && entrada.ano === ano) {
+            var li = document.createElement('li');
+            li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`;
+            
+            // Botão de excluir
+            var btnExcluir = document.createElement('button');
+            btnExcluir.textContent = 'Excluir';
+            btnExcluir.onclick = function() { excluirEntrada(index); };
+            
+            li.appendChild(btnExcluir);
+            listaEntradas.appendChild(li);
+        }
+    });
+}
+
+// Lembre-se de chamar a função exibirEntradas em algum lugar do seu código para atualizar a lista
+
+	</script>
+	<script>
+	// Função para excluir uma saída específica
+function excluirSaida(index) {
+    var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+    saidas.splice(index, 1);
+    localStorage.setItem('saidas', JSON.stringify(saidas));
+    filtrarMovimentacoes();
+}
+
+// Modificação na função exibirSaidas para incluir o botão de excluir
+function exibirSaidas() {
+    var mes = document.getElementById('filtroMes').value;
+    var ano = document.getElementById('filtroAno').value;
+    var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+    var listaSaidas = document.getElementById('listaSaidas');
+    listaSaidas.innerHTML = '';
+    saidas.forEach(function (saida, index) {
+        if (saida.mes === mes && saida.ano === ano) {
+            var li = document.createElement('li');
+            li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2)}`;
+            
+            // Botão de excluir
+            var btnExcluir = document.createElement('button');
+            btnExcluir.textContent = 'Excluir';
+            btnExcluir.onclick = function() { excluirSaida(index); };
+            
+            li.appendChild(btnExcluir);
+            listaSaidas.appendChild(li);
+        }
+    });
+}
+
+// Lembre-se de chamar a função exibirSaidas em algum lugar do seu código para atualizar a lista
+</script>
+	
 </body>
 </html>
