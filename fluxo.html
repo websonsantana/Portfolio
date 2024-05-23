@@ -230,18 +230,18 @@
         });
 
         const dataHoraAtual = new Date().toLocaleString();
-        doc.addImage(imgData, 'PNG', 80, 10, 50, 50);
+        doc.addImage(imgData, 'PNG', 80, 10, 50, 40);
         doc.setFontSize(12);
-        doc.text(`Cliente: ${clienteNome}`, 10, 50);
-        doc.text(`Data/Hora: ${dataHoraAtual}`, 10, 60);
-        doc.text(`Período: ${mes}/${ano}`, 10, 70);
-        doc.text(`Saldo: R$ ${saldo.toFixed(2).replace('.', ',')}`, 10, 80);
+        doc.text(`Cliente: ${clienteNome}`, 10, 70);
+        doc.text(`Data/Hora: ${dataHoraAtual}`, 10, 80);
+        doc.text(`Período: ${mes}/${ano}`, 10, 90);
+        doc.text(`Saldo: R$ ${saldo.toFixed(2).replace('.', ',')}`, 10, 100);
 
         doc.setFontSize(16);
-        doc.text('Fluxo de Caixa', 10, 100);
+        doc.text('Fluxo de Caixa', 10, 120);
 
         doc.setFontSize(12);
-        doc.text('Entradas', 10, 110);
+        doc.text('Entradas', 10, 130);
         let y = 120;
         entradasFiltradas.forEach(entrada => {
             doc.text(`${entrada.descricao}: R$ ${entrada.valor.toFixed(2).replace('.', ',')}`, 10, y);
