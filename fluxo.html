@@ -144,21 +144,25 @@
         </div>
         <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
         <hr>
-        <div id="entradas">
+         <div id="entradas">
             <h4>Entradas</h4>
             <div class="form-inline">
+			    <button onclick="inserirEntrada()">+</button>
+				<p>
                 <input id="entradaDescricao" type="text" placeholder="Descrição">
                 <input id="entradaValor" type="number" placeholder="Valor">
-               <p> <button onclick="inserirEntrada()">+</button>
+                
             </div>
             <ul id="listaEntradas"></ul>
         </div>
         <div id="saidas">
             <h4>Saídas</h4>
             <div class="form-inline">
+			    <button onclick="inserirSaida()">+</button>
+				<p>
                 <input id="saidaDescricao" type="text" placeholder="Descrição">
                 <input id="saidaValor" type="number" placeholder="Valor">
-                <button onclick="inserirSaida()">+</button>
+				
             </div>
             <ul id="listaSaidas"></ul>
         </div>
