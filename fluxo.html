@@ -32,7 +32,7 @@
         #cliente {
             display: flex;
             justify-content: space-between;
-            background-color: #007bff;
+            background-color: #072739;
             color: white;
             padding: 10px;
             border-radius: 5px;
@@ -54,7 +54,7 @@
             border: 1px solid #ccc;
         }
         button {
-            background-color: #007bff;
+            background-color: #072739;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -66,7 +66,7 @@
             background-color: #0056b3;
         }
         h3, h4 {
-            color: #007bff;
+            color: #072739;
         }
         #sideNav {
             height: 100%;
@@ -75,7 +75,7 @@
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: #111;
+            background-color: #072739;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
@@ -84,12 +84,12 @@
             padding: 10px 15px;
             text-decoration: none;
             font-size: 22px;
-            color: #818181;
+            color: #fff;
             display: block;
             transition: 0.3s;
         }
         #sideNav a:hover {
-            color: #f1f1f1;
+            color: #000;
         }
         #sideNav .closeBtn {
             position: absolute;
@@ -149,7 +149,7 @@
             <div class="form-inline">
                 <input id="entradaDescricao" type="text" placeholder="Descrição">
                 <input id="entradaValor" type="number" placeholder="Valor">
-               <p></p> <button onclick="inserirEntrada()">+</button>
+               <p> <button onclick="inserirEntrada()">+</button>
             </div>
             <ul id="listaEntradas"></ul>
         </div>
@@ -158,7 +158,7 @@
             <div class="form-inline">
                 <input id="saidaDescricao" type="text" placeholder="Descrição">
                 <input id="saidaValor" type="number" placeholder="Valor">
-                <p></p><button onclick="inserirSaida()">+</button>
+                <button onclick="inserirSaida()">+</button>
             </div>
             <ul id="listaSaidas"></ul>
         </div>
@@ -222,7 +222,7 @@
 
             const dataHoraAtual = new Date().toLocaleString();
 
-            doc.addImage(imgData, 'PNG', 80, 10, 50, 15);
+            doc.addImage(imgData, 'PNG', 80, 50,10, 50, 15);
             doc.text(`Nome do Cliente: ${clienteNome}`, 10, 30);
             doc.text(`Data/Hora: ${dataHoraAtual}`, 150, 30, null, null, 'right');
             doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 40);
