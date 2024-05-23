@@ -237,7 +237,7 @@
             const dataHoraAtual = new Date().toLocaleString();
             doc.addImage(imgData, 'PNG', 80,20, 50, 40);
 	    doc.text(`Nome do Cliente: ${clienteNome}`, 10, 75);
-            doc.text(`Data/Hora: ${dataHoraAtual}`, 150, 270, null, null, 'right');
+            doc.text(` ${dataHoraAtual}`, 150, 270, null, null, 'right');
             doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 95);
             doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 105);
             doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 115);
