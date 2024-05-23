@@ -236,12 +236,12 @@
 
             const dataHoraAtual = new Date().toLocaleString();
 
-            doc.addImage(imgData, 'PNG', 80,30, 50, 15);
-            doc.text(`Nome do Cliente: ${clienteNome}`, 10, 30);
-            doc.text(`Data/Hora: ${dataHoraAtual}`, 150, 30, null, null, 'right');
-            doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 40);
-            doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 50);
-            doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 60);
+            doc.addImage(imgData, 'PNG', 80,300, 50, 15);
+            doc.text(`Nome do Cliente: ${clienteNome}`, 10, 40);
+            doc.text(`Data/Hora: ${dataHoraAtual}`, 150, 40, null, null, 'right');
+            doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 50);
+            doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 60);
+            doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 70);
 
             doc.save(`${clienteNome}_relatorio_financeiro.pdf`);
         }
