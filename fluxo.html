@@ -242,7 +242,23 @@
             doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 70);
             doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 80);
             doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 90);
+let y = 80;
+doc.text('Entradas', 10, y);
+y += 10;
 
+entradas.forEach(entrada => {
+    doc.text(`${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`, 10, y);
+    y += 10;
+});
+
+y += 10; // Adiciona um espaço extra antes das saídas
+doc.text('Saídas', 10, y);
+y += 10;
+
+saidas.forEach(saida => {
+    doc.text(`${saida.descricao}: R$ ${saida.valor.toFixed(2)}`, 10, y);
+    y += 10;
+});
             doc.save(`${clienteNome}_relatorio_financeiro.pdf`);
         }
 
