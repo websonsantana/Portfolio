@@ -7,17 +7,6 @@
     <link rel="icon" type="image/x-icon" href="logofinanceiro.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
     <style>
-	.container1 {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: px;
-            background-color: #444;
-            box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.5);
-	    text-align: left;
-	    border-radius: 10px;
-			
-        }
-	
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -56,7 +45,6 @@
         .form-inline {
             display: flex;
             align-items: center;
-			width: 50%
         }
         .form-inline select,
         .form-inline input {
@@ -130,14 +118,12 @@
         <header>
             <img src="logofinanceiro.png" alt="Logo Financeiro">
         </header>
-		
         <div id="cliente">
             <div>Olá Webson Santana</div>
             <div id="dataHora"></div>
             <div id="saldo">Saldo R$ 0,00</div>
-            <button id="toggle-visibility" onclick="toggleSaldoVisibility()">👁️</button>
+            <button id="toggle-visibility" onclick="toggleSaldoVisibility()">👁</button>
         </div>
-		<div class ="container">
         <div id="filtro">
             <div class="form-inline">
                 <label for="filtroMes">Mês:</label>
@@ -153,28 +139,23 @@
                     <option value="set">Setembro</option>
                     <option value="out">Outubro</option>
                     <option value="nov">Novembro</option>
-                    <option value="dez">Dezembro</option>    
+                    <option value="dez">Dezembro</option>
                 </select>
             </div>
             <div class="form-inline">
-			
                 <label for="filtroAno">Ano:</label>
                 <select id="filtroAno" onchange="filtrarMovimentacoes()">
                     <option value="2024">2024</option>
-                    <!-- Add other years -->
                     <option value="2025">2025</option>
                 </select>
             </div>
         </div>
-		</div>
         <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
         <hr>
-		<div class ="container">
         <div id="entradas">
             <h4>Entradas</h4>
-			<button onclick="inserirEntrada()">+</button><h5>Apos inseri a descrição e valor clique aqui para imputar</h5>
-			<p>
             <div class="form-inline">
+                <button onclick="inserirEntrada()">+</button>
                 <input id="entradaDescricao" type="text" placeholder="Descrição">
                 <input id="entradaValor" type="number" placeholder="Valor">
             </div>
@@ -182,32 +163,21 @@
         </div>
         <div id="saidas">
             <h4>Saídas</h4>
-			 <button onclick="inserirSaida()">+</button><h5>Apos inseri a descrição e valor clique aqui para imputar</h5>
-			 <p>
             <div class="form-inline">
+                <button onclick="inserirSaida()">+</button>
                 <input id="saidaDescricao" type="text" placeholder="Descrição">
                 <input id="saidaValor" type="number" placeholder="Valor">
             </div>
             <ul id="listaSaidas"></ul>
         </div>
-		</div>
         <button onclick="gerarPDF()">Gerar PDF</button>
     </div>
     <footer>
-        <center>
-            <h6>
-                <p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p>
-            </h6>
-        </center>
+        <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
     </footer>
 
     <script>
         document.getElementById('dataHora').textContent = new Date().toLocaleString();
-
-        function toggleMenu() {
-            var nav = document.getElementById('sideNav');
-            nav.classList.toggle('open');
-        }
 
         function toggleSaldoVisibility() {
             var saldoDiv = document.getElementById('saldo');
@@ -245,144 +215,144 @@
             let totalEntradas = 0;
             let totalSaidas = 0;
 
-            const mes = document.getElementById('filtroMes').value;
-            const ano = document.getElementById('filtroAno').value;
-
-            const entradasFiltradas = entradas.filter(entrada => entrada.mes === mes && entrada.ano === ano);
-            const saidasFiltradas = saidas.filter(saida => saida.mes === mes && saida.ano === ano);
-
-            entradasFiltradas.forEach(entrada => {
+            entradas.forEach(entrada => {
                 totalEntradas += entrada.valor;
             });
 
-            saidasFiltradas.forEach(saida => {
+            saidas.forEach(saida => {
                 totalSaidas += saida.valor;
             });
 
             const dataHoraAtual = new Date().toLocaleString();
-            doc.addImage(imgData, 'PNG', 10, 10, 30, 30);
-            doc.setFontSize(12);
-            doc.text(`Cliente: ${clienteNome}`, 10, 50);
-            doc.text(`Data/Hora: ${dataHoraAtual}`, 10, 60);
-            doc.text(`Período: ${mes}/${ano}`, 10, 70);
-            doc.text(`Saldo: R$ ${saldo.toFixed(2).replace('.', ',')}`, 10, 80);
+            doc.addImage(imgData, 'PNG', 80, 20, 50, 40);
+            doc.text(`Nome do Cliente: ${clienteNome}`, 10, 75);
+            doc.text(`${dataHoraAtual}`, 150, 270, null, null, 'center');
+            doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 95);
+            doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 105);
+            doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 115);
 
-            doc.setFontSize(16);
-            doc.text('Fluxo de Caixa', 10, 100);
-
-            doc.setFontSize(12);
-            doc.text('Entradas', 10, 110);
-            let y = 120;
-            entradasFiltradas.forEach(entrada => {
-                doc.text(`${entrada.descricao}: R$ ${entrada.valor.toFixed(2).replace('.', ',')}`, 10, y);
-                y += 10;
-            });
-
-            y += 10;
-            doc.text('Saídas', 10, y);
-            y += 10;
-            saidasFiltradas.forEach(saida => {
-                doc.text(`${saida.descricao}: R$ ${saida.valor.toFixed(2).replace('.', ',')}`, 10, y);
-                y += 10;
-            });
-
-            doc.save(`fluxo_caixa_${clienteNome}_${mes}_${ano}.pdf`);
+            doc.save(`${clienteNome}_relatorio_financeiro.pdf`);
         }
 
         function inserirEntrada() {
-            const descricao = document.getElementById('entradaDescricao').value;
-            const valor = parseFloat(document.getElementById('entradaValor').value);
-            const mes = document.getElementById('filtroMes').value;
-            const ano = document.getElementById('filtroAno').value;
+            var descricao = document.getElementById('entradaDescricao').value;
+            var valor = document.getElementById('entradaValor').value;
+            var mes = document.getElementById('filtroMes').value;
+            var ano = document.getElementById('filtroAno').value;
 
-            if (descricao && !isNaN(valor)) {
-                const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-                entradas.push({ descricao, valor, mes, ano });
+            if (descricao && valor) {
+                var entrada = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
+                var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+                entradas.push(entrada);
                 localStorage.setItem('entradas', JSON.stringify(entradas));
-                atualizarListaEntradas();
+                filtrarMovimentacoes();
             }
         }
 
         function inserirSaida() {
-            const descricao = document.getElementById('saidaDescricao').value;
-            const valor = parseFloat(document.getElementById('saidaValor').value);
-            const mes = document.getElementById('filtroMes').value;
-            const ano = document.getElementById('filtroAno').value;
+            var descricao = document.getElementById('saidaDescricao').value;
+            var valor = document.getElementById('saidaValor').value;
+            var mes = document.getElementById('filtroMes').value;
+            var ano = document.getElementById('filtroAno').value;
 
-            if (descricao && !isNaN(valor)) {
-                const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-                saidas.push({ descricao, valor, mes, ano });
+            if (descricao && valor) {
+                var saida = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
+                var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+                saidas.push(saida);
                 localStorage.setItem('saidas', JSON.stringify(saidas));
-                atualizarListaSaidas();
+                filtrarMovimentacoes();
             }
         }
 
-        function atualizarListaEntradas() {
-            const listaEntradas = document.getElementById('listaEntradas');
-            listaEntradas.innerHTML = '';
-            const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            const mes = document.getElementById('filtroMes').value;
-            const ano = document.getElementById('filtroAno').value;
-            const entradasFiltradas = entradas.filter(entrada => entrada.mes === mes && entrada.ano === ano);
-
-            entradasFiltradas.forEach(entrada => {
-                const li = document.createElement('li');
-                li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2).replace('.', ',')}`;
-                listaEntradas.appendChild(li);
-            });
-
+        function filtrarMovimentacoes() {
+            exibirEntradas();
+            exibirSaidas();
             atualizarSaldo();
         }
 
-        function atualizarListaSaidas() {
-            const listaSaidas = document.getElementById('listaSaidas');
-            listaSaidas.innerHTML = '';
-            const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            const mes = document.getElementById('filtroMes').value;
-            const ano = document.getElementById('filtroAno').value;
-            const saidasFiltradas = saidas.filter(saida => saia.mes === mes && saida.ano === ano);
-
-            saidasFiltradas.forEach(saida => {
-                const li = document.createElement('li');
-                li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2).replace('.', ',')}`;
-                listaSaidas.appendChild(li);
+        function exibirEntradas() {
+            var mes = document.getElementById('filtroMes').value;
+            var ano = document.getElementById('filtroAno').value;
+            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+            var listaEntradas = document.getElementById('listaEntradas');
+            listaEntradas.innerHTML = '';
+            entradas.forEach(function (entrada, index) {
+                if (entrada.mes === mes && entrada.ano === ano) {
+                    var li = document.createElement('li');
+                    li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`;
+                    
+                    // Botão de excluir
+                    var btnExcluir = document.createElement('button');
+                    btnExcluir.textContent = 'Excluir';
+                    btnExcluir.onclick = function() { excluirEntrada(index); };
+                    
+                    li.appendChild(btnExcluir);
+                    listaEntradas.appendChild(li);
+                }
             });
+        }
 
-            atualizarSaldo();
+        function exibirSaidas() {
+            var mes = document.getElementById('filtroMes').value;
+            var ano = document.getElementById('filtroAno').value;
+            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+            var listaSaidas = document.getElementById('listaSaidas');
+            listaSaidas.innerHTML = '';
+            saidas.forEach(function (saida, index) {
+                if (saida.mes === mes && saida.ano === ano) {
+                    var li = document.createElement('li');
+                    li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2)}`;
+                    
+                    // Botão de excluir
+                    var btnExcluir = document.createElement('button');
+                    btnExcluir.textContent = 'Excluir';
+                    btnExcluir.onclick = function() { excluirSaida(index); };
+                    
+                    li.appendChild(btnExcluir);
+                    listaSaidas.appendChild(li);
+                }
+            });
         }
 
         function atualizarSaldo() {
-            const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            const mes = document.getElementById('filtroMes').value;
-            const ano = document.getElementById('filtroAno').value;
+            var mes = document.getElementById('filtroMes').value;
+            var ano = document.getElementById('filtroAno').value;
+            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+            var saldo = 0;
 
-            const entradasFiltradas = entradas.filter(entrada => entrada.mes === mes && entrada.ano === ano);
-            const saidasFiltradas = saidas.filter(saida => saia.mes === mes && saida.ano === ano);
-
-            let totalEntradas = 0;
-            let totalSaidas = 0;
-
-            entradasFiltradas.forEach(entrada => {
-                totalEntradas += entrada.valor;
+            entradas.forEach(function (entrada) {
+                if (entrada.mes === mes && entrada.ano === ano) {
+                    saldo += entrada.valor;
+                }
             });
 
-            saidasFiltradas.forEach(saida => {
-                totalSaidas += saida.valor;
+            saidas.forEach(function (saida) {
+                if (saida.mes === mes && saida.ano === ano) {
+                    saldo -= saida.valor;
+                }
             });
 
-            const saldo = totalEntradas - totalSaidas;
-            document.getElementById('saldo').textContent = `Saldo R$ ${saldo.toFixed(2).replace('.', ',')}`;
+            document.getElementById('saldo').textContent = `Saldo R$ ${saldo.toFixed(2)}`;
         }
 
-        function filtrarMovimentacoes() {
-            atualizarListaEntradas();
-            atualizarListaSaidas();
-        }
-
-        window.onload = function() {
+        // Função para excluir uma entrada específica
+        function excluirEntrada(index) {
+            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+            entradas.splice(index, 1);
+            localStorage.setItem('entradas', JSON.stringify(entradas));
             filtrarMovimentacoes();
         }
+
+        // Função para excluir uma saída específica
+        function excluirSaida(index) {
+            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+            saidas.splice(index, 1);
+            localStorage.setItem('saidas', JSON.stringify(saidas));
+            filtrarMovimentacoes();
+        }
+
+        filtrarMovimentacoes();
     </script>
 </body>
 </html>
