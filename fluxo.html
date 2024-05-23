@@ -241,7 +241,7 @@
         doc.text('Fluxo de Caixa', 80, 110);
 
         doc.setFontSize(12);
-        doc.text('Entradas', 10, 100);
+        doc.text('Entradas', 10, 130);
         let y = 120;
         entradasFiltradas.forEach(entrada => {
             doc.text(`${entrada.descricao}: R$ ${entrada.valor.toFixed(2).replace('.', ',')}`, 10, y);
