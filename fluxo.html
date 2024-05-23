@@ -235,9 +235,9 @@
             });
 
             const dataHoraAtual = new Date().toLocaleString();
-            doc.setFontSize(22);
-            doc.setFontSize(12);
             doc.addImage(imgData, 'PNG', 80,20, 50, 15);
+	    doc.setFontSize(22);
+            doc.setFontSize(12);
 	    doc.text('Relatório Financeiro', 105, 20, null, null, 'center');
             doc.text(`Nome do Cliente: ${clienteNome}`, 10, 50);
             doc.text(`Data/Hora: ${dataHoraAtual}`, 150, 270, null, null, 'right');
