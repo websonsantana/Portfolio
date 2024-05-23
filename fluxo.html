@@ -129,66 +129,55 @@
                 <label for="filtroMes">Mês:</label>
                 <select id="filtroMes" onchange="filtrarMovimentacoes()">
                     <option value="jan">Janeiro</option>
-		    <option value="fev">Feveiro</option>
-		    <option value="mar">Março</option>
-		    <option value="abr">Abril</option>
+                    <option value="fev">Fevereiro</option>
+                    <option value="mar">Março</option>
+                    <option value="abr">Abril</option>
                     <option value="mai">Maio</option>
-		    <option value="jun">Junho</option>
-		    <option value="jul">Julho</option>
-		    <option value="ago">Agosto</option>
-		    <option value="set">Setembro</option>
-		    <option value="out">Outubro</option>
-		    <option value="nov">Novembro</option>
-                    <option value="dez">Dezembro</option>	
-                    
+                    <option value="jun">Junho</option>
+                    <option value="jul">Julho</option>
+                    <option value="ago">Agosto</option>
+                    <option value="set">Setembro</option>
+                    <option value="out">Outubro</option>
+                    <option value="nov">Novembro</option>
+                    <option value="dez">Dezembro</option>
                 </select>
             </div>
             <div class="form-inline">
                 <label for="filtroAno">Ano:</label>
                 <select id="filtroAno" onchange="filtrarMovimentacoes()">
-                    <option value="2022">2024</option>
-                    <!-- Add other years -->
+                    <option value="2024">2024</option>
                     <option value="2025">2025</option>
                 </select>
             </div>
         </div>
         <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
         <hr>
-         <div id="entradas">
+        <div id="entradas">
             <h4>Entradas</h4>
             <div class="form-inline">
-			    <button onclick="inserirEntrada()">+</button>
-				<p>
+                <button onclick="inserirEntrada()">+</button>
                 <input id="entradaDescricao" type="text" placeholder="Descrição">
                 <input id="entradaValor" type="number" placeholder="Valor">
-                
             </div>
             <ul id="listaEntradas"></ul>
         </div>
         <div id="saidas">
             <h4>Saídas</h4>
             <div class="form-inline">
-			    <button onclick="inserirSaida()">+</button>
-				<p>
+                <button onclick="inserirSaida()">+</button>
                 <input id="saidaDescricao" type="text" placeholder="Descrição">
                 <input id="saidaValor" type="number" placeholder="Valor">
-				
             </div>
             <ul id="listaSaidas"></ul>
         </div>
         <button onclick="gerarPDF()">Gerar PDF</button>
     </div>
     <footer>
-      <center> <h6> <p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
+        <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
     </footer>
 
     <script>
         document.getElementById('dataHora').textContent = new Date().toLocaleString();
-
-        function toggleMenu() {
-            var nav = document.getElementById('sideNav');
-            nav.classList.toggle('open');
-        }
 
         function toggleSaldoVisibility() {
             var saldoDiv = document.getElementById('saldo');
@@ -235,14 +224,14 @@
             });
 
             const dataHoraAtual = new Date().toLocaleString();
-            doc.addImage(imgData, 'PNG', 80,20, 50, 40);
-	    doc.text(Nome do Cliente: ${clienteNome}, 10, 75);
-            doc.text(` ${dataHoraAtual}`, 150, 270, null, null, 'center');
-            doc.text(Total de Entradas: R$ ${totalEntradas.toFixed(2)}, 10, 95);
-            doc.text(Total de Saídas: R$ ${totalSaidas.toFixed(2)}, 10, 105);
-            doc.text(Saldo: R$ ${saldo.toFixed(2)}, 10, 115);
+            doc.addImage(imgData, 'PNG', 80, 20, 50, 40);
+            doc.text(`Nome do Cliente: ${clienteNome}`, 10, 75);
+            doc.text(`${dataHoraAtual}`, 150, 270, null, null, 'center');
+            doc.text(`Total de Entradas: R$ ${totalEntradas.toFixed(2)}`, 10, 95);
+            doc.text(`Total de Saídas: R$ ${totalSaidas.toFixed(2)}`, 10, 105);
+            doc.text(`Saldo: R$ ${saldo.toFixed(2)}`, 10, 115);
 
-            doc.save(${clienteNome}_relatorio_financeiro.pdf);
+            doc.save(`${clienteNome}_relatorio_financeiro.pdf`);
         }
 
         function inserirEntrada() {
@@ -290,7 +279,14 @@
             entradas.forEach(function (entrada, index) {
                 if (entrada.mes === mes && entrada.ano === ano) {
                     var li = document.createElement('li');
-                    li.textContent = ${entrada.descricao}: R$ ${entrada.valor.toFixed(2)};
+                    li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`;
+                    
+                    // Botão de excluir
+                    var btnExcluir = document.createElement('button');
+                    btnExcluir.textContent = 'Excluir';
+                    btnExcluir.onclick = function() { excluirEntrada(index); };
+                    
+                    li.appendChild(btnExcluir);
                     listaEntradas.appendChild(li);
                 }
             });
@@ -305,7 +301,14 @@
             saidas.forEach(function (saida, index) {
                 if (saida.mes === mes && saida.ano === ano) {
                     var li = document.createElement('li');
-                    li.textContent = ${saida.descricao}: R$ ${saida.valor.toFixed(2)};
+                    li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2)}`;
+                    
+                    // Botão de excluir
+                    var btnExcluir = document.createElement('button');
+                    btnExcluir.textContent = 'Excluir';
+                    btnExcluir.onclick = function() { excluirSaida(index); };
+                    
+                    li.appendChild(btnExcluir);
                     listaSaidas.appendChild(li);
                 }
             });
@@ -330,80 +333,26 @@
                 }
             });
 
-            document.getElementById('saldo').textContent = Saldo R$ ${saldo.toFixed(2)};
+            document.getElementById('saldo').textContent = `Saldo R$ ${saldo.toFixed(2)}`;
+        }
+
+        // Função para excluir uma entrada específica
+        function excluirEntrada(index) {
+            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+            entradas.splice(index, 1);
+            localStorage.setItem('entradas', JSON.stringify(entradas));
+            filtrarMovimentacoes();
+        }
+
+        // Função para excluir uma saída específica
+        function excluirSaida(index) {
+            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+            saidas.splice(index, 1);
+            localStorage.setItem('saidas', JSON.stringify(saidas));
+            filtrarMovimentacoes();
         }
 
         filtrarMovimentacoes();
     </script>
-	<script>
-	// Função para excluir uma entrada específica
-function excluirEntrada(index) {
-    var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-    entradas.splice(index, 1);
-    localStorage.setItem('entradas', JSON.stringify(entradas));
-    filtrarMovimentacoes();
-}
-
-// Modificação na função exibirEntradas para incluir o botão de excluir
-function exibirEntradas() {
-    var mes = document.getElementById('filtroMes').value;
-    var ano = document.getElementById('filtroAno').value;
-    var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-    var listaEntradas = document.getElementById('listaEntradas');
-    listaEntradas.innerHTML = '';
-    entradas.forEach(function (entrada, index) {
-        if (entrada.mes === mes && entrada.ano === ano) {
-            var li = document.createElement('li');
-            li.textContent = ${entrada.descricao}: R$ ${entrada.valor.toFixed(2)};
-            
-            // Botão de excluir
-            var btnExcluir = document.createElement('button');
-            btnExcluir.textContent = 'Excluir';
-            btnExcluir.onclick = function() { excluirEntrada(index); };
-            
-            li.appendChild(btnExcluir);
-            listaEntradas.appendChild(li);
-        }
-    });
-}
-
-// Lembre-se de chamar a função exibirEntradas em algum lugar do seu código para atualizar a lista
-
-	</script>
-	<script>
-	// Função para excluir uma saída específica
-function excluirSaida(index) {
-    var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-    saidas.splice(index, 1);
-    localStorage.setItem('saidas', JSON.stringify(saidas));
-    filtrarMovimentacoes();
-}
-
-// Modificação na função exibirSaidas para incluir o botão de excluir
-function exibirSaidas() {
-    var mes = document.getElementById('filtroMes').value;
-    var ano = document.getElementById('filtroAno').value;
-    var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-    var listaSaidas = document.getElementById('listaSaidas');
-    listaSaidas.innerHTML = '';
-    saidas.forEach(function (saida, index) {
-        if (saida.mes === mes && saida.ano === ano) {
-            var li = document.createElement('li');
-            li.textContent = ${saida.descricao}: R$ ${saida.valor.toFixed(2)};
-            
-            // Botão de excluir
-            var btnExcluir = document.createElement('button');
-            btnExcluir.textContent = 'Excluir';
-            btnExcluir.onclick = function() { excluirSaida(index); };
-            
-            li.appendChild(btnExcluir);
-            listaSaidas.appendChild(li);
-        }
-    });
-}
-
-// Lembre-se de chamar a função exibirSaidas em algum lugar do seu código para atualizar a lista
-</script>
-	
 </body>
 </html>
