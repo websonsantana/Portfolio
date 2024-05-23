@@ -230,7 +230,7 @@
         });
 
         const dataHoraAtual = new Date().toLocaleString();
-        doc.addImage(imgData, 'PNG', 10, 10, 30, 30);
+        doc.addImage(imgData, 'PNG', 80, 10, 50, 50);
         doc.setFontSize(12);
         doc.text(`Cliente: ${clienteNome}`, 10, 50);
         doc.text(`Data/Hora: ${dataHoraAtual}`, 10, 60);
