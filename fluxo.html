@@ -248,12 +248,12 @@
             y += 10;
         });
 
-        y += 10;
+        y + 10;
         doc.text('Saídas', 10, y);
-        y += 10;
+        y + 10;
         saidasFiltradas.forEach(saida => {
             doc.text(`${saida.descricao}: R$ ${saida.valor.toFixed(2).replace('.', ',')}`, 10, y);
-            y += 10;
+            y + 10;
         });
 
         doc.save(`fluxo_caixa_${clienteNome}_${mes}_${ano}.pdf`);
