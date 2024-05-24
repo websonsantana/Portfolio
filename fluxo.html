@@ -242,13 +242,13 @@
 
         doc.setFontSize(12);
         doc.text('Entradas', 10, 120);
-        let y = 120;
+        let y = 130;  // Inicia a lista de entradas um pouco abaixo do título 'Entradas'
         entradasFiltradas.forEach(entrada => {
             doc.text(`${entrada.descricao}: R$ ${entrada.valor.toFixed(2).replace('.', ',')}`, 10, y);
             y += 10;
         });
 
-        y += 10;
+        y += 10;  // Adiciona um espaço entre as entradas e o título 'Saídas'
         doc.text('Saídas', 10, y);
         y += 10;
         saidasFiltradas.forEach(saida => {
