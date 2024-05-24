@@ -48,8 +48,8 @@
         }
         .form-inline select,
         .form-inline input {
-            margin-left: 10px;
-            padding: 5px;
+            margin-left: 5px;
+            padding: 3px;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
@@ -63,7 +63,7 @@
             font-size: 16px;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #078996;
         }
         h3, h4 {
             color: #072739;
@@ -153,22 +153,22 @@
         <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
         <hr>
         <div id="entradas">
-            <h4>Entradas <button onclick="inserirEntrada()">+</button></h4>
-            <div class="form-inline">
-                
+            <h4>Entradas </h4>
+            
+                <h6><button onclick="inserirEntrada()">+Incuir</button></h6>
+				<div class="form-inline">
                 <input id="entradaDescricao" type="text" placeholder="Descrição">
-                <br>
                 <input id="entradaValor" type="number" placeholder="Valor">
             </div>
             <ul id="listaEntradas"></ul>
         </div>
         <div id="saidas">
-            <h4>Saídas <button onclick="inserirSaida()">+</button></h4>
-            <div class="form-inline">
-                
-                <input id="saidaDescricao" type="text" placeholder="Descrição">
-                <br>
-                <input id="saidaValor" type="number" placeholder="Valor">
+            <h4>Saídas </h4>
+			
+			<h6><button onclick="inserirSaida()">+Incuir</button></h6>
+            <div class="form-inline">  
+            <input id="saidaDescricao" type="text" placeholder="Descrição">
+            <input id="saidaValor" type="number" placeholder="Valor">
             </div>
             <ul id="listaSaidas"></ul>
         </div>
