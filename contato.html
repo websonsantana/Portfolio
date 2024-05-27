@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webson | MW Consultoria Financeira</title>
+    <link rel="icon" type="image/x-icon" href="logofinanceiro.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        header img {
+            width: 150px;
+        }
+        #cliente {
+            display: flex;
+            justify-content: space-between;
+            background-color: #072739;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #filtro {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .form-inline {
+            display: flex;
+            align-items: center;
+        }
+        .form-inline select,
+        .form-inline input {
+            margin-left: 5px;
+            padding: 3px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #072739;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #078996;
+        }
+        h3, h4 {
+            color: #072739;
+        }
+        #sideNav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #C1C8D4;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        #sideNav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 22px;
+            color: #072739;
+            display: block;
+            transition: 0.3s;
+        }
+        #sideNav a:hover {
+            color: #fff;
+        }
+        #sideNav .closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        #menuBtn {
+            font-size: 30px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="sideNav" class="sidenav">
+        <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
+		<center><img src="logofinanceiro.png" alt="Logo" width="90"></center>
+		
+        <a href="#">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Serviços</a>
+        <a href="#">Contato</a>
+    </div>
+    <div id="main" class="container">
+        <span id="menuBtn" onclick="openNav()">&#9776;</span>
+        <header>
+            
+        </header>
+		<body>
+		<center>
+	<div class ="container">
+ <center>
+     
+     <main>
+
+</main>
+    <center><h2>Envie uma mensagem</a> </h2></center>
+	<form id="whatsappForm">
+         <label for="nome"><a class="yellow-text">Nome Completo:</a></label><br>
+        <input type="text" id="nome" name="nome" required><br><br>       
+        <label for="email"><a class="yellow-text">E-mail:</a></label><br>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="mensagem"><a class="yellow-text">Mensagem:</a></label><br>
+        <textarea id="mensagem" rows="4" cols="40"></textarea><br><br>
+        <input type="submit" value="Enviar">
+        </form>
+		</div>
+	</center>
+<br>
+
+
+</div>
+</center>
+		</body>
+        
+    <footer>
+        <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
+    </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script>
+    document.getElementById('dataHora').textContent = new Date().toLocaleString();
+
+    function toggleSaldoVisibility() {
+        var saldoDiv = document.getElementById('saldo');
+        if (saldoDiv.style.display === 'none') {
+            saldoDiv.style.display = 'block';
+        } else {
+            saldoDiv.style.display = 'none';
+        }
+    }
+
+    function openNav() {
+        document.getElementById('sideNav').style.width = '250px';
+    }
+
+    function closeNav() {
+        document.getElementById('sideNav').style.width = '0';
+    }
+
+    window.onclick = function(event) {
+        if (event.target !== document.getElementById('sideNav') && !document.getElementById('sideNav').contains(event.target) && event.target !== document.getElementById('menuBtn')) {
+            closeNav();
+        }
+    }
+</script>
+<script>
+        document.getElementById("whatsappForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            enviarMensagem();
+        });
+
+    function enviarMensagem() {
+    var nome = document.getElementById("nome").value;
+    var email = document.getElementById("email").value;
+    var mensagem = document.getElementById("mensagem").value;
+    var numero = "5581987930949"; "5581981521109 // Número de telefone pré-definido
+    var mensagemFormatada = "Nome: " + nome + "\nEmail: " + email + "\nMensagem: " + mensagem;
+    var url = "https://api.whatsapp.com/send?phone=" + numero + "&text=" + encodeURIComponent(mensagemFormatada);
+    window.open(url, '_blank');
+}
+
+    </script>
+
+</body>
+</html>
