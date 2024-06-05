@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | MW Consultoria Financeira</title>
     <link rel="icon" type="image/x-icon" href="logofinanceiro.png">
-	
-	 <style>
-        body{
-			font-family: Arial,helventica, sans-serif;
-			background-image: linear-gradient(45deg, #C1C8D4,#072739);
-			color:white;	
+    
+    <style>
+        body {
+            font-family: Arial, helvetica, sans-serif;
+            background-image: linear-gradient(45deg, #C1C8D4, #072739);
+            color: white;    
         }
         .container {
             max-width: 600px;
             margin: 20px auto;
             padding: 20px;
-            background-image: linear-gradient(20deg, #072739,#C1C8D4);
+            background-image: linear-gradient(20deg, #072739, #C1C8D4);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-			color :white;
+            color: white;
         }
         header {
             text-align: center;
@@ -43,11 +43,12 @@
         }
         .form-inline {
             display: flex;
-            align-items: center;
+            flex-direction: column; /* Ajuste para que os inputs fiquem um abaixo do outro */
+            align-items: flex-start; /* Alinhar os inputs à esquerda */
         }
         .form-inline select,
         .form-inline input {
-            margin-left: 5px;
+            margin-top: 5px; /* Espaçamento entre os inputs */
             padding: 3px;
             border-radius: 5px;
             border: 1px solid #ccc;
@@ -78,7 +79,7 @@
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
-	    background-image: linear-gradient(20deg, #072739,#C1C8D4);
+            background-image: linear-gradient(20deg, #072739, #C1C8D4);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         #sideNav a {
@@ -104,44 +105,25 @@
             cursor: pointer;
             margin: 10px;
         }
+        
+        input {
+            padding: 10px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            border-radius: 5px;
+            margin-bottom: 5px; /* Espaçamento entre os inputs */
+        }
+        
+        .movimentacao {
+            margin-bottom: 10px;
+        }
     </style>
-	
-	<Style>
-	
-	   body{
-			font-family: Arial,helventica, sans-serif;
-			background-image: linear-gradient(45deg, #C1C8D4,#072739);
-	    }
-		
-		input{
-			padding :15px;
-			border:none;
-			outline: none;
-			font-size:15px;
-			border-radius:15px;
-		}
-		
-		button{
-			background-color:#072739;
-			border: none;
-			padding:15Px;
-			width: 100%;
-			border-radius: 10Px;
-			color:white;	
-		}
-		button:hover{
-		background-color:#C1C8D4;
-		color: #072739;
-	
-	</Style>
-	
 </head>
-        <body> 
-		
-		<div id="sideNav" class="sidenav">
+<body>
+    <div id="sideNav" class="sidenav">
         <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
-		<center><img src="logofinanceiro.png" alt="Logo" width="90"></center>
-		
+        <center><img src="logofinanceiro.png" alt="Logo" width="90"></center>
         <a href="fluxo.html">Inicio</a>
         <a href="#">Sobre</a>
         <a href="#">Serviços</a>
@@ -182,47 +164,41 @@
                 <select id="filtroAno" onchange="filtrarMovimentacoes()">
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
-                </select>
-            </div>
+                           </select>
         </div>
-        <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
-        <hr>
-        <div id="entradas">
-            <h4>Entradas </h4>
-            
-                <h3><button onclick="inserirEntrada()">+</button></h3>
-				<div class="form-inline">
-                <input id="entradaDescricao" type="text" placeholder="Descrição">
-			<p>
-			<br>
-			<p>
-			<br>
-                <input id="entradaValor" type="number" placeholder="Valor">
-            </div>
-            <ul id="listaEntradas"></ul>
-        </div>
-        <div id="saidas">
-            <h4>Saídas </h4>
-			
-			<h3><button onclick="inserirSaida()">+</button></h3>
-            <div class="form-inline">  
-            <input id="saidaDescricao" type="text" placeholder="Descrição">
-			<p>
-			<br>
-			<p>
-			<br>
-            <input id="saidaValor" type="number" placeholder="Valor">
-            </div>
-            <ul id="listaSaidas"></ul>
-        </div>
-        <button onclick="gerarPDF()">Gerar PDF</button>
     </div>
-    <footer>
-        <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
-    </footer>
+    <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
+    <hr>
+    <div id="entradas">
+        <h4>Entradas </h4>
+        <div class="movimentacao">
+            <input id="entradaDescricao" type="text" placeholder="Descrição">
+            <input id="entradaValor" type="number" placeholder="Valor">
+            <button onclick="inserirEntrada()">Adicionar</button>
+        </div>
+        <ul id="listaEntradas"></ul>
+    </div>
+    <div id="saidas">
+        <h4>Saídas </h4>
+        <div class="movimentacao">
+            <input id="saidaDescricao" type="text" placeholder="Descrição">
+            <input id="saidaValor" type="number" placeholder="Valor">
+            <button onclick="inserirSaida()">Adicionar</button>
+        </div>
+        <ul id="listaSaidas"></ul>
+    </div>
+    <button onclick="gerarPDF()">Gerar PDF</button>
+</div>
+<footer>
+    <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
+</footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <script>
+<!-- Incluindo a biblioteca jsPDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<!-- Incluindo o plugin jspdf.plugin.autotable.min.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
+<script>
     document.getElementById('dataHora').textContent = new Date().toLocaleString();
 
     function toggleSaldoVisibility() {
@@ -246,197 +222,100 @@
         if (event.target !== document.getElementById('sideNav') && !document.getElementById('sideNav').contains(event.target) && event.target !== document.getElementById('menuBtn')) {
             closeNav();
         }
-    }
+    };
 
     function gerarPDF() {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
-        const imgData = 'logofinanceiro.png';
-        const clienteNome = "Webson Santana";
+        const clienteNome = 'Webson Santana';
         const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
         const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        const saldo = parseFloat(document.getElementById('saldo').textContent.replace('Saldo R$ ', '').replace(',', '.'));
 
-        const mes = document.getElementById('filtroMes').value;
-        const ano = document.getElementById('filtroAno').value;
-
-        const entradasFiltradas = entradas.filter(entrada => entrada.mes === mes && entrada.ano === ano);
-        const saidasFiltradas = saidas.filter(saida => saida.mes === mes && saida.ano === ano);
-
-        let totalEntradas = 0;
-        let totalSaidas = 0;
-
-        entradasFiltradas.forEach(entrada => {
-            totalEntradas += entrada.valor;
-        });
-
-        saidasFiltradas.forEach(saida => {
-            totalSaidas += saida.valor;
-        });
-
-        const dataHoraAtual = new Date().toLocaleString();
-        doc.addImage(imgData, 'PNG', 80, 10, 50, 40);
-        doc.setFontSize(14);
-        doc.text(`Cliente: ${clienteNome}`, 10, 70);
-        doc.text(`Data/Hora: ${dataHoraAtual}`, 10, 80);
-        doc.text(`Período: ${mes}/${ano}`, 10, 90);
-        doc.text(`Saldo: R$ ${saldo.toFixed(2).replace('.', ',')}`, 10, 100);
-
-        doc.setFontSize(16);
-        doc.text('Fluxo de Caixa', 80, 110);
+        doc.setFontSize(22);
+        doc.text('Fluxo de Caixa', 20, 20);
 
         doc.setFontSize(12);
-        doc.text('Entradas', 10, 120);
+        doc.text(`Cliente: ${clienteNome}`, 20, 40);
 
-        // Tabela de Entradas
-        let bodyEntradas = entradasFiltradas.map(entrada => [entrada.descricao, `R$ ${entrada.valor.toFixed(2).replace('.', ',')}`]);
+        doc.setFontSize(16);
+        doc.text('Entradas', 20, 60);
+
         doc.autoTable({
-            startY: 130,
+            startY: 70,
             head: [['Descrição', 'Valor']],
-            body: bodyEntradas,
+            body: entradas.map(item => [item.descricao, item.valor])
         });
 
-        // Calcula a nova posição Y para a tabela de Saídas
-        let finalY = doc.lastAutoTable.finalY + 10;
-        
-        doc.text('Saídas', 10, finalY);
-        
-        // Tabela de Saídas
-        let bodySaidas = saidasFiltradas.map(saida => [saida.descricao, `R$ ${saida.valor.toFixed(2).replace('.', ',')}`]);
+        const lastPos = doc.autoTable.previous.finalY + 10;
+        doc.text('Saídas', 20, lastPos);
+
         doc.autoTable({
-            startY: finalY + 10,
+            startY: lastPos + 10,
             head: [['Descrição', 'Valor']],
-            body: bodySaidas,
+            body: saidas.map(item => [item.descricao, item.valor])
         });
 
-        doc.save(`fluxo_caixa_${clienteNome}_${mes}_${ano}.pdf`);
+        doc.save('fluxo_de_caixa.pdf');
+    }
+
+    function filtrarMovimentacoes() {
+        // Lógica para filtrar as movimentações por mês e ano selecionados
     }
 
     function inserirEntrada() {
-        var descricao = document.getElementById('entradaDescricao').value;
-        var valor = document.getElementById('entradaValor').value;
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-
+        const descricao = document.getElementById('entradaDescricao').value;
+        const valor = document.getElementById('entradaValor').value;
         if (descricao && valor) {
-            var entrada = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
-            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+            const entrada = { descricao, valor: parseFloat(valor) };
+            const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
             entradas.push(entrada);
             localStorage.setItem('entradas', JSON.stringify(entradas));
-            filtrarMovimentacoes();
+            listarEntradas();
+            document.getElementById('entradaDescricao').value = '';
+            document.getElementById('entradaValor').value = '';
         }
     }
 
     function inserirSaida() {
-        var descricao = document.getElementById('saidaDescricao').value;
-        var valor = document.getElementById('saidaValor').value;
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-
+        const descricao = document.getElementById('saidaDescricao').value;
+        const valor = document.getElementById('saidaValor').value;
         if (descricao && valor) {
-            var saida = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
-            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+            const saida = { descricao, valor: parseFloat(valor) };
+            const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
             saidas.push(saida);
             localStorage.setItem('saidas', JSON.stringify(saidas));
-            filtrarMovimentacoes();
+            listarSaidas();
+            document.getElementById('saidaDescricao').value = '';
+            document.getElementById('saidaValor').value = '';
         }
     }
 
-    function filtrarMovimentacoes() {
-        exibirEntradas();
-        exibirSaidas();
-        atualizarSaldo();
-    }
-
-    function exibirEntradas() {
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        var listaEntradas = document.getElementById('listaEntradas');
+    function listarEntradas() {
+        const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+        const listaEntradas = document.getElementById('listaEntradas');
         listaEntradas.innerHTML = '';
-        entradas.forEach(function (entrada, index) {
-            if (entrada.mes === mes && entrada.ano === ano) {
-                var li = document.createElement('li');
-                li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`;
-
-                // Botão de excluir
-                var btnExcluir = document.createElement('button');
-                btnExcluir.textContent = 'Excluir';
-                btnExcluir.onclick = function() { excluirEntrada(index); };
-
-                li.appendChild(btnExcluir);
-                listaEntradas.appendChild(li);
-            }
+        entradas.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${item.descricao}</strong><br>R$ ${item.valor.toFixed(2)}`;
+            listaEntradas.appendChild(li);
         });
     }
 
-    function exibirSaidas() {
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        var listaSaidas = document.getElementById('listaSaidas');
+    function listarSaidas() {
+        const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+        const listaSaidas = document.getElementById('listaSaidas');
         listaSaidas.innerHTML = '';
-        saidas.forEach(function (saida, index) {
-            if (saida.mes === mes && saida.ano === ano) {
-                var li = document.createElement('li');
-                li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2)}`;
-
-                // Botão de excluir
-                var btnExcluir = document.createElement('button');
-                btnExcluir.textContent = 'Excluir';
-                btnExcluir.onclick = function() { excluirSaida(index); };
-
-                li.appendChild(btnExcluir);
-                listaSaidas.appendChild(li);
-            }
+        saidas.forEach(item => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${item.descricao}</strong><br>R$ ${item.valor.toFixed(2)}`;
+            listaSaidas.appendChild(li);
         });
     }
 
-    function atualizarSaldo() {
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        var saldo = 0;
-
-        entradas.forEach(function (entrada) {
-            if (entrada.mes === mes && entrada.ano === ano) {
-                saldo += entrada.valor;
-            }
-        });
-
-        saidas.forEach(function (saida) {
-            if (saida.mes === mes && saida.ano === ano) {
-                saldo -= saida.valor;
-            }
-        });
-
-        document.getElementById('saldo').textContent = `Saldo R$ ${saldo.toFixed(2)}`;
-    }
-
-    // Função para excluir uma entrada específica
-    function excluirEntrada(index) {
-        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        entradas.splice(index, 1);
-        localStorage.setItem('entradas', JSON.stringify(entradas));
-        filtrarMovimentacoes();
-    }
-
-    // Função para excluir uma saída específica
-    function excluirSaida(index) {
-        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        saidas.splice(index, 1);
-        localStorage.setItem('saidas', JSON.stringify(saidas));
-        filtrarMovimentacoes();
-    }
-
-    filtrarMovimentacoes();
+    listarEntradas();
+    listarSaidas();
 </script>
-
-		
-
-		</body>
-
-
+</body>
 </html>
+
