@@ -121,7 +121,12 @@
     </style>
 </head>
 <body>
-
+<script>
+        // Desabilitar o botão direito do mouse
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
     <script>
         // Verifica se o usuário está autenticado
         if (localStorage.getItem('isAuthenticated') !== 'true') {
