@@ -121,6 +121,13 @@
     </style>
 </head>
 <body>
+
+    <script>
+        // Verifica se o usuário está autenticado
+        if (localStorage.getItem('isAuthenticated') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
     <div id="sideNav" class="sidenav">
         <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
         <center><img src="logofinanceiro.png" alt="Logo" width="90"></center>
