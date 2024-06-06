@@ -5,63 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | MW Consultoria Financeira</title>
     <link rel="icon" type="image/x-icon" href="logofinanceiro.png">
-	<Style>
-	
-	   body{
-			font-family: Arial,helventica, sans-serif;
-			background-image: linear-gradient(45deg, #C1C8D4,#072739);
-	    }
-		div{
-			background-color: rgba(0,0,0,0.1);
-			position: absolute;
-			padding: 50px;
-			color: white;
-			top:50%;
-			left: 50%;
-			transform: translate( -50%, -50%);
-			border-radius:15px;
-		}   
-		
-		input{
-			padding :15px;
-			border:none;
-			outline: none;
-			font-size:15px;
-			border-radius:15px;
-		}
-		
-		button{
-			background-color:#072739;
-			border: none;
-			padding:15Px;
-			width: 100%;
-			border-radius: 10Px;
-			color:white;	
-		}
-		button:hover{
-		background-color:#C1C8D4;
-	
-	</Style>
-	
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: linear-gradient(45deg, #C1C8D4, #072739);
+        }
+        div {
+            background-color: rgba(0, 0, 0, 0.1);
+            position: absolute;
+            padding: 50px;
+            color: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+        }
+        input {
+            padding: 15px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            border-radius: 15px;
+        }
+        button {
+            background-color: #072739;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            color: white;
+        }
+        button:hover {
+            background-color: #C1C8D4;
+            color: #072739;
+        }
+    </style>
 </head>
-        <body> 
-		
-		
-		<div>
-		<center><img src= "logofinanceiro.png" width= 120px></center>
-		<h1> Login</h1>
-		<input type="text" placeholder="Nome">
-		<br><br>
-		<input type="Password" placeholder="Senha">
-		<br><br>
-		<button> Login</button> 
-		<br>
-		<br>
-		<center>
-		<h6>Desenvolvido Por</h6><img src= "2.png" width= 150px>
-		</center>
-		</div>
+<body>
+    <div>
+        <center><img src="logofinanceiro.png" width="120px"></center>
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Nome">
+        <br><br>
+        <input type="password" id="password" placeholder="Senha">
+        <br><br>
+        <button onclick="login()">Login</button>
+        <p id="error-message" style="color: red; display: none;">Nome de usuário ou senha incorretos!</p>
+        <br><br>
+        <center>
+            <h6>Desenvolvido Por</h6>
+            <img src="2.png" width="150px">
+        </center>
+    </div>
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-		</body>
+            const users = [
+                { username: 'usuario1', password: 'senha123' },
+                { username: 'usuario2', password: 'senha456' },
+                { username: 'usuario3', password: 'senha789' }
+            ];
 
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (user) {
+                // Armazena as credenciais no localStorage
+                localStorage.setItem('isAuthenticated', 'true');
+                window.location.href = 'fluxo.html';
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+            }
+        }
+    </script>
+</body>
 </html>
