@@ -39,12 +39,12 @@
         #filtro {
             display: flex;
             justify-content: space-between;
-            margin: 20px 0;
+            margin: 2px 0;
         }
         .form-inline {
             display: flex;
             flex-direction: column; /* Ajuste para que os inputs fiquem um abaixo do outro */
-           
+            align-items: flex-start; /* Alinhar os inputs à esquerda */
         }
         .form-inline select,
         .form-inline input {
@@ -136,7 +136,7 @@
             <img src="logofinanceiro.png" alt="Logo Financeiro" width="80%">
         </header>
         <div id="cliente">
-            <div>Olá Webson Santana</div>
+            <div>Olá Webson Santana </div>
             <div id="dataHora"></div>
             <div id="saldo">Saldo R$ 0,00</div>
             <button id="toggle-visibility" onclick="toggleSaldoVisibility()">👁</button>
@@ -164,158 +164,173 @@
                 <select id="filtroAno" onchange="filtrarMovimentacoes()">
                     <option value="2024">2024</option>
                     <option value="2025">2025</option>
-                           </select>
+                </select>
+            </div>
         </div>
-    </div>
-    <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
-    <hr>
-    <div id="entradas">
-        <h4>Entradas </h4>
-        <div class="movimentacao">
-            <input id="entradaDescricao" type="text" placeholder="Descrição">
-            <input id="entradaValor" type="number" placeholder="Valor">
-            <button onclick="inserirEntrada()">Adicionar</button>
+        <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
+        <hr>
+        <div id="entradas">
+            <h4>Entradas </h4>
+            <div class="movimentacao">
+                <input id="entradaDescricao" type="text" placeholder="Descrição">
+                <input id="entradaValor" type="number" placeholder="Valor">
+                <button onclick="inserirEntrada()">Adicionar</button>
+            </div>
+            <ul id="listaEntradas"></ul>
         </div>
-        <ul id="listaEntradas"></ul>
-    </div>
-    <div id="saidas">
-        <h4>Saídas </h4>
-        <div class="movimentacao">
-            <input id="saidaDescricao" type="text" placeholder="Descrição">
-            <input id="saidaValor" type="number" placeholder="Valor">
-            <button onclick="inserirSaida()">Adicionar</button>
+        <div id="saidas">
+            <h4>Saídas </h4>
+            <div class="movimentacao">
+                <input id="saidaDescricao" type="text" placeholder="Descrição">
+                <input id="saidaValor" type="number" placeholder="Valor">
+                <button onclick="inserirSaida()">Adicionar</button>
+            </div>
+            <ul id="listaSaidas"></ul>
         </div>
-        <ul id="listaSaidas"></ul>
+        <button onclick="gerarPDF()">Gerar PDF</button>
     </div>
-    <button onclick="gerarPDF()">Gerar PDF</button>
-</div>
-<footer>
-    <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
-</footer>
+    <footer>
+        <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
+    </footer>
 
-<!-- Incluindo a biblioteca jsPDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-<!-- Incluindo o plugin jspdf.plugin.autotable.min.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <!-- Incluindo a biblioteca jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <!-- Incluindo o plugin jspdf.plugin.autotable.min.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 
-<script>
-    document.getElementById('dataHora').textContent = new Date().toLocaleString();
+    <script>
+        document.getElementById('dataHora').textContent = new Date().toLocaleString();
 
-    function toggleSaldoVisibility() {
-        var saldoDiv = document.getElementById('saldo');
-        if (saldoDiv.style.display === 'none') {
-            saldoDiv.style.display = 'block';
-        } else {
-            saldoDiv.style.display = 'none';
+        function toggleSaldoVisibility() {
+            var saldoDiv = document.getElementById('saldo');
+            if (saldoDiv.style.display === 'none') {
+                saldoDiv.style.display = 'block';
+            } else {
+                saldoDiv.style.display = 'none';
+            }
         }
-    }
 
-    function openNav() {
-        document.getElementById('sideNav').style.width = '250px';
-    }
-
-    function closeNav() {
-        document.getElementById('sideNav').style.width = '0';
-    }
-
-    window.onclick = function(event) {
-        if (event.target !== document.getElementById('sideNav') && !document.getElementById('sideNav').contains(event.target) && event.target !== document.getElementById('menuBtn')) {
-            closeNav();
+        function openNav() {
+            document.getElementById('sideNav').style.width = '250px';
         }
-    };
 
-    function gerarPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        function closeNav() {
+            document.getElementById('sideNav').style.width = '0';
+        }
 
-        const clienteNome = 'Webson Santana';
-        const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+        window.onclick = function(event) {
+            if (event.target !== document.getElementById('sideNav') && !document.getElementById('sideNav').contains(event.target) && event.target !== document.getElementById('menuBtn')) {
+                closeNav();
+            }
+        };
 
-        doc.setFontSize(22);
-        doc.text('Fluxo de Caixa', 20, 20);
+        function gerarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-        doc.setFontSize(12);
-        doc.text(`Cliente: ${clienteNome}`, 20, 40);
-
-        doc.setFontSize(16);
-        doc.text('Entradas', 20, 60);
-
-        doc.autoTable({
-            startY: 70,
-            head: [['Descrição', 'Valor']],
-            body: entradas.map(item => [item.descricao, item.valor])
-        });
-
-        const lastPos = doc.autoTable.previous.finalY + 10;
-        doc.text('Saídas', 20, lastPos);
-
-        doc.autoTable({
-            startY: lastPos + 10,
-            head: [['Descrição', 'Valor']],
-            body: saidas.map(item => [item.descricao, item.valor])
-        });
-
-        doc.save('fluxo_de_caixa.pdf');
-    }
-
-    function filtrarMovimentacoes() {
-        // Lógica para filtrar as movimentações por mês e ano selecionados
-    }
-
-    function inserirEntrada() {
-        const descricao = document.getElementById('entradaDescricao').value;
-        const valor = document.getElementById('entradaValor').value;
-        if (descricao && valor) {
-            const entrada = { descricao, valor: parseFloat(valor) };
+            const clienteNome = 'Webson Santana';
             const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            entradas.push(entrada);
-            localStorage.setItem('entradas', JSON.stringify(entradas));
-            listarEntradas();
-            document.getElementById('entradaDescricao').value = '';
-            document.getElementById('entradaValor').value = '';
-        }
-    }
-
-    function inserirSaida() {
-        const descricao = document.getElementById('saidaDescricao').value;
-        const valor = document.getElementById('saidaValor').value;
-        if (descricao && valor) {
-            const saida = { descricao, valor: parseFloat(valor) };
             const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            saidas.push(saida);
-            localStorage.setItem('saidas', JSON.stringify(saidas));
-            listarSaidas();
-            document.getElementById('saidaDescricao').value = '';
-            document.getElementById('saidaValor').value = '';
+
+            doc.setFontSize(22);
+            doc.text('Fluxo de Caixa', 20, 20);
+
+            doc.setFontSize(12);
+            doc.text(`Cliente: ${clienteNome}`, 20, 40);
+
+            doc.setFontSize(16);
+            doc.text('Entradas', 20, 60);
+
+            doc.autoTable({
+                startY: 70,
+                head: [['Descrição', 'Valor']],
+                body: entradas.map(item => [item.descricao, item.valor])
+            });
+
+            const lastPos = doc.autoTable.previous.finalY + 10;
+            doc.text('Saídas', 20, lastPos);
+
+            doc.autoTable({
+                startY: lastPos + 10,
+                head: [['Descrição', 'Valor']],
+                body: saidas.map(item => [item.descricao, item.valor])
+            });
+
+            doc.save('fluxo_de_caixa.pdf');
         }
-    }
 
-    function listarEntradas() {
-        const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        const listaEntradas = document.getElementById('listaEntradas');
-        listaEntradas.innerHTML = '';
-        entradas.forEach(item => {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${item.descricao}</strong><br>R$ ${item.valor.toFixed(2)}`;
-            listaEntradas.appendChild(li);
-        });
-    }
+        function filtrarMovimentacoes() {
+            // Lógica para filtrar as movimentações por mês e ano selecionados
+        }
 
-    function listarSaidas() {
-        const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        const listaSaidas = document.getElementById('listaSaidas');
-        listaSaidas.innerHTML = '';
-        saidas.forEach(item => {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${item.descricao}</strong><br>R$ ${item.valor.toFixed(2)}`;
-            listaSaidas.appendChild(li);
-        });
-    }
+        function inserirEntrada() {
+            const descricao = document.getElementById('entradaDescricao').value;
+            const valor = document.getElementById('entradaValor').value;
+            if (descricao && valor) {
+                const entrada = { descricao, valor: parseFloat(valor) };
+                const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+                entradas.push(entrada);
+                localStorage.setItem('entradas', JSON.stringify(entradas));
+                listarEntradas();
+                document.getElementById('entradaDescricao').value = '';
+                document.getElementById('entradaValor').value = '';
+            }
+        }
 
-    listarEntradas();
-    listarSaidas();
-</script>
+        function inserirSaida() {
+            const descricao = document.getElementById('saidaDescricao').value;
+            const valor = document.getElementById('saidaValor').value;
+            if (descricao && valor) {
+                const saida = { descricao, valor: parseFloat(valor) };
+                const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+                saidas.push(saida);
+                localStorage.setItem('saidas', JSON.stringify(saidas));
+                listarSaidas();
+                document.getElementById('saidaDescricao').value = '';
+                document.getElementById('saidaValor').value = '';
+            }
+        }
+
+        function listarEntradas() {
+            const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+            const listaEntradas = document.getElementById('listaEntradas');
+            listaEntradas.innerHTML = '';
+            entradas.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.descricao}</strong><br>R$ ${item.valor.toFixed(2)} 
+                    <button onclick="excluirEntrada(${index})">Excluir</button>`;
+                listaEntradas.appendChild(li);
+            });
+        }
+
+        function excluirEntrada(index) {
+            let entradas = JSON.parse(localStorage.getItem('entradas')) || [];
+            entradas.splice(index, 1); // Remove o item do array
+            localStorage.setItem('entradas', JSON.stringify(entradas)); // Atualiza o localStorage
+            listarEntradas(); // Atualiza a lista exibida
+        }
+
+        function listarSaidas() {
+            const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+            const listaSaidas = document.getElementById('listaSaidas');
+            listaSaidas.innerHTML = '';
+            saidas.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.descricao}</strong><br>R$ ${item.valor.toFixed(2)} 
+                    <button onclick="excluirSaida(${index})">Excluir</button>`;
+                listaSaidas.appendChild(li);
+            });
+        }
+
+        function excluirSaida(index) {
+            let saidas = JSON.parse(localStorage.getItem('saidas')) || [];
+            saidas.splice(index, 1); // Remove o item do array
+            localStorage.setItem('saidas', JSON.stringify(saidas)); // Atualiza o localStorage
+            listarSaidas(); // Atualiza a lista exibida
+        }
+
+        listarEntradas();
+        listarSaidas();
+    </script>
 </body>
 </html>
-
