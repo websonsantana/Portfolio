@@ -267,16 +267,11 @@
                 body: saidas.map(item => [item.descricao, item.valor])
             });
 
-            const pdfDataUri = doc.output('datauristring');
-            const pdfLink = document.createElement('a');
-            pdfLink.href = pdfDataUri;
-            pdfLink.download = 'fluxo_de_caixa.pdf';
-            pdfLink.textContent = 'Baixar PDF';
-            document.body.appendChild(pdfLink);
+            doc.save('fluxo_de_caixa.pdf');
 
             // Prepara a mensagem no WhatsApp
             const numero = '5581987651620';
-            const mensagem = `Olá, segue o relatório de fluxo de caixa. Por favor, faça o download do PDF pelo link abaixo e anexe na conversa do WhatsApp:\n\n${pdfLink.href}`;
+            const mensagem = `Olá, segue o relatório de fluxo de caixa em anexo.`;
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensagem)}`;
             window.open(whatsappUrl, '_blank');
         }
