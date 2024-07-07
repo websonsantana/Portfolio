@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -21,7 +22,8 @@
 
         .cabecalho__menu {
             display: flex;
-            justify-content: center;
+            justify-content: left;
+			margin-left: 6%;
         }
 
         .cabecalho__menu__link {
@@ -115,8 +117,21 @@
             }
 
             .apresentacao__links {
-                align-items: flex-start;
+                align-items: flex-start;a
             }
+        }
+		.apresentacao__links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            
+            
+        }
+
+        .apresentacao__links__subtitulo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            grid-column: span 2;
         }
     </style>
 </head>
@@ -138,27 +153,27 @@
             <div class="apresentacao__links">
                 <h3 class="apresentacao__links__subtitulo">Conecte-se comigo</h3>
                 <a class="apresentacao__links__navegacao" href="https://github.com/websonsantana">
-                    <img src="github.png" alt="Ícone do Github">
+                    <img src="git.jpg" alt="Ícone do Github">
                     Github
                 </a>
                 <a class="apresentacao__links__navegacao" href="https://linkedin.com/in/websonsantana">
-                    <img src="linkedin.png" alt="Ícone do LinkedIn">
+                    <img src="linkedin.jpg" alt="Ícone do LinkedIn">
                     LinkedIn
                 </a>
                 <a class="apresentacao__links__navegacao" href="https://twitch.tv">
-                    <img src="twitch.png" alt="Ícone do Twitch">
+                    <img src="twitch.jpg" alt="Ícone do Twitch">
                     Twitch
                 </a>
                 <a class="apresentacao__links__navegacao" href="https://twitch.tv">
-                    <img src="instagran.png" alt="Ícone do Twitch">
+                    <img src="instagran.jpg" alt="Ícone do Twitch">x
                     Instagran
                 </a>
                 <a class="apresentacao__links__navegacao" href="https://twitch.tv">
-                    <img src="x.png" alt="Ícone do Twitch">
+                    <img src="x.jpg" alt="Ícone do Twitch">
                    X
                 </a>
                 <a class="apresentacao__links__navegacao" href="https://twitch.tv">
-                    <img src="facebook.png" alt="Ícone do Twitch">
+                    <img src="facebook.jpg" alt="Ícone do Twitch">
                     Facebook
                 </a>
             </div>
