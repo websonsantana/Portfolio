@@ -14,24 +14,26 @@
             box-sizing: border-box;
         }
 
-        .cabecalho {
+        .menu-flutuante {
+            position: fixed;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
             background-color: #333;
+            border-radius: 10px;
             padding: 10px;
         }
 
-        .cabecalho__menu {
-            display: flex;
-            justify-content: center;
-        }
-
-        .cabecalho__menu__link {
+        .menu-flutuante__link {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
+            display: block;
+            margin: 10px 0;
+            text-align: center;
             font-weight: bold;
         }
 
-        .cabecalho__menu__link:hover {
+        .menu-flutuante__link:hover {
             text-decoration: underline;
         }
 
@@ -70,6 +72,7 @@
             padding: 20px;
             max-width: 800px;
             width: 100%;
+            margin: 0 auto;
         }
 
         .secao__titulo {
@@ -115,15 +118,13 @@
 </head>
 
 <body>
-    <header class="cabecalho">
-        <nav class="cabecalho__menu">
-            <a class="cabecalho__menu__link" href="#sobre">Sobre</a>
-            <a class="cabecalho__menu__link" href="#experiencia">Experiência</a>
-            <a class="cabecalho__menu__link" href="#educacao">Educação</a>
-            <a class="cabecalho__menu__link" href="#habilidades">Habilidades</a>
-            <a class="cabecalho__menu__link" href="#contato">Contato</a>
-        </nav>
-    </header>
+    <nav class="menu-flutuante">
+        <a class="menu-flutuante__link" href="#sobre">Sobre</a>
+        <a class="menu-flutuante__link" href="#experiencia">Experiência</a>
+        <a class="menu-flutuante__link" href="#educacao">Educação</a>
+        <a class="menu-flutuante__link" href="#habilidades">Habilidades</a>
+        <a class="menu-flutuante__link" href="#contato">Contato</a>
+    </nav>
     <main class="apresentacao">
         <section class="apresentacao__conteudo">
             <h1 class="apresentacao__conteudo__titulo">Webson José Albuquerque de Santana</h1>
