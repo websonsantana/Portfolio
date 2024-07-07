@@ -1,417 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webson | MW Consultoria Financeira</title>
-    <link rel="icon" type="image/x-icon" href="logofinanceiro.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <title>Currículo de Webson Santana</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            box-sizing: border-box;
         }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        header img {
-            width: 150px;
-        }
-        #cliente {
-            display: flex;
-            justify-content: space-between;
-            background-color: #072739;
-            color: white;
+
+        .cabecalho {
+            background-color: #333;
             padding: 10px;
-            border-radius: 5px;
         }
-        #filtro {
+
+        .cabecalho__menu {
             display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-        .form-inline {
-            display: flex;
-            align-items: center;
-        }
-        .form-inline select,
-        .form-inline input {
-            margin-left: 5px;
-            padding: 3px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
-            background-color: #072739;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #078996;
-        }
-        h3, h4 {
-            color: #072739;
-        }
-        #sideNav {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            background-color: #C1C8D4;
-            overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 60px;
-        }
-        #sideNav a {
-            padding: 10px 15px;
-            text-decoration: none;
-            font-size: 22px;
-            color: #072739;
-            display: block;
-            transition: 0.3s;
-        }
-        #sideNav a:hover {
-            color: #fff;
-        }
-        #sideNav .closeBtn {
-            position: absolute;
-            top: 10px;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-        #menuBtn {
-            font-size: 30px;
-            cursor: pointer;
-            margin: 10px;
-        }
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #fff;
-            z-index: 1001;
-            display: flex;
-            align-items: center;
             justify-content: center;
         }
-        #preloader img {
-            width: 150px;
+
+        .cabecalho__menu__link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .cabecalho__menu__link:hover {
+            text-decoration: underline;
+        }
+
+        .apresentacao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .apresentacao__conteudo {
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .apresentacao__conteudo__titulo {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .apresentacao__conteudo__texto {
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .apresentacao__imagem {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .secao {
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .secao__titulo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .secao__conteudo {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .secao__conteudo__item {
+            margin-bottom: 10px;
+        }
+
+        .rodape {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        @media (min-width: 700px) {
+            .apresentacao {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                text-align: left;
+            }
+
+            .apresentacao__conteudo {
+                margin-right: 20px;
+            }
+
+            .apresentacao__imagem {
+                margin: 0;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div id="preloader">
-        <img src="logofinanceiro.png" alt="Logo Financeiro">
-    </div>
-    <div id="sideNav" class="sidenav">
-        <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
-        <center><img src="logofinanceiro.png" alt="Logo" width="90"></center>
-        <a href="#">Home</a>
-        <a href="#">Sobre</a>
-        <a href="#">Serviços</a>
-        <a href="#">Contato</a>
-    </div>
-    <div id="main" class="container" style="display: none;">
-        <span id="menuBtn" onclick="openNav()">&#9776;</span>
-        <header>
-            <img src="logofinanceiro.png" alt="Logo Financeiro">
-        </header>
-        <div id="cliente">
-            <div>Olá Webson Santana</div>
-            <div id="dataHora"></div>
-            <div id="saldo">Saldo R$ 0,00</div>
-            <button id="toggle-visibility" onclick="toggleSaldoVisibility()">👁</button>
-        </div>
-        <div id="filtro">
-            <div class="form-inline">
-                <label for="filtroMes">Mês:</label>
-                <select id="filtroMes" onchange="filtrarMovimentacoes()">
-                    <option value="jan">Janeiro</option>
-                    <option value="fev">Fevereiro</option>
-                    <option value="mar">Março</option>
-                    <option value="abr">Abril</option>
-                    <option value="mai">Maio</option>
-                    <option value="jun">Junho</option>
-                    <option value="jul">Julho</option>
-                    <option value="ago">Agosto</option>
-                    <option value="set">Setembro</option>
-                    <option value="out">Outubro</option>
-                    <option value="nov">Novembro</option>
-                    <option value="dez">Dezembro</option>
-                </select>
+    <header class="cabecalho">
+        <nav class="cabecalho__menu">
+            <a class="cabecalho__menu__link" href="#sobre">Sobre</a>
+            <a class="cabecalho__menu__link" href="#experiencia">Experiência</a>
+            <a class="cabecalho__menu__link" href="#educacao">Educação</a>
+            <a class="cabecalho__menu__link" href="#habilidades">Habilidades</a>
+            <a class="cabecalho__menu__link" href="#contato">Contato</a>
+        </nav>
+    </header>
+    <main class="apresentacao">
+        <section class="apresentacao__conteudo">
+            <h1 class="apresentacao__conteudo__titulo">Webson José Albuquerque de Santana</h1>
+            <p class="apresentacao__conteudo__texto">Desenvolvedor Front-end especializado em JavaScript, HTML e CSS</p>
+        </section>
+        <img class="apresentacao__imagem" src="PERFIL2.png" alt="Foto de Webson Santana">
+    </main>
+    <section id="sobre" class="secao">
+        <h2 class="secao__titulo">Sobre Mim</h2>
+        <p class="secao__conteudo">Bem-vindo! Sou Webson José Albuquerque de Santana, desenvolvedor Front-end com uma paixão por criar interfaces de usuário eficientes e impactantes. Com minha expertise em JavaScript, HTML e CSS, ajudo empresas e designers a concretizarem seus projetos digitais.</p>
+    </section>
+    <section id="experiencia" class="secao">
+        <h2 class="secao__titulo">Experiência</h2>
+        <div class="secao__conteudo">
+            <div class="secao__conteudo__item">
+                <h3>Desenvolvedor Front-end - Empresa XYZ</h3>
+                <p>Jan 2022 - Presente</p>
+                <p>Responsável pelo desenvolvimento de interfaces web responsivas e interativas utilizando as tecnologias mais recentes.</p>
             </div>
-            <div class="form-inline">
-                <label for="filtroAno">Ano:</label>
-                <select id="filtroAno" onchange="filtrarMovimentacoes()">
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                </select>
+            <div class="secao__conteudo__item">
+                <h3>Estagiário em Desenvolvimento Web - Empresa ABC</h3>
+                <p>Jun 2020 - Dez 2021</p>
+                <p>Atuação no desenvolvimento e manutenção de sites corporativos e sistemas internos, colaborando com a equipe de design e back-end.</p>
             </div>
         </div>
-        <h3 id="fluxo-caixa">Fluxo de Caixa</h3>
-        <hr>
-        <div id="entradas">
-            <h4>Entradas </h4>
-            <h6><button onclick="inserirEntrada()">+Incluir</button></h6>
-            <div class="form-inline">
-                <input id="entradaDescricao" type="text" placeholder="Descrição">
-                <input id="entradaValor" type="number" placeholder="Valor">
+    </section>
+    <section id="educacao" class="secao">
+        <h2 class="secao__titulo">Educação</h2>
+        <div class="secao__conteudo">
+            <div class="secao__conteudo__item">
+                <h3>Bacharelado em Ciência da Computação - Universidade Federal de XYZ</h3>
+                <p>2017 - 2021</p>
             </div>
-            <ul id="listaEntradas"></ul>
         </div>
-        <div id="saidas">
-            <h4>Saídas </h4>
-            <h6><button onclick="inserirSaida()">+Incluir</button></h6>
-            <div class="form-inline">  
-                <input id="saidaDescricao" type="text" placeholder="Descrição">
-                <input id="saidaValor" type="number" placeholder="Valor">
-            </div>
-            <ul id="listaSaidas"></ul>
+    </section>
+    <section id="habilidades" class="secao">
+        <h2 class="secao__titulo">Habilidades</h2>
+        <div class="secao__conteudo">
+            <ul>
+                <li>JavaScript</li>
+                <li>HTML5 & CSS3</li>
+                <li>React</li>
+                <li>Bootstrap</li>
+                <li>Git & GitHub</li>
+                <li>Metodologias Ágeis</li>
+            </ul>
         </div>
-        <button onclick="gerarPDF()">Gerar PDF</button>
-    </div>
-    <footer>
-        <center><h6><p>&copy; 2024 MW Consultoria Financeira. Todos os Direitos Reservados.</p></h6></center>
+    </section>
+    <section id="contato" class="secao">
+        <h2 class="secao__titulo">Contato</h2>
+        <div class="secao__conteudo">
+            <p>Email: webson.santana@example.com</p>
+            <p>Telefone: (11) 99999-9999</p>
+            <p>LinkedIn: <a href="https://linkedin.com/in/websonsantana">linkedin.com/in/websonsantana</a></p>
+            <p>GitHub: <a href="https://github.com/websonsantana">github.com/websonsantana</a></p>
+        </div>
+    </section>
+    <footer class="rodape">
+        <p>© 2024 Webson José Albuquerque de Santana. Todos os direitos reservados.</p>
     </footer>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <script>
-    document.getElementById('dataHora').textContent = new Date().toLocaleString();
-
-    function toggleSaldoVisibility() {
-        var saldoDiv = document.getElementById('saldo');
-        if (saldoDiv.style.display === 'none') {
-            saldoDiv.style.display = 'block';
-        } else {
-            saldoDiv.style.display = 'none';
-        }
-    }
-
-    function openNav() {
-        document.getElementById('sideNav').style.width = '250px';
-    }
-
-    function closeNav() {
-        document.getElementById('sideNav').style.width = '0';
-    }
-
-    window.onclick = function(event) {
-        if (event.target !== document.getElementById('sideNav') && !document.getElementById('sideNav').contains(event.target) && event.target !== document.getElementById('menuBtn')) {
-            closeNav();
-        }
-    }
-
-    window.addEventListener('load', function() {
-        document.getElementById('preloader').style.display = 'none';
-        document.getElementById('main').style.display = 'block';
-    });
-
-    function gerarPDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-
-        const imgData = 'logofinanceiro.png';
-        const clienteNome = "Webson Santana";
-        const entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        const saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        const saldo = parseFloat(document.getElementById('saldo').textContent.replace('Saldo R$ ', '').replace(',', '.'));
-
-        const mes = document.getElementById('filtroMes').value;
-        const ano = document.getElementById('filtroAno').value;
-
-        const entradasFiltradas = entradas.filter(entrada => entrada.mes === mes && entrada.ano === ano);
-        const saidasFiltradas = saidas.filter(saida => saida.mes === mes && saida.ano === ano);
-
-        let totalEntradas = 0;
-        let totalSaidas = 0;
-
-        entradasFiltradas.forEach(entrada => {
-            totalEntradas += entrada.valor;
-        });
-
-        saidasFiltradas.forEach(saida => {
-            totalSaidas += saida.valor;
-        });
-
-        const dataHoraAtual = new Date().toLocaleString();
-        doc.addImage(imgData, 'PNG', 80, 10, 50, 40);
-        doc.setFontSize(14);
-        doc.text(`Cliente: ${clienteNome}`, 10, 70);
-        doc.text(`Data/Hora: ${dataHoraAtual}`, 10, 80);
-        doc.text(`Período: ${mes}/${ano}`, 10, 90);
-        doc.text(`Saldo: R$ ${saldo.toFixed(2).replace('.', ',')}`, 10, 100);
-
-        doc.setFontSize(16);
-        doc.text('Fluxo de Caixa', 80, 110);
-
-        doc.setFontSize(12);
-        doc.text('Entradas', 10, 120);
-
-        // Tabela de Entradas
-        let bodyEntradas = entradasFiltradas.map(entrada => [entrada.descricao, `R$ ${entrada.valor.toFixed(2).replace('.', ',')}`]);
-        doc.autoTable({
-            startY: 130,
-            head: [['Descrição', 'Valor']],
-            body: bodyEntradas,
-        });
-
-        // Calcula a nova posição Y para a tabela de Saídas
-        let finalY = doc.lastAutoTable.finalY + 10;
-        
-        doc.text('Saídas', 10, finalY);
-        
-        // Tabela de Saídas
-        let bodySaidas = saidasFiltradas.map(saida => [saida.descricao, `R$ ${saida.valor.toFixed(2).replace('.', ',')}`]);
-        doc.autoTable({
-            startY: finalY + 10,
-            head: [['Descrição', 'Valor']],
-            body: bodySaidas,
-        });
-
-        doc.save(`fluxo_caixa_${clienteNome}_${mes}_${ano}.pdf`);
-    }
-
-    function inserirEntrada() {
-        var descricao = document.getElementById('entradaDescricao').value;
-        var valor = document.getElementById('entradaValor').value;
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-
-        if (descricao && valor) {
-            var entrada = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
-            var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-            entradas.push(entrada);
-            localStorage.setItem('entradas', JSON.stringify(entradas));
-            filtrarMovimentacoes();
-        }
-    }
-
-    function inserirSaida() {
-        var descricao = document.getElementById('saidaDescricao').value;
-        var valor = document.getElementById('saidaValor').value;
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-
-        if (descricao && valor) {
-            var saida = { descricao: descricao, valor: parseFloat(valor), mes: mes, ano: ano };
-            var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-            saidas.push(saida);
-            localStorage.setItem('saidas', JSON.stringify(saidas));
-            filtrarMovimentacoes();
-        }
-    }
-
-    function filtrarMovimentacoes() {
-        exibirEntradas();
-        exibirSaidas();
-        atualizarSaldo();
-    }
-
-    function exibirEntradas() {
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        var listaEntradas = document.getElementById('listaEntradas');
-        listaEntradas.innerHTML = '';
-        entradas.forEach(function (entrada, index) {
-            if (entrada.mes === mes && entrada.ano === ano) {
-                var li = document.createElement('li');
-                li.textContent = `${entrada.descricao}: R$ ${entrada.valor.toFixed(2)}`;
-
-                // Botão de excluir
-                var btnExcluir = document.createElement('button');
-                btnExcluir.textContent = 'Excluir';
-                btnExcluir.onclick = function() { excluirEntrada(index); };
-
-                li.appendChild(btnExcluir);
-                listaEntradas.appendChild(li);
-            }
-        });
-    }
-
-    function exibirSaidas() {
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        var listaSaidas = document.getElementById('listaSaidas');
-        listaSaidas.innerHTML = '';
-        saidas.forEach(function (saida, index) {
-            if (saida.mes === mes && saida.ano === ano) {
-                var li = document.createElement('li');
-                li.textContent = `${saida.descricao}: R$ ${saida.valor.toFixed(2)}`;
-
-                // Botão de excluir
-                var btnExcluir = document.createElement('button');
-                btnExcluir.textContent = 'Excluir';
-                btnExcluir.onclick = function() { excluirSaida(index); };
-
-                li.appendChild(btnExcluir);
-                listaSaidas.appendChild(li);
-            }
-        });
-    }
-
-    function atualizarSaldo() {
-        var mes = document.getElementById('filtroMes').value;
-        var ano = document.getElementById('filtroAno').value;
-        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        var saldo = 0;
-
-        entradas.forEach(function (entrada) {
-            if (entrada.mes === mes && entrada.ano === ano) {
-                saldo += entrada.valor;
-            }
-        });
-
-        saidas.forEach(function (saida) {
-            if (saida.mes === mes && saida.ano === ano) {
-                saldo -= saida.valor;
-            }
-        });
-
-        document.getElementById('saldo').textContent = `Saldo R$ ${saldo.toFixed(2)}`;
-    }
-
-    // Função para excluir uma entrada específica
-    function excluirEntrada(index) {
-        var entradas = JSON.parse(localStorage.getItem('entradas')) || [];
-        entradas.splice(index, 1);
-        localStorage.setItem('entradas', JSON.stringify(entradas));
-        filtrarMovimentacoes();
-    }
-
-    // Função para excluir uma saída específica
-    function excluirSaida(index) {
-        var saidas = JSON.parse(localStorage.getItem('saidas')) || [];
-        saidas.splice(index, 1);
-        localStorage.setItem('saidas', JSON.stringify(saidas));
-        filtrarMovimentacoes();
-    }
-
-    filtrarMovimentacoes();
-    </script>
 </body>
+
 </html>
