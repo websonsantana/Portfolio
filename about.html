@@ -6,9 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo de Webson Santana</title>
-    <style>
-	     body {
+   <style>
+        .h2 {
+            font-size: 30px;
+        }
+
+        body {
             font-family: Arial, sans-serif;
+            background-image: linear-gradient(45deg, #6C6E71);
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -22,7 +27,7 @@
         .cabecalho__menu {
             display: flex;
             justify-content: left;
-			margin-left: 6%;
+			margin-left: 18%;
         }
 
         .cabecalho__menu__link {
@@ -67,30 +72,27 @@
             margin-bottom: 20px;
         }
 
-        .apresentacao__links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .secao {
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
         }
 
-        .apresentacao__links__subtitulo {
+        .secao__titulo {
             font-size: 1.5em;
             margin-bottom: 10px;
-            align-items: center;
-        }
-
-        .apresentacao__links__navegacao {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
             color: #333;
-            margin-bottom: 10px;
         }
 
-        .apresentacao__links__navegacao img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
+        .secao__conteudo {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .secao__conteudo__item {
+            margin-bottom: 10px;
         }
 
         .rodape {
@@ -115,25 +117,8 @@
             .apresentacao__imagem {
                 margin: 0;
             }
-
-            .apresentacao__links {
-                align-items: flex-start;a
-            }
         }
-		.apresentacao__links {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            
-            
-        }
-
-        .apresentacao__links__subtitulo {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            grid-column: span 2;
-        }
-	</style>    
+    </style>
 	
 </head>
 
