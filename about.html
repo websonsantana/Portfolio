@@ -6,13 +6,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo de Webson Santana</title>
-   <style>
-	.container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 90%;
-        }
+    <style>
+	
+	.curso-item,habilidade-item  {
+    display: flex;
+    align-items: center; /* Alinha ícone e texto verticalmente */
+    gap: 10px; /* Espaçamento entre o ícone e o texto */
+    padding: 5px 0;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+
+.curso-item img {
+    width: 24px; /* Ajuste do tamanho do ícone */
+    height: auto;
+	border-radius: 30px;
+}
+
+	
+		.habilidades-lista {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		}
+
+		.habilidade-item {
+		 display: flex;
+    align-items: center; /* Alinha ícone e texto verticalmente */
+    gap: 10px; /* Espaçamento entre o ícone e o texto */
+    padding: 5px 0;
+    font-size: 18px;
+    font-family: Arial, sans-serif;;
+		}
+
+		.habilidade-item img {
+		width: 24px; /* Ajuste do tamanho da imagem */
+		height: auto;
+		}
+
+
+
+	
+		img{
+		width: 30px;
+		}
+		
         .h2 {
             font-size: 30px;
         }
@@ -23,7 +61,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-	    max-width: 100%;
         }
 
         .cabecalho {
@@ -33,8 +70,7 @@
 
         .cabecalho__menu {
             display: flex;
-            justify-content: left;
-			margin-left: 18%;
+            justify-content: center;
         }
 
         .cabecalho__menu__link {
@@ -94,8 +130,8 @@
 
         .secao__conteudo {
             font-size: 1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
+            line-height: 1.2;
+            margin-bottom: 2px;
         }
 
         .secao__conteudo__item {
@@ -125,8 +161,9 @@
                 margin: 0;
             }
         }
+		
+		
     </style>
-	
 </head>
 
 <body>
@@ -138,7 +175,6 @@
     </header>
     <main class="apresentacao">
         <section class="apresentacao__conteudo">
-		<div class="container">
             <h1 class="apresentacao__conteudo__titulo">Webson José Albuquerque de Santana</h1>
             <p class="apresentacao__conteudo__texto">Desenvolvedor Front-end especializado em JavaScript, HTML e CSS</p>
         </section>
@@ -147,7 +183,7 @@
     <section id="sobre" class="secao">
         <h2 class="secao__titulo">Sobre Mim</h2>
         <p class="secao__conteudo">11 anos de experiência em Operações Logísticas com itens de bens de consumo, cargas congeladas, resfriadas e secas. Destes, 3 últimos anos atuando na área de tecnologia como Analista de Sistemas, Analista de Negócios, Analista de Suporte, ServiceDesk e Operações Logísticas, com experiência em JDE, WMS e SQL.
-<P></P>
+
 Principais Responsabilidades:
 Análise de Faturamento: Analisar atividades de faturamento, identificando e corrigindo desvios no processo.
 Controle de Inventário: Gerenciar inventário de estoques e materiais de terceiros, realizando verificações periódicas e anuais.
@@ -167,15 +203,19 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
     <section id="experiencia" class="secao">
         <h2 class="secao__titulo">Experiência</h2>
         <hr>
+		<li class="curso-item">
+                <img src="mb.png" alt="Curso">
+                <span><h3>Analista de Sistema - Martin Brower</h3></span>
+            </li>
         <div class="secao__conteudo">
             <div class="secao__conteudo__item">
-                <h3>Analista de Sistema - Martin Brower</h3>
-                <p>fev. de 2022 - o momento</p>
+                
+                <p>fev. de 2021 - Ate o momento</p>
                 <p>Responsável pelo desenvolvimento e manutenção de sistemas internos, colaborando com a equipe de TI para assegurar a eficiência operacional.</p>
             </div>
             <div class="secao__conteudo__item">
                 <h3>Assistente Suporte Operacional - Martin Brower</h3>
-                <p>set de 2017 - fev de 2022</p>
+                <p>set de 2017 - fev de 2021</p>
                 <p>Atuação no suporte operacional, lidando com a logística e suporte técnico para garantir a continuidade dos serviços.</p>
             </div>
             <div class="secao__conteudo__item">
@@ -211,7 +251,7 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
         <div class="secao__conteudo">
             <div class="secao__conteudo__item">
                 <h3>Bacharelado em Sistemas de Informação - UNIFG</h3>
-                <p>2021 - Cursando 7° Período</p>
+                <p>2021 - Cursando 8° Período</p>
                 <p>Conclusão no 1° Semestre de 2025</p>
             </div>
             <div class="secao__conteudo__item">
@@ -222,40 +262,107 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
                 <h3>Redes de Computadores - ETE Maximiano Accioly Campos</h3>
                 <p>2012 - 2013</p>
             </div>
+			<div class="secao__conteudo__item">
+                <h3>Curso de Idiomas Inglês - Passaport Idiomas</h3>
+                <p>2025 - 2027</p>
+            </div>
         </div>
     </section>
     <section id="cursos" class="secao">
-        <h2 class="secao__titulo">Cursos de Extensão</h2>
-        <hr>
-        <div class="secao__conteudo">
-            <ul>
-                <li>Excel Avançado – UNIBRATEC – 2019</li>
-                <li>POWER BI – EXPERTISE - 2021</li>
-                <li>Quality Assurance: plano de testes e gestão de bugs – Alura - 2023</li>
-                <li>Foco: trazendo mais resultados para o dia a dia – Alura 2022</li>
-                <li>Hábitos: da produtividade às metas pessoais – Alura 2022</li>
-                <li>SQL Server: consultas avançadas com Microsoft SQL Server 2017 - Alura 2022</li>
-                <li>Formação Certificação COBIT 5 - Alura 2021</li>
-                <li>Windows Prompt: Trabalhando na linha de comando - Alura 2021</li>
-                <li>Governança de TI: gestão de demandas de serviços - Alura 2021</li>
-                <li>IT BUSINESS PARTNER – FIAP - 2023</li>
-            </ul>
-        </div>
-    </section>
-    <section id="habilidades" class="secao">
-        <h2 class="secao__titulo">Habilidades</h2>
-        <hr>
-        <div class="secao__conteudo">
-            <ul>
-                <li>JavaScript</li>
-                <li>HTML5 & CSS3</li>
-                <li>React</li>
-                <li>Bootstrap</li>
-                <li>Git & GitHub</li>
-                <li>Metodologias Ágeis</li>
-            </ul>
-        </div>
-    </section>
+    <h2 class="secao__titulo">Cursos de Extensão</h2>
+    <hr>
+    <div class="secao__conteudo">
+        
+            <li class="curso-item">
+                <img src="unibratec.png" alt="Curso">
+                <span>Excel Avançado – <b>UNIBRATEC</b> – 2019</span>
+            </li>
+            <li class="curso-item">
+                <img src="expertise.png" alt="Curso">
+                <span>POWER BI – <b>EXPERTISE</b> - 2021</span>
+            </li>
+            <li class="curso-item">
+                <img src="alura.png" alt="Curso">
+                <span>Quality Assurance: plano de testes e gestão de bugs – <b>Alura</b> - 2023</span>
+            </li>
+            <li class="curso-item">
+                <img src="alura.png" alt="Curso">
+                <span>Foco: trazendo mais resultados para o dia a dia – <b>Alura</b> 2022</span>
+            </li>
+            <li class="curso-item">
+                <img src="alura.png" alt="Curso">
+                <span>Hábitos: da produtividade às metas pessoais – <b>Alura</b> 2022</span>
+            </li>
+            <li class="curso-item">
+                <img src="alura.png" alt="Curso">
+                <span>SQL Server: consultas avançadas com Microsoft SQL Server 2017 - <b>Alura</b> 2022</span>
+            </li>
+            <li class="curso-item">
+                <img src="alura.png" alt="Curso">
+                <span>Formação Certificação COBIT 5 - <b>Alura</b> 2021</span>
+            </li>
+            <li class="curso-item">
+                <img src="alura.png" alt="Curso">
+                <span>Windows Prompt: Trabalhando na linha de comando - <b>Alura</b> 2021</span>
+            </li>
+            <li class="curso-item">
+                <img src="alura.png" alt="Curso">
+                <span>Governança de TI: gestão de demandas de serviços - <b>Alura</b> 2021</span>
+            </li>
+            <li class="curso-item">
+                <img src="FIAP.png" alt="Curso">
+                <span>IT Business Partner – <b>FIAP</b> - 2023</span>
+            </li>
+        
+    </div>
+</section>
+
+   <section id="habilidades" class="secao">
+    <h2 class="secao__titulo">Habilidades</h2>
+    <hr>
+    <div class="secao__conteudo">
+        
+            <li class="habilidade-item">
+                <img src="js.png" alt="JavaScript">
+                <span>JavaScript</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="html.png" alt="HTML">
+                <span>HTML</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="css.svg" alt="CSS">
+                <span>CSS</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="react.png" alt="React">
+                <span>React</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="Bootstrap.png" alt="Bootstrap">
+                <span>Bootstrap</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="git.png" alt="Git">
+                <span>Git</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="github.png" alt="GitHub">
+                <span>GitHub</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="sql.png" alt="Bancos de Dados SQL">
+                <span>Bancos de Dados SQL</span>
+            </li>
+            <li class="habilidade-item">
+                <img src="ageis.png" alt="Metodologias Ágeis">
+                <span>Metodologias Ágeis</span>
+            </li>
+       
+    </div>
+</section>
+
+
     <section id="contato" class="secao">
         <h2 class="secao__titulo">Contato</h2>
         <hr>
@@ -264,7 +371,6 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
             <p>LinkedIn: <a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana-841534102</a></p>
             <p>Email: <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com</a></p>
         </div>
-    </div>
     </section>
     <footer class="rodape">
         <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
