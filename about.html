@@ -8,20 +8,32 @@
     <title>Currículo de Webson Santana</title>
     <style>
 	
-	.curso-item,habilidade-item  {
-    display: flex;
-    align-items: center; /* Alinha ícone e texto verticalmente */
-    gap: 10px; /* Espaçamento entre o ícone e o texto */
-    padding: 5px 0;
-    font-size: 18px;
-    font-family: Arial, sans-serif;
-}
+		.apresentacao__links__navegacao {
+		display: flex;
+		align-items: center;
+		background: linear-gradient(9deg, #0ff 0%, #fff );
+		padding: 10px 20px;
+		border-radius: 25px;
+		color: white;
+		font-weight: bold;
+		transition: all 0.1s ease-in-out;
+		box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+		}
+	
+		.curso-item,habilidade-item  {
+		display: flex;
+		align-items: center; /* Alinha ícone e texto verticalmente */
+		gap: 10px; /* Espaçamento entre o ícone e o texto */
+		padding: 5px 0;
+		font-size: 18px;
+		font-family: Arial, sans-serif;
+		}
 
-.curso-item img {
-    width: 24px; /* Ajuste do tamanho do ícone */
-    height: auto;
-	border-radius: 30px;
-}
+		.curso-item img {
+		width: 24px; /* Ajuste do tamanho do ícone */
+		height: auto;
+		border-radius: 30px;
+		}
 
 	
 		.habilidades-lista {
@@ -31,13 +43,13 @@
 		}
 
 		.habilidade-item {
-		 display: flex;
-    align-items: center; /* Alinha ícone e texto verticalmente */
-    gap: 10px; /* Espaçamento entre o ícone e o texto */
-    padding: 5px 0;
-    font-size: 18px;
-    font-family: Arial, sans-serif;;
-		}
+		display: flex;
+		align-items: center; /* Alinha ícone e texto verticalmente */
+		gap: 10px; /* Espaçamento entre o ícone e o texto */
+		padding: 5px 0;
+		font-size: 18px;
+		font-family: Arial, sans-serif;
+}
 
 		.habilidade-item img {
 		width: 24px; /* Ajuste do tamanho da imagem */
@@ -70,7 +82,8 @@
 
         .cabecalho__menu {
             display: flex;
-            justify-content: center;
+            justify-content: left;
+			margin-left: 18%;
         }
 
         .cabecalho__menu__link {
@@ -83,6 +96,7 @@
         .cabecalho__menu__link:hover {
             text-decoration: underline;
         }
+
 
         .apresentacao {
             display: flex;
@@ -128,6 +142,13 @@
             color: #333;
         }
 
+		.secao__conteudoo {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr); /* Cria duas colunas */
+		gap: 10px; /* Espaçamento entre os itens */
+		font-size: 1em;
+		line-height: 1.2;
+}
         .secao__conteudo {
             font-size: 1em;
             line-height: 1.2;
@@ -162,6 +183,24 @@
             }
         }
 		
+		.apresentacao__links {
+                align-items: flex-start;a
+            }
+        }
+		.apresentacao__links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            
+            
+        }
+
+        .apresentacao__links__subtitulo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            grid-column: span 2;
+        }
+		
 		
     </style>
 </head>
@@ -171,6 +210,7 @@
         <nav class="cabecalho__menu">
             <a class="cabecalho__menu__link" href="index.html">Home</a>
             <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
+			<a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
         </nav>
     </header>
     <main class="apresentacao">
@@ -320,7 +360,7 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
    <section id="habilidades" class="secao">
     <h2 class="secao__titulo">Habilidades</h2>
     <hr>
-    <div class="secao__conteudo">
+    <div class="secao__conteudoo">
         
             <li class="habilidade-item">
                 <img src="js.png" alt="JavaScript">
@@ -335,7 +375,7 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
                 <span>CSS</span>
             </li>
             <li class="habilidade-item">
-                <img src="React.png" alt="React">
+                <img src="react.png" alt="React">
                 <span>React</span>
             </li>
             <li class="habilidade-item">
@@ -358,7 +398,30 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
                 <img src="ageis.png" alt="Metodologias Ágeis">
                 <span>Metodologias Ágeis</span>
             </li>
-       
+			<li class="habilidade-item">
+                <img src="figma.png" alt="Metodologias Ágeis">
+                <span>Figma</span>
+            </li>
+			<li class="habilidade-item">
+                <img src="corel.png" alt="Metodologias Ágeis">
+                <span>Corel Draw</span>
+            </li>
+			<li class="habilidade-item">
+                <img src="photoshop.png" alt="Metodologias Ágeis">
+                <span>Photoshop</span>
+            </li>
+			<li class="habilidade-item">
+                <img src="corel.png" alt="Metodologias Ágeis">
+                <span>Ilustration</span>
+            </li>
+			<li class="habilidade-item">
+                <img src="sketchup.png" alt="Metodologias Ágeis">
+                <span>Sketchup</span>
+            </li>
+			<li class="habilidade-item">
+                <img src="indesign.png" alt="Metodologias Ágeis">
+                <span>Indesign</span>
+            </li>
     </div>
 </section>
 
