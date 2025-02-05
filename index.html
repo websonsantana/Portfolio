@@ -7,19 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio de Webson Santana</title>
+	<script type="module" crossorigin src="/assets/index-VEhfVR7y.js"></script>
+	<link rel="stylesheet" crossorigin href="/assets/index-DxOEZuBn.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
 	
-	.apresentacao__links__navegacao {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(9deg, #0ff 0%, #fff );
-    padding: 10px 20px;
-    border-radius: 25px;
-    color: white;
-    font-weight: bold;
-    transition: all 0.1s ease-in-out;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-}
+		.secao__conteudo a {
+		text-decoration: none;
+		color: inherit;
+		}
+	
+		.apresentacao__links__navegacao {
+		display: flex;
+		align-items: center;
+		background: linear-gradient(9deg, #0ff 0%, #fff );
+		padding: 10px 20px;
+		border-radius: 25px;
+		color: white;
+		font-weight: bold;
+		transition: all 0.1s ease-in-out;
+		box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+	   }
 
         body {
             font-family: Arial, sans-serif;
@@ -147,6 +156,26 @@
             margin-bottom: 10px;
             grid-column: span 2;
         }
+		
+		
+      /* Estilo para modo escuro */
+      body.dark-mode {
+        background-color: black; /* Cor de fundo para o modo escuro */
+        color: white; /* Cor do texto para o modo escuro */
+      }
+
+      body.dark-mode .section {
+        background-color: #222; /* Cor de fundo das seções */
+      }
+
+      body.dark-mode a {
+        color: #1e90ff; /* Cor dos links */
+      }
+
+      body.dark-mode img {
+        filter: grayscale(100%); /* Deixa as imagens em preto e branco */
+      }
+
     </style>
 </head>
 
@@ -156,13 +185,23 @@
             <a class="cabecalho__menu__link" href="index.html">Home</a>
             <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
 			<a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
+			<button id="toggle-dark-mode"><i class="fi fi-bs-moon"></i></button>
+			
         </nav>
+		
     </header>
     <main class="apresentacao">
         <section class="apresentacao__conteudo">
             <h1 class="apresentacao__conteudo__titulo">Transforme suas ideias em realidade digital com um <strong class="titulo-destaque">Front-end de excelência!</strong></h1>
             <p class="apresentacao__conteudo__texto">Bem-vindo! Sou Webson José Albuquerque de Santana, desenvolvedor Front-end especializado em JavaScript, HTML e CSS. Com minha expertise, ajudo empresas e designers a concretizarem seus projetos digitais de forma eficiente e impactante. Vamos transformar seu negócio? Entre em contato e descubra como posso ajudar!</p>
-        	<center><h4><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280L160-640v400h640v-400L480-440Zm0-80 320-200H160l320 200ZM160-640v-80 480-400Z"/></svg> webson.jose@gmail.com / <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#000000"><path d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/></svg>  +55 81 981521109</p></h4></center>
+        	<section id="contato" class="secao">
+               <hr>
+        <div class="secao__conteudo">
+            <p><b>Telefone:</b> &nbsp;&nbsp;&nbsp;<a href="https://wa.me/+5581981521109"></i> 81 98152-1109&nbsp;&nbsp;&nbsp; <i class="fa fa-whatsapp" style="font-size:28px; color:#25D366;"></a></i></p>
+            <p><b>LinkedIn:</b>	&nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana &nbsp;&nbsp;&nbsp;<i class="fa fa-linkedin" style="font-size:28px; color:#0077B5;"></i></a></p>
+            <p><b>Email:</b>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" style="font-size:26px; color:#D14836;"></i></a></p>
+        </div>
+    </section>
 			</section>
 	        <img class="apresentacao__imagem" src="PERFIL2.png" alt="Foto de Webson Santana">
 			        <section class="apresentacao__conteudo">
@@ -215,6 +254,47 @@
 	    <footer class="rodape">
         <p>© 2024 Webson Santana. Todos os direitos reservados.</p>
     </footer>
+	
+
+
+    <script>
+      // Seleciona o botão
+      const toggleButton = document.getElementById('toggle-dark-mode');
+
+      // Verifica o estado do modo escuro
+      let darkMode = localStorage.getItem('dark-mode') === 'true';
+
+      // Aplica o modo escuro se necessário
+      if (darkMode) {
+        document.body.classList.add('dark-mode');
+      }
+
+      // Adiciona um evento de clique ao botão
+      toggleButton.addEventListener('click', () => {
+        // Alterna a classe 'dark-mode' no body
+        document.body.classList.toggle('dark-mode');
+
+        // Atualiza o estado do modo escuro
+        darkMode = !darkMode;
+
+        // Salva a preferência do usuário no localStorage
+        localStorage.setItem('dark-mode', darkMode);
+      });
+
+      // Código de rolagem suave para links de âncora
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetSection = document.querySelector(this.getAttribute("href"));
+          if (targetSection) {
+            window.scrollTo({
+              top: targetSection.offsetTop - 100, // ajuste para evitar sobreposição do cabeçalho
+              behavior: "smooth"
+            });
+          }
+        });
+      });
+    </script>
 </body>
 
 </html>
