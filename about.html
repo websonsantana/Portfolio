@@ -6,8 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currículo de Webson Santana</title>
+	
+	<style>
+    /* Estilo para modo escuro */
+    .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    /* Estilo para o botão */
+    #toggle-dark-mode i {
+        color: #f1c40f; /* Cor amarela para o sol */
+    }
+
+    .dark-mode #toggle-dark-mode i {
+        color: #ffffff; /* Cor branca para a lua */
+    }
+</style>
+	
     <style>
 	
 	
@@ -229,6 +248,9 @@
             <a class="cabecalho__menu__link" href="index.html">Home</a>
             <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
 			<a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
+			<button id="toggle-dark-mode" style="font-size: 16px; background: none; border: none; cursor: pointer;">
+    <i id="dark-mode-icon" class="fa fa-moon"></i>
+</button>
         </nav>
     </header>
     <main class="apresentacao">
@@ -367,7 +389,7 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
                 <span>Governança de TI: gestão de demandas de serviços - <b>Alura</b> 2021</span>
             </li>
             <li class="curso-item">
-                <img src="fiap.png" alt="Curso">
+                <img src="FIAP.png" alt="Curso">
                 <span>IT Business Partner – <b>FIAP</b>  2023</span>
             </li>
 			<li class="curso-item">
@@ -534,14 +556,30 @@ Suporte ao Cliente - SQL: Desenvolver e executar consultas SQL, gerando relatór
         <h2 class="secao__titulo">Contato</h2>
         <hr>
         <div class="secao__conteudo">
-            <p><b>Telefone:</b> &nbsp;&nbsp;&nbsp;<a href="https://wa.me/+5581981521109"></i> 81 98152-1109&nbsp;&nbsp;&nbsp; <i class="fa fa-whatsapp" style="font-size:28px; color:#25D366;"></a></i></p>
-            <p><b>LinkedIn:</b>	&nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana &nbsp;&nbsp;&nbsp;<i class="fa fa-linkedin" style="font-size:28px; color:#0077B5;"></i></a></p>
-            <p><b>Email:</b>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" style="font-size:26px; color:#D14836;"></i></a></p>
+            <p><b>Telefone:</b> &nbsp;&nbsp;&nbsp;<a href="https://wa.me/+5581981521109"></i> 81 98152-1109&nbsp;&nbsp;&nbsp; <i class="fa-brands fa-whatsapp fa-bounce" style="font-size:28px; color:#25D366;"></i></a></p>
+            <p><b>LinkedIn:</b>	&nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana &nbsp;&nbsp;&nbsp;<i class="fa-brands fa-linkedin fa-shake" style="font-size:28px; color:#0077B5;"></i></i></a></p>
+            <p><b>Email:</b> &nbsp;&nbsp;&nbsp; <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope fa-beat" style="font-size:28px; color:#D14836;"></i></a></p>
         </div>
     </section>
     <footer class="rodape">
         <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
     </footer>
+	
+	<script>
+    document.getElementById("toggle-dark-mode").addEventListener("click", function () {
+        document.body.classList.toggle("dark-mode");
+
+        // Alternar entre lua e sol
+        let icon = document.getElementById("dark-mode-icon");
+        if (document.body.classList.contains("dark-mode")) {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        } else {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+        }
+    });
+</script>
 </body>
 
 </html>
