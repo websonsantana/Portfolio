@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Currículo de Webson Santana</title>
+    
+    <style>
+    /* Estilo para modo escuro */
+    .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    /* Estilo para o botão */
+    #toggle-dark-mode i {
+        color: #f1c40f; /* Cor amarela para o sol */
+    }
+
+    .dark-mode #toggle-dark-mode i {
+        color: #ffffff; /* Cor branca para a lua */
+    }
+</style>
+	
+    <style>
+	
+	
+		.secao__conteudo a {
+		text-decoration: none;
+		color: inherit;
+		}
+
+	
+		.apresentacao__links__navegacao {
+		display: flex;
+		align-items: center;
+		background: linear-gradient(9deg, #0ff 0%, #fff );
+		padding: 10px 20px;
+		border-radius: 25px;
+		color: white;
+		font-weight: bold;
+		transition: all 0.1s ease-in-out;
+		box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+		text-decoration: none;
+		}
+	
+		.curso-item,habilidade-item  {
+		display: flex;
+		align-items: center; /* Alinha ícone e texto verticalmente */
+		gap: 10px; /* Espaçamento entre o ícone e o texto */
+		padding: 5px 0;
+		font-size: 18px;
+		font-family: Arial, sans-serif;
+		text-decoration: none;
+		}
+
+		.curso-item img {
+		width: 24px; /* Ajuste do tamanho do ícone */
+		height: auto;
+		border-radius: 30px;
+		text-decoration: none;
+		}
+
+	
+		.habilidades-lista {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		 text-decoration: none;
+		}
+
+		.habilidade-item {
+		display: flex;
+		align-items: center; /* Alinha ícone e texto verticalmente */
+		gap: 10px; /* Espaçamento entre o ícone e o texto */
+		padding: 5px 0;
+		font-size: 18px;
+		font-family: Arial, sans-serif;
+}
+
+		.habilidade-item img {
+		width: 24px; /* Ajuste do tamanho da imagem */
+		height: auto;
+		}
+
+		header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+        }
+
+	
+		img{
+		width: 30px;
+		}
+		
+        .h2 {
+            font-size: 30px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(45deg, #6C6E71);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cabecalho {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .cabecalho__menu {
+            display: flex;
+            justify-content: left;
+			margin-left: 18%;
+        }
+
+        .cabecalho__menu__link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .cabecalho__menu__link:hover {
+            text-decoration: underline;
+        }
+
+
+        .apresentacao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .apresentacao__conteudo {
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .apresentacao__conteudo__titulo {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .apresentacao__conteudo__texto {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .apresentacao__imagem {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .secao {
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .secao__titulo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+		.secao__conteudoo {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr); /* Cria duas colunas */
+		gap: 10px; /* Espaçamento entre os itens */
+		font-size: 18px;
+		line-height: 1.2;
+		 text-decoration: none;
+}
+        .secao__conteudo {
+            font-size: 18px;
+            line-height: 1.2;
+            margin-bottom: 2px;
+			text-decoration: none;
+        }
+
+        .secao__conteudo__item {
+            margin-bottom: 10px;
+		text-decoration: none;
+        }
+
+        .rodape {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+			 text-decoration: none;
+        }
+
+        @media (min-width: 700px) {
+            .apresentacao {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                text-align: left;
+				 text-decoration: none;
+            }
+
+            .apresentacao__conteudo {
+                margin-right: 20px;
+            }
+
+            .apresentacao__imagem {
+                margin: 0;
+            }
+        }
+		
+		.apresentacao__links {
+                align-items: flex-start;a
+            }
+        }
+		.apresentacao__links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            
+            
+        }
+
+        .apresentacao__links__subtitulo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            grid-column: span 2;
+        }
+		body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #toggle-dark-mode {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Estilo da seção de projetos */
+        .secao-projetos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .project {
+            background-color: #555;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.9);
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            background: linear-gradient(9deg, #0ff 0%, #fff);
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }    
+		
+		
+    </style>
+	
+</head>
+
+<body>
+
+    <!-- Cabeçalho fixo -->
+    <header class="cabecalho">
+        <nav class="cabecalho__menu">
+            <a class="cabecalho__menu__link" href="index.html">Home</a>
+            <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
+            <a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
+            <!-- Botão para alternar o modo escuro -->
+            <button id="toggle-dark-mode">
+                <i id="dark-mode-icon" class="fa fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <div class="content">
+        <section class="secao">
+            <center><h2 class="secao__titulo">Bem-vindo a meu portfólio de Projetos</h2></center>
+            
+        </section>
+    </div>
+	<section class="secao-projetos">
+        <div class="project">
+		<a> Musical</a>
+		<p>
+            <img src="Projeto.jpeg" alt="Projeto Jogo">
+            <p>"I'ma make you shine bright like you're laying in the snow, burr I could be your Buzz Lightyear fly across the globe ooh no, ooh no, ooh. Baby know for sho" 
+</p>
+            <a href="#" class="button">Ver Projeto</a>
+        </div>
+
+        <div class="project">
+		<a> Musical</a>
+		<p>
+            <img src="projeto3.jpeg" alt="Projeto Pedido">
+            <p>"I'ma make you shine bright like you're laying in the snow, burr I could be your Buzz Lightyear fly across the globe ooh no, ooh no, ooh. Baby know for sho" 
+</p>
+            <a href="#" class="button">Ver Projeto</a>
+        </div>
+        <div class="project">
+		<a> Musical</a>
+		<p>
+            <img src="projeto1.jpeg" alt="Projeto Jogo">
+            <p>D"I'ma make you shine bright like you're laying in the snow, burr I could be your Buzz Lightyear fly across the globe ooh no, ooh no, ooh. Baby know for sho" 
+</p>
+            <a href="#" class="button">Ver Projeto</a>
+        </div>
+
+        <div class="project">
+		<a> Musical</a>
+		<p>
+            <img src="projeto2.jpeg" alt="Projeto Pedido">
+            <p>"I'ma make you shine bright like you're laying in the snow, burr I could be your Buzz Lightyear fly across the globe ooh no, ooh no, ooh. Baby know for sho" 
+.</p>
+            <a href="#" class="button">Ver Projeto</a>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script para alternar entre os modos -->
+    <script>
+        document.getElementById("toggle-dark-mode").addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+
+            // Alternar entre lua e sol
+            let icon = document.getElementById("dark-mode-icon");
+            if (document.body.classList.contains("dark-mode")) {
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
+            } else {
+                icon.classList.remove("fa-sun");
+                icon.classList.add("fa-moon");
+            }
+        });
+    </script>
+</body>
+
+</html>
