@@ -9,8 +9,26 @@
     <title>Webson Santana</title>
 	<script type="module" crossorigin src="/assets/index-VEhfVR7y.js"></script>
 	<link rel="stylesheet" crossorigin href="/assets/index-DxOEZuBn.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<style>
+    /* Estilo para modo escuro */
+    .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    /* Estilo para o botão */
+    #toggle-dark-mode i {
+        color: #f1c40f; /* Cor amarela para o sol */
+    }
+
+    .dark-mode #toggle-dark-mode i {
+        color: #ffffff; /* Cor branca para a lua */
+    }
+</style>
+	
     <style>
 	
 		.secao__conteudo a {
@@ -185,10 +203,10 @@
             <a class="cabecalho__menu__link" href="index.html">Home</a>
             <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
 			<a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
-			<button id="toggle-dark-mode"><i class="fi fi-bs-moon"></i></button>
-			
+			<button id="toggle-dark-mode" style="font-size: 16px; background: none; border: none; cursor: pointer;">
+    <i id="dark-mode-icon" class="fa fa-moon"></i>
+</button>
         </nav>
-		
     </header>
     <main class="apresentacao">
         <section class="apresentacao__conteudo">
@@ -197,9 +215,9 @@
         	<section id="contato" class="secao">
                <hr>
         <div class="secao__conteudo">
-            <p><b>Telefone:</b> &nbsp;&nbsp;&nbsp;<a href="https://wa.me/+5581981521109"></i> 81 98152-1109&nbsp;&nbsp;&nbsp; <i class="fa fa-whatsapp" style="font-size:28px; color:#25D366;"></a></i></p>
-            <p><b>LinkedIn:</b>	&nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana &nbsp;&nbsp;&nbsp;<i class="fa fa-linkedin" style="font-size:28px; color:#0077B5;"></i></a></p>
-            <p><b>Email:</b>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com &nbsp;&nbsp;&nbsp;<i class="fa fa-envelope" style="font-size:26px; color:#D14836;"></i></a></p>
+            <p><b>Telefone:</b> &nbsp;&nbsp;&nbsp;<a href="https://wa.me/+5581981521109"></i> 81 98152-1109&nbsp;&nbsp;&nbsp; <i class="fa-brands fa-whatsapp fa-bounce" style="font-size:28px; color:#25D366;"></i></a></p>
+            <p><b>LinkedIn:</b>	&nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana &nbsp;&nbsp;&nbsp;<i class="fa-brands fa-linkedin fa-shake" style="font-size:28px; color:#0077B5;"></i></i></a></p>
+            <p><b>Email:</b> &nbsp;&nbsp;&nbsp; <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope fa-beat" style="font-size:28px; color:#D14836;"></i></a></p>
         </div>
     </section>
 			</section>
