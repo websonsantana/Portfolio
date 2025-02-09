@@ -47,45 +47,7 @@
 		box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
 		text-decoration: none;
 		}
-	
-		.curso-item,habilidade-item  {
-		display: flex;
-		align-items: center; /* Alinha ícone e texto verticalmente */
-		gap: 10px; /* Espaçamento entre o ícone e o texto */
-		padding: 5px 0;
-		font-size: 18px;
-		font-family: Arial, sans-serif;
-		text-decoration: none;
-		}
 
-		.curso-item img {
-		width: 24px; /* Ajuste do tamanho do ícone */
-		height: auto;
-		border-radius: 30px;
-		text-decoration: none;
-		}
-
-	
-		.habilidades-lista {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		 text-decoration: none;
-		}
-
-		.habilidade-item {
-		display: flex;
-		align-items: center; /* Alinha ícone e texto verticalmente */
-		gap: 10px; /* Espaçamento entre o ícone e o texto */
-		padding: 5px 0;
-		font-size: 18px;
-		font-family: Arial, sans-serif;
-}
-
-		.habilidade-item img {
-		width: 24px; /* Ajuste do tamanho da imagem */
-		height: auto;
-		}
 
 		header {
             position: fixed;
@@ -100,8 +62,8 @@
         }
 
 	
-		img{
-		width: 30px;
+		img,video{
+		width: 100%;
 		}
 		
         .h2 {
@@ -312,7 +274,23 @@
             header {
                 flex-direction: column;
                 text-align: center;
-            }    
+            }  
+        .zoom-container {
+            overflow: hidden; /* Impede que a imagem vaze para fora da div */
+            width: 300px; /* Defina a largura desejada */
+            height: 200px; /* Defina a altura desejada */
+            margin: 20px auto; /* Centraliza o container */
+        }
+
+        .zoom-image {
+            width: 100%; /* A imagem ocupa 100% da largura do container */
+            transition: transform 0.5s ease; /* Transição suave */
+        }
+
+        .zoom-container:hover .zoom-image {
+            transform: scale(1.2); /* Aumenta a imagem em 20% ao passar o mouse */
+        }
+			
 		
 		
     </style>
@@ -343,14 +321,71 @@
         </section>
     </div>
 	<section class="secao-projetos">
+	
+	<!-- inicio projeto 1 -->	
         <div class="project">
-		<a> Musical</a>
+		<a> PLanilha de Excel Personalizada</a>
 		<p>
-            <img src="projeto.jpeg" alt="Projeto Jogo">
-            <p>"I'ma make you shine bright like you're laying in the snow, burr I could be your Buzz Lightyear fly across the globe ooh no, ooh no, ooh. Baby know for sho" 
-</p>
-            <a href="#" class="button">Ver Projeto</a>
-        </div>
+	<div class="zoom-container">			
+    <video id="meuVideo" autoplay muted loop>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+	</div>
+            <p id="descricao-curta">
+        Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
+		<a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>
+	
+    <p id="descricao-completa" style="display: none;">
+        Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
+        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+	</div>
+	<!-- fim projeto 1 -->
+						
+	<!-- inicio projeto 2 -->
+	<div class="project">
+		<a> PLanilha de Excel Personalizada</a>
+		<p>
+	<div class="zoom-container">	
+    <video id="meuVideo" autoplay muted loop>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+	</div>
+            <p id="descricao-curta">
+        Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
+		<a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>
+	
+    <p id="descricao-completa" style="display: none;">
+        Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
+        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+	</div>
+	<!-- fim projeto 2 -->
+	<!-- inicio projeto 3 -->
+	<div class="project">
+		<a> PLanilha de Excel Personalizada</a>
+		<p>
+	<div class="zoom-container">	
+    <video id="meuVideo" autoplay muted loop>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+	</div>
+            <p id="descricao-curta">
+        Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
+		<a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>
+	
+    <p id="descricao-completa" style="display: none;">
+        Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
+        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+	</div>
+	<!-- fim projeto 3 -->
 
         <div class="project">
 		<a> Musical</a>
@@ -400,6 +435,41 @@
             }
         });
     </script>
+	
+	<script>
+    // Seleciona o elemento de vídeo pelo seu ID
+    const meuVideo = document.getElementById("meuVideo");
+
+    // Define um tempo de 25 segundos para o autoplay
+    const tempoAutoplay = 25; 
+
+    // Define um evento que será executado quando o vídeo estiver pronto para ser reproduzido
+    meuVideo.addEventListener("loadeddata", () => {
+        // Inicia a reprodução do vídeo
+        meuVideo.play();
+
+        // Define um tempo limite para pausar o vídeo após 25 segundos
+        setTimeout(() => {
+            meuVideo.pause();
+        }, tempoAutoplay * 1000); // Multiplica por 1000 para converter segundos em milissegundos
+    });
+</script>
+
+<script>
+    function toggleDescricao(event) {
+        event.preventDefault();
+        var descricaoCompleta = document.getElementById("descricao-completa");
+        var botao = document.getElementById("verMaisBtn");
+
+        if (descricaoCompleta.style.display === "none") {
+            descricaoCompleta.style.display = "block";
+            botao.innerText = "Ver menos";
+        } else {
+            descricaoCompleta.style.display = "none";
+            botao.innerText = "Ver mais";
+        }
+    }
+</script>
 </body>
 
 </html>
