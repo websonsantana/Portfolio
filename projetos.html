@@ -323,24 +323,24 @@
 	<section class="secao-projetos">
 	
 	<!-- inicio projeto 1 -->	
-       <div class="project">
-		<a> PLanilha de Excel Personalizada</a>
-		<p>
-	<div class="zoom-container">	
-    <img id="meuVideo" >
-        <img src="video.gif" alt="Projeto Pedido">
-    	</div>
-            <p id="descricao-curta">
-        Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
-		<a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
+<div class="project">
+    <a> Projeto em 3D</a>
+    <div class="zoom-container">    
+        <img src="3d.gif" alt="Projeto Casa 3D">
+    </div>
+    <p id="descricao-curta">
+        Este projeto foi desenvolvido utilizando a ferramenta SketchUp para modelagem tridimensional de uma casa.
+        <a href="#" class="text verMaisBtn" onclick="toggleDescricao(event)">Ver mais</a>
     </p>
-	
+
     <p id="descricao-completa" style="display: none;">
-        Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
-        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
+        O modelo 3D da casa foi projetado com precisão para representar detalhes arquitetônicos e estruturais.
+        Com o uso do SketchUp, foi possível criar um design realista, permitindo visualizações imersivas dos espaços internos e externos.
+        O projeto inclui disposição de móveis, iluminação e acabamentos, auxiliando na concepção e planejamento da construção.
     </p>   
     <a href="#" class="button">Ver Projeto</a>
-	</div>
+</div>
+
 	<!-- fim projeto 1 -->
 						
 	<!-- inicio projeto 2 -->
@@ -455,18 +455,25 @@
 <script>
     function toggleDescricao(event) {
         event.preventDefault();
-        var descricaoCompleta = document.getElementById("descricao-completa");
-        var botao = document.getElementById("verMaisBtn");
+        
+        // Obtém os elementos específicos do projeto onde o botão foi clicado
+        let parent = event.target.closest('.project');
+        let descricaoCurta = parent.querySelector('#descricao-curta');
+        let descricaoCompleta = parent.querySelector('#descricao-completa');
+        let botaoVerMais = parent.querySelector('#verMaisBtn');
 
-        if (descricaoCompleta.style.display === "none") {
+        // Alterna a exibição dos textos
+        if (descricaoCompleta.style.display === "none" || descricaoCompleta.style.display === "") {
             descricaoCompleta.style.display = "block";
-            botao.innerText = "Ver menos";
+            botaoVerMais.textContent = "Ver menos";
         } else {
             descricaoCompleta.style.display = "none";
-            botao.innerText = "Ver mais";
+            botaoVerMais.textContent = "Ver mais";
         }
     }
 </script>
+
+
 </body>
 
 </html>
