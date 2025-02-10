@@ -59,8 +59,8 @@
 		}
 
 		.curso-item img {
-		width: 24px; /* Ajuste do tamanho do ícone */
-		height: auto;
+		width: 30px; /* Ajuste a porcentagem conforme necessário */
+		height: auto; 
 		text-decoration: none;
 		}
 
@@ -100,7 +100,7 @@
 
 	
 		img{
-		width: 30px;
+		width: 10px;
 		}
 		
         .h2 {
@@ -219,6 +219,20 @@
                 text-align: left;
 				 text-decoration: none;
             }
+			
+			@media (max-width: 768px) { /* Para telas menores que 768px */
+			.curso-item img {
+			width: 30%; /* Ajuste a porcentagem conforme necessário */
+			}
+			.cabecalho__menu {
+			flex-direction: column; /* Alinha os itens da navbar em coluna */
+			}
+			.cabecalho__menu {
+			display: flex;
+			justify-content: space-between; /* Distribui os elementos igualmente */
+			}
+
+
 
             .apresentacao__conteudo {
                 margin-right: 20px;
@@ -237,7 +251,7 @@
         .apresentacao__links__subtitulo {
             font-size: 1.5em;
             margin-bottom: 10px;
-            grid-column: span 2;
+            grid-column: span 0;
         }
 		
 		
@@ -271,8 +285,7 @@
         <h2 class="secao__titulo">Experiência</h2>
         <hr style="height: 5px; border: none; background: linear-gradient(to right, black, blue);">
 		
-		    <a class="curso-item">
-                
+		    <a class="curso-item">         
                 <h4>Analista de Sistema </h4>- <span>Martin Brower</span><img src="mb.png">
             </a>
                 fev. de 2021 - Ate o momento
@@ -280,48 +293,42 @@
             </div>
 			<hr style="border: 2px dashed gray;">	
             <a class="curso-item">
-			<img src="mb.png">
-                <h4>Assistente Suporte Operacional </h4>- <span>Martin Brower</span>
+			<h4>Assistente Suporte Operacional </h4>- <span>Martin Brower</span><img src="mb.png">
 			</a>
                 set de 2017 - fev de 2021
                 <h4>Atuação no suporte operacional, lidando com a logística e suporte técnico para garantir a continuidade dos serviços.</h4>
             </div>
 			<hr style="border: 2px dashed gray;">		            
 			<a class="curso-item">
-			<img src="mb.png">
-                <h4>Operador de Logística </h4>- <span>Martin Brower</span>
+			<h4>Operador de Logística </h4>- <span>Martin Brower</span><img src="mb.png">
 			</a>
                 2015 - 2017
                 <h4>Responsável pelo controle e organização dos processos logísticos dentro do armazém.</h4>
             </div>	
 			<hr style="border: 2px dashed gray;">
             <a class="curso-item">
-			<img src="mb.png">
-                <h4>Auxiliar de Logística</h4>- <span>Martin Brower</span>
+			<h4>Auxiliar de Logística</h4>- <span>Martin Brower</span><img src="mb.png">
 			</a>
 					2013 - 2015				
                 <h4>Suporte nas atividades logísticas, auxiliando na distribuição e no controle de estoque.</h4>
             </div>
 			<hr style="border: 2px dashed gray;">		
             <a class="curso-item">
-			<img src="design.png">
-                <h4>Design Gráfico </h4>- <span>Autônomo</span>
+                <h4>Design Gráfico </h4>- <span>Autônomo</span><img src="design.png">
 			</a>
                 2012 - 2013
                 <h4>Responsável pela criação de materiais gráficos para diversos clientes, desenvolvendo logotipos, cartões de visita, folhetos e outros materiais de marketing. Utilização de software de design gráfico para elaborar peças criativas e eficazes, atendendo às necessidades e expectativas dos clientes.</h4>
             </div>
 			<hr style="border: 2px dashed gray;">			
             <a class="curso-item">
-			<img src="transval.png">
-                <h4>Auxiliar Administrativo</h4>- <span>Grupo Transval</span>
+                <h4>Auxiliar Administrativo</h4>- <span>Grupo Transval</span><img src="transval.png">
 			</a>
                 2011 - 2012
                 <h4>Responsável por tarefas administrativas como controle de documentos, atendimento ao cliente, apoio na organização de eventos corporativos e suporte às áreas financeira e de recursos humanos. Realização de atividades de controle de entrada e saída de correspondências e manutenção de arquivos.</h4>
             </div>
 			<hr style="border: 2px dashed gray;">		
             <a class="curso-item">
-			<img src="transval.png">
-                <h4>Ajudante de Montagem</h4>- <span>Grupo Transval</span>
+                <h4>Ajudante de Montagem</h4>- <span>Grupo Transval</span><img src="transval.png">
 			</a>
                 2010 - 2011
                 <h4>Auxiliava na montagem e instalação de móveis, seguindo desenhos técnicos e instruções específicas. Garantia a qualidade e precisão na montagem, utilizando ferramentas adequadas e seguindo normas de segurança.</h4>
