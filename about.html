@@ -56,12 +56,14 @@
 		font-size: 18px;
 		font-family: montserrat;
 		text-decoration: none;
+		
 		}
 
 		.curso-item img {
 		width: 30px; /* Ajuste a porcentagem conforme necessário */
 		height: auto; 
 		text-decoration: none;
+		border-radius: 30px;
 		}
 
 	
@@ -76,7 +78,7 @@
 		display: flex;
 		align-items: center; /* Alinha ícone e texto verticalmente */
 		gap: 10px; /* Espaçamento entre o ícone e o texto */
-		padding: 5px 0;
+		padding: 1px;
 		font-size: 18px;
 		font-family: Arial, sans-serif;
 }
@@ -142,13 +144,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            padding: 0px;
             text-align: center;
         }
 
         .apresentacao__conteudo {
             max-width: 600px;
-            margin-bottom: 20px;
+            margin-bottom: 0px;
         }
 
         .apresentacao__conteudo__titulo {
@@ -171,7 +173,7 @@
         }
 
         .secao {
-            padding: 20px;
+            padding: 10px;
             max-width: 800px;
             width: 100%;
             margin: 0 auto;
@@ -179,7 +181,7 @@
 
         .secao__titulo {
             font-size: 18px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             color: #333;
         }
 
@@ -189,15 +191,15 @@
 		gap: 10px; /* Espaçamento entre os itens */
 		font-size: 18px;
 		line-height: 1.2;
-		 text-decoration: none;
-}
+		text-decoration: none;
+		}
         .secao__conteudo {
             font-size: 18px;
 			text-decoration: none;
         }
 
         .secao__conteudo__item {
-            margin-bottom: 10px;
+            margin-bottom: 0px;
 		text-decoration: none;
         }
 
@@ -210,13 +212,13 @@
         }
 
         @media (min-width: 700px) {
-            .apresentacao {
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                text-align: left;
-				 text-decoration: none;
-            }
+        .apresentacao {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+        text-decoration: none;
+    }
 			
 			@media (max-width: 768px) { /* Para telas menores que 768px */
 			.curso-item img {
@@ -339,7 +341,12 @@
     <section id="educacao" class="secao">
         <h2 class="secao__titulo">Educação</h2>
         <hr style="height: 5px; border: none; background: linear-gradient(to right, black, blue);">
-		
+		<a class="curso-item">
+			<div class="secao__conteudo__item">
+                <h4>Curso de Idiomas Inglês - Passaport Idiomas</h4><img src="passaport.png">
+				</a>
+                <p>2025 - 2027</p>
+            </div>
 		<a class="curso-item"> 
         <div class="secao__conteudo">
             <div class="secao__conteudo__item">
@@ -361,19 +368,17 @@
 				</a>	
                 <p>2012 - 2013</p>
             </div>
-			<a class="curso-item">
-			<div class="secao__conteudo__item">
-                <h4>Curso de Idiomas Inglês - Passaport Idiomas</h4><img src="passaport.png">
-				</a>
-                <p>2025 - 2027</p>
-            </div>
-        </div>
+			</div>
     </section>
     <section id="cursos" class="secao">
     <h2 class="secao__titulo">Cursos de Extensão</h2>
     <hr style="height: 5px; border: none; background: linear-gradient(to right, black, blue);">
     <div class="secao__conteudo">
-        
+	
+			<li class="curso-item">
+                <img src="senai1.png" alt="Curso">
+                <span>Eletricidade Industrial – <b>Senai</b></span>
+            </li>
             <li class="curso-item">
                 <img src="unibratec.png" alt="Curso">
                 <span>Excel Avançado – <b>UNIBRATEC</b> – 2019</span>
