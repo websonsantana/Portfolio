@@ -1,30 +1,483 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+	<link rel="icon" href="fivecon.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Futurista</title>
-    <link rel="stylesheet" href="styles.css">
+	<meta property="og:title" content="Curriculo">
+    <meta property="og:description" content="Compartilho sobre Minhas experiencias e habilidades">
+    <meta property="og:image" content="PERFIL2.png">
+    <meta property="og:url" content="https://websonsantana.github.io/Portfolio/index.html">
+    <title>Currículo de Webson Santana</title>
+    
+    <style>
+    /* Estilo para modo escuro */
+    .dark-mode {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    /* Estilo para o botão */
+    #toggle-dark-mode i {
+        color: #f1c40f; /* Cor amarela para o sol */
+    }
+
+    .dark-mode #toggle-dark-mode i {
+        color: #ffffff; /* Cor branca para a lua */
+    }
+</style>
+	
+    <style>
+	
+	
+		.secao__conteudo a {
+		text-decoration: none;
+		color: inherit;
+		}
+
+	
+		.apresentacao__links__navegacao {
+		display: flex;
+		align-items: center;
+		background: linear-gradient(9deg, #0ff 0%, #fff );
+		padding: 10px 20px;
+		border-radius: 25px;
+		color: white;
+		font-weight: bold;
+		transition: all 0.1s ease-in-out;
+		box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+		text-decoration: none;
+		}
+
+
+		header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+        }
+
+	
+		img,video{
+		width: 100%;
+		}
+		
+        .h2 {
+            font-size: 30px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(45deg, #6C6E71);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cabecalho {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .cabecalho__menu {
+            display: flex;
+            justify-content: left;
+			margin-left: 18%;
+        }
+
+        .cabecalho__menu__link {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .cabecalho__menu__link:hover {
+            text-decoration: underline;
+        }
+
+
+        .apresentacao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .apresentacao__conteudo {
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        .apresentacao__conteudo__titulo {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .apresentacao__conteudo__texto {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .apresentacao__imagem {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .secao {
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .secao__titulo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+		.secao__conteudoo {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr); /* Cria duas colunas */
+		gap: 10px; /* Espaçamento entre os itens */
+		font-size: 18px;
+		line-height: 1.2;
+		 text-decoration: none;
+}
+        .secao__conteudo {
+            font-size: 18px;
+            line-height: 1.2;
+            margin-bottom: 2px;
+			text-decoration: none;
+        }
+
+        .secao__conteudo__item {
+            margin-bottom: 10px;
+		text-decoration: none;
+        }
+
+        .rodape {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+			 text-decoration: none;
+        }
+
+        @media (min-width: 700px) {
+            .apresentacao {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                text-align: left;
+				 text-decoration: none;
+            }
+
+            .apresentacao__conteudo {
+                margin-right: 20px;
+            }
+
+            .apresentacao__imagem {
+                margin: 0;
+            }
+        }
+		
+		.apresentacao__links {
+                align-items: flex-start;a
+            }
+        }
+		.apresentacao__links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            
+            
+        }
+
+        .apresentacao__links__subtitulo {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            grid-column: span 2;
+        }
+		body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #toggle-dark-mode {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: white;
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Estilo da seção de projetos */
+        .secao-projetos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .project {
+            background-color: #555;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.9);
+            text-align: center;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .button {
+            background: linear-gradient(9deg, #0ff 0%, #fff);
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }  
+        .zoom-container {
+            overflow: hidden; /* Impede que a imagem vaze para fora da div */
+            width: 300px; /* Defina a largura desejada */
+            height: 200px; /* Defina a altura desejada */
+            margin: 20px auto; /* Centraliza o container */
+        }
+
+        .zoom-image {
+            width: 100%; /* A imagem ocupa 100% da largura do container */
+            transition: transform 0.5s ease; /* Transição suave */
+        }
+
+        .zoom-container:hover .zoom-image {
+            transform: scale(1.2); /* Aumenta a imagem em 20% ao passar o mouse */
+        }
+			
+		
+		
+    </style>
+	
 </head>
+
 <body>
-    <div class="container">
-        <header>
-            <h1>Meu Portfólio</h1>
-        </header>
-        <section class="apresentacao">
-            <p>Bem-vindo ao meu portfólio! Conecte-se comigo através das redes abaixo:</p>
-            <div class="apresentacao__links">
-                <a href="https://github.com/" target="_blank">
-                    <img src="github.png" alt="GitHub">
-                </a>
-                <a href="https://linkedin.com/" target="_blank">
-                    <img src="linkedin.png" alt="LinkedIn">
-                </a>
-                <a href="https://twitter.com/" target="_blank">
-                    <img src="twitter.png" alt="Twitter">
-                </a>
-            </div>
+
+    <!-- Cabeçalho fixo -->
+    <header class="cabecalho">
+        <nav class="cabecalho__menu">
+            <a class="cabecalho__menu__link" href="index.html">Home</a>
+            <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
+            <a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
+            <!-- Botão para alternar o modo escuro -->
+            <button id="toggle-dark-mode">
+                <i id="dark-mode-icon" class="fa fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+	<center>
+    <div class="content">
+        <section class="secao">
+            <h2 class="secao__titulo">Bem-vindo a meu portfólio de Projetos</h2>
+            
         </section>
     </div>
+	<section class="secao-projetos">
+	
+	<!-- inicio projeto 1 -->	
+<div class="project">
+<a> Projeto em 3D</a>
+		<p>
+    <div class="zoom-container">
+        <video id="meuVideo" autoplay muted loop>
+            <source src="3d.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p id="descricao-curta">
+        Este projeto foi desenvolvido utilizando a ferramenta SketchUp para modelagem tridimensional de uma casa.
+        <a href="#" class="text verMaisBtn" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>
+
+    <p id="descricao-completa" style="display: none;">
+        O modelo 3D da casa foi projetado com precisão para representar detalhes arquitetônicos e estruturais.
+        Com o uso do SketchUp, foi possível criar um design realista, permitindo visualizações imersivas dos espaços internos e externos.
+        O projeto inclui disposição de móveis, iluminação e acabamentos, auxiliando na concepção e planejamento da construção.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+</div>
+
+	<!-- fim projeto 1 -->
+						
+	<!-- inicio projeto 2 -->
+	<div class="project">
+		<a>Excel Personalizado</a>
+		<p>
+	<div class="zoom-container">	
+    <img id="meuVideo" >
+        <img src="video.gif" alt="Projeto Pedido">
+    	</div>
+            <p id="descricao-curta">
+        Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
+		<a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>
+	
+    <p id="descricao-completa" style="display: none;">
+        Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
+        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+	</div>
+	<!-- fim projeto 2 -->
+	<!-- Início Projeto 3 -->
+<div class="project">
+    <a>ERP LOJA DE MÓVEIS</a>
+    <p>
+    <div class="zoom-container">    
+        <video id="meuVideo" autoplay muted loop>
+            <source src="front.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p id="descricao-curta">
+        Este projeto foi desenvolvido utilizando HTML, CSS e JavaScript, 
+        <a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>
+
+    <p id="descricao-completa" style="display: none;">
+        O cliente necessitava de uma página que pudesse gerenciar suas lojas, banco de controle de clientes, custos das lojas e acompanhamento de entregas, com dashboards para tomada de decisões.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+</div>
+<!-- Fim Projeto 3 -->
+
+<!-- Início Projeto 4 -->
+<div class="project">
+    <a>SISTEMA DE GESTÃO</a>
+    <p>
+    <div class="zoom-container">    
+        <video id="meuVideo" autoplay muted loop>
+            <source src="carrer.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p id="descricao-curta">
+        Este projeto foi desenvolvido utilizando HTML, CSS e JavaScript, 
+        <a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>
+
+    <p id="descricao-completa" style="display: none;">
+        Desenvolvido para gerenciar metas de colaboradores dentro de empresas, onde gestores e colaboradores podem inserir metas, suas experiências e habilidades para facilitar a tomada de decisões no desenvolvimento da equipe. Utilizado pelos setores de Gestão e RH.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+</div>
+<!-- Fim Projeto 4 -->
+
+    </section>
+</center>
+    <!-- Rodapé -->
+    <footer class="rodape">
+        <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Script para alternar entre os modos -->
+    <script>
+        document.getElementById("toggle-dark-mode").addEventListener("click", function () {
+            document.body.classList.toggle("dark-mode");
+
+            // Alternar entre lua e sol
+            let icon = document.getElementById("dark-mode-icon");
+            if (document.body.classList.contains("dark-mode")) {
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
+            } else {
+                icon.classList.remove("fa-sun");
+                icon.classList.add("fa-moon");
+            }
+        });
+    </script>
+	
+	<script>
+    // Seleciona o elemento de vídeo pelo seu ID
+    const meuVideo = document.getElementById("meuVideo");
+
+    // Define um tempo de 25 segundos para o autoplay
+    const tempoAutoplay = 25; 
+
+    // Define um evento que será executado quando o vídeo estiver pronto para ser reproduzido
+    meuVideo.addEventListener("loadeddata", () => {
+        // Inicia a reprodução do vídeo
+        meuVideo.play();
+
+        // Define um tempo limite para pausar o vídeo após 25 segundos
+        setTimeout(() => {
+            meuVideo.pause();
+        }, tempoAutoplay * 1000); // Multiplica por 1000 para converter segundos em milissegundos
+    });
+</script>
+
+<script>
+    function toggleDescricao(event) {
+        event.preventDefault();
+        
+        // Obtém os elementos específicos do projeto onde o botão foi clicado
+        let parent = event.target.closest('.project');
+        let descricaoCurta = parent.querySelector('#descricao-curta');
+        let descricaoCompleta = parent.querySelector('#descricao-completa');
+        let botaoVerMais = parent.querySelector('#verMaisBtn');
+
+        // Alterna a exibição dos textos
+        if (descricaoCompleta.style.display === "none" || descricaoCompleta.style.display === "") {
+            descricaoCompleta.style.display = "block";
+            botaoVerMais.textContent = "Ver menos";
+        } else {
+            descricaoCompleta.style.display = "none";
+            botaoVerMais.textContent = "Ver mais";
+        }
+    }
+</script>
+
+
 </body>
+
 </html>
