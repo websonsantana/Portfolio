@@ -305,6 +305,39 @@
             font-size: 14px;
             color: #444;
         }
+
+        .educacao__info p {
+    font-size: 14px;
+    margin: 3px 0;
+    color: #555;
+}
+.educacao__info h4 {
+    font-size: 18px;
+    margin: 0;
+    color: #222;
+}
+.educacao__info {
+    flex: 1;
+}
+.educacao__icone {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+.educacao__item:last-child {
+    border-bottom: none;
+}
+.educacao__item {
+    display: flex;
+    align-items: le;
+    gap: 15px;
+    padding: 15px 5px;
+    border-bottom: 1px solid #ddd;
+}
+.educacao__lista {
+    list-style: none;
+    padding: 0;
+}
     </style>
 	</head>
 	
@@ -394,36 +427,44 @@
     </section>
     <section id="educacao" class="secao">
         <h2 class="secao__titulo">Educação</h2>
-        <hr style="height: 5px; border: none; background: linear-gradient(to right, black, blue);">
-		<a class="curso-item">
-			<div class="secao__conteudo__item">
-                <h4>Curso de Idiomas Inglês - Passaport Idiomas</h4><img src="passaport.png">
-				</a>
-                <p>2025 - 2027</p>
-            </div>
-	    <a class="curso-item"> 
-        <div class="secao__conteudo">
-            <div class="secao__conteudo__item">
-                <h4>Bacharelado em Sistemas de Informação - UNIFG</h4><img src="unifg.png">
-				</a>
-                2021 - Cursando 8° Período
-				<br>
-                Conclusão 1° Semestre de 2025
-            </div>
-		<a class="curso-item"> 
-            <div class="secao__conteudo__item">
-                <h4>Graduação em Logística - UNOPAR</h4><img src="unopar.png">
-				</a>
-                <p>2016 - 2018</p>
-            </div>
-			<a class="curso-item">
-            <div class="secao__conteudo__item">
-                <h4>Redes de Computadores - ETE Maximiano Accioly Campos</h4><img src="ete.jpg">
-				</a>	
-                <p>2012 - 2013</p>
-            </div>
-			</div>
+        <hr class="secao__linha">
+    
+        <ul class="educacao__lista">
+            <li class="educacao__item">
+                <img src="passaport.png" alt="Passaport Idiomas" class="educacao__icone">
+                <div class="educacao__info">
+                    <h4>Curso de Idiomas Inglês - Passaport Idiomas</h4>
+                    <p>2025 - 2027</p>
+                </div>
+            </li>
+    
+            <li class="educacao__item">
+                <img src="unifg.png" alt="UNIFG" class="educacao__icone">
+                <div class="educacao__info">
+                    <h4>Bacharelado em Sistemas de Informação - UNIFG</h4>
+                    <p>2021 - Cursando 8° Período</p>
+                    <p>Conclusão 1° Semestre de 2025</p>
+                </div>
+            </li>
+    
+            <li class="educacao__item">
+                <img src="unopar.png" alt="UNOPAR" class="educacao__icone">
+                <div class="educacao__info">
+                    <h4>Graduação em Logística - UNOPAR</h4>
+                    <p>2016 - 2018</p>
+                </div>
+            </li>
+    
+            <li class="educacao__item">
+                <img src="ete.jpg" alt="ETE Maximiano Accioly Campos" class="educacao__icone">
+                <div class="educacao__info">
+                    <h4>Redes de Computadores - ETE Maximiano Accioly Campos</h4>
+                    <p>2012 - 2013</p>
+                </div>
+            </li>
+        </ul>
     </section>
+    
     <section id="cursos" class="secao">
     <h2 class="secao__titulo">Cursos de Extensão</h2>
     <hr style="height: 5px; border: none; background: linear-gradient(to right, black, blue);">
