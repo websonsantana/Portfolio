@@ -15,11 +15,18 @@
     <title>Currículo de Webson Santana</title>
     
     <style>
+        .zoom-container:hover img,
+.zoom-container:hover video {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
     /* Estilo para modo escuro */
     .dark-mode {
-        background-color: #121212;
-        color: #ffffff;
-    }
+    background-color: #181818;
+    color: #fff;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+}
 
     /* Estilo para o botão */
     #toggle-dark-mode i {
@@ -129,13 +136,6 @@
             line-height: 1.6;
         }
 
-        .apresentacao__imagem {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            border-radius: 50%;
-            margin-bottom: 20px;
-        }
 
         .secao {
             padding: 0px;
@@ -238,27 +238,27 @@
         /* Estilo da seção de projetos */
         .secao-projetos {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
             padding: 20px;
+            margin: 20px;
         }
 
         .project {
-            background-color: #555;
-            color: white;
+            background-color: transparent; /* Remove a cor de fundo */
+            color: rgb(8, 8, 8);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.9);
+           /* box-shadow: 0.3px 0.3px rgba(0, 0, 0, 0.9);*/
             text-align: center;
         }
 
-        .project img {
+        .project img,video {
             width: 100%;
             height: auto;
             border-radius: 8px;
             margin-bottom: 10px;
+            border-radius: 12px;
         }
 
         .button {
@@ -273,8 +273,12 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
-        /* Responsividade */
+        .button:hover {
+            background: linear-gradient(9deg, #00f 0%, #0ff);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+        }
+                /* Responsividade */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -326,7 +330,28 @@
         </section>
     </div>
 	<section class="secao-projetos">
-	
+        <!-- inicio projeto 0 -->	
+<div class="project">
+<a> Projeto em 3D</a>
+		<p>
+    <div class="zoom-container">
+        <video id="meuVideo" autoplay muted loop>
+            <source src="excel.mp4" type="video/mp4">
+        </video>
+    </div>
+    <p id="descricao-curta">
+        Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
+        <a href="#" class="text verMaisBtn" onclick="toggleDescricao(event)">Ver mais</a>
+    </p>    
+
+    <p id="descricao-completa" style="display: none;">
+        Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
+        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
+    </p>   
+    <a href="#" class="button">Ver Projeto</a>
+</div>
+
+	<!-- fim projeto 0 -->
 	<!-- inicio projeto 1 -->	
 <div class="project">
 <a> Projeto em 3D</a>
@@ -350,27 +375,6 @@
 </div>
 
 	<!-- fim projeto 1 -->
-						
-	<!-- inicio projeto 2 -->
-	<div class="project">
-		<a>Excel Personalizado</a>
-		<p>
-	<div class="zoom-container">	
-    <img id="meuVideo" >
-        <img src="video.gif" alt="Projeto Pedido">
-    	</div>
-            <p id="descricao-curta">
-        Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
-		<a href="#" id="verMaisBtn" class="text" onclick="toggleDescricao(event)">Ver mais</a>
-    </p>
-	
-    <p id="descricao-completa" style="display: none;">
-        Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
-        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
-    </p>   
-    <a href="#" class="button">Ver Projeto</a>
-	</div>
-	<!-- fim projeto 2 -->
 	<!-- Início Projeto 3 -->
 <div class="project">
     <a>ERP LOJA DE MÓVEIS</a>
