@@ -137,12 +137,6 @@
             padding: 10px;
         }
 
-        .cabecalho__menu {
-            display: flex;
-            justify-content: left;
-			margin-left: 18%;
-        }
-
         .cabecalho__menu__link {
             color: white;
             text-decoration: none;
@@ -156,15 +150,15 @@
 
 
         .apresentacao {
-    display: flex;
-    padding: 0px;
-    text-align: left;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: left;
-    align-items: center;
-    flex-direction: row;
-}
+        display: flex;
+        padding: 0px;
+        text-align: left;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: left;
+        align-items: center;
+        flex-direction: row;
+        }
 
 user agent stylesheet
 ma
@@ -246,12 +240,14 @@ ma
 	width: 30%; /* Ajuste a porcentagem conforme necessário */
 	}
 	.cabecalho__menu {
-	flex-direction: column; /* Alinha os itens da navbar em coluna */
-	}
-	.cabecalho__menu {
-	display: flex;
-	justify-content: space-between; /* Distribui os elementos igualmente */
-	}
+    display: flex   ;
+    justify-content: center;
+    margin-left: 18%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: center;
+}
         .apresentacao__conteudo {
         margin-right: 20px;
 	margin-top: 40px;
