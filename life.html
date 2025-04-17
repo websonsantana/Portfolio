@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva Espaço life Festas</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    .background {
+	  background-color: #004AAD;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      animation: bgSlide 30s infinite;
+      background-size: cover;
+      background-position: center;
+    }
+    @keyframes bgSlide {
+      0% { background-image: url('life.jpg'); }
+      33% { background-image: url('life.jpg'); }
+      66% { background-image: url('life.jpg'); }
+      100% { background-image: url('life.jpg'); }
+    }
+    .content {
+      background: rgba(255,255,255,0.9);
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 700px;
+      text-align: center;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      margin-top: 10px;
+    }
+    .calendar div {
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+    }
+    .reserved { background-color: #ff6666; cursor: not-allowed; }
+    .pre-reserved { background-color: #ffd54f; }
+    .selected { background-color: #66bb6a; }
+    .tooltip {
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: black;
+      color: white;
+      padding: 3px 6px;
+      border-radius: 5px;
+      font-size: 12px;
+      display: none;
+    }
+    .calendar div:hover .tooltip { display: block; }
+    .login, .admin-panel { margin-top: 20px; }
+    .hidden { display: none; }
+  </style>
+  <style>
+  .calendar-container {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <div class="background"></div>
+  <div class="content">
+  <img src = "life.png" height = "150px ">
+    <h1>Reserva Espaço life Festas</h1>
+    <div>
+     <div class="calendar-container">
+  <div style="margin-bottom: 10px;">
+    <button onclick="changeMonth(-1)">◀️ Anterior</button>
+    <span id="monthYear" style="margin: 0 15px;"></span>
+    <button onclick="changeMonth(1)">Próximo ▶️</button>
+  </div>
+  <div class="calendar" id="calendar"></div>
+  <button onclick="reservar()" style="margin-top: 10px;">Reservar</button>
+</div>
+    <div class="login">
+      <h3>Administrador</h3>
+      <input type="text" id="adminUser" placeholder="Usuário">
+	  <br>
+	  <br>
+      <input type="password" id="adminPass" placeholder="Senha">
+	  <br>
+	 <br>
+      <button onclick="loginAdmin()">Entrar</button>
+    </div>
+
+    <div class="admin-panel hidden" id="adminPanel">
+      <h3>Reservas Pendentes</h3>
+      <ul id="pendentesList"></ul>
+    </div>
+  </div>
+
+  <script>
+    let today = new Date();
+    let selectedDates = [];
+    let reservas = JSON.parse(localStorage.getItem('reservas') || '[]');
+
+    function formatDateStr(date) {
+      return date.toISOString().split('T')[0];
+    }
+
+    function renderCalendar() {
+      const calendar = document.getElementById("calendar");
+      calendar.innerHTML = "";
+
+      const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
+      const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+      document.getElementById("monthYear").innerText =
+        today.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+
+      const startDay = firstDay.getDay();
+      for (let i = 0; i < startDay; i++) {
+        calendar.innerHTML += '<div></div>';
+      }
+
+      for (let i = 1; i <= lastDay.getDate(); i++) {
+        const date = new Date(today.getFullYear(), today.getMonth(), i);
+        const dateStr = formatDateStr(date);
+        const reserva = reservas.find(r => r.data === dateStr);
+
+        const div = document.createElement("div");
+        div.innerText = i;
+
+        if (reserva) {
+          if (reserva.status === 'reservado') div.classList.add("reserved");
+          else if (reserva.status === 'pre-reserva') {
+            div.classList.add("pre-reserved");
+
+            const tempoRestante = 24 - Math.floor((new Date() - new Date(reserva.timestamp)) / (1000 * 60 * 60));
+            const tooltip = document.createElement('div');
+            tooltip.className = 'tooltip';
+            tooltip.innerText = `Confirmação em ${tempoRestante}h`;
+            div.appendChild(tooltip);
+          }
+        } else {
+          div.onclick = () => toggleSelect(dateStr);
+          if (selectedDates.includes(dateStr)) div.classList.add("selected");
+        }
+        calendar.appendChild(div);
+      }
+    }
+
+    function toggleSelect(date) {
+      const index = selectedDates.indexOf(date);
+      if (index > -1) selectedDates.splice(index, 1);
+      else selectedDates.push(date);
+      renderCalendar();
+    }
+
+    function changeMonth(offset) {
+      today.setMonth(today.getMonth() + offset);
+      renderCalendar();
+    }
+
+    function reservar() {
+      if (selectedDates.length === 0) {
+        alert("Selecione pelo menos uma data para reservar.");
+        return;
+      }
+      selectedDates.forEach(date => {
+        reservas.push({ data: date, status: 'pre-reserva', timestamp: new Date().toISOString() });
+      });
+      localStorage.setItem('reservas', JSON.stringify(reservas));
+      const msg = `Olá! Gostaria de reservar o espaço nas datas: ${selectedDates.join(', ')}`;
+      const whatsappURL = `https://wa.me/5581981521109?text=${encodeURIComponent(msg)}`;
+      window.open(whatsappURL, '_blank');
+      selectedDates = [];
+      renderCalendar();
+      renderAdminPanel();
+    }
+
+    function loginAdmin() {
+      const user = document.getElementById("adminUser").value;
+      const pass = document.getElementById("adminPass").value;
+      if (user === 'admin' && pass === 'senha123') {
+        document.getElementById("adminPanel").classList.remove("hidden");
+        renderAdminPanel();
+      } else {
+        alert("Usuário ou senha incorretos.");
+      }
+    }
+
+    function renderAdminPanel() {
+      const lista = document.getElementById("pendentesList");
+      lista.innerHTML = "";
+      reservas.filter(r => r.status === 'pre-reserva').forEach((r, i) => {
+        const li = document.createElement('li');
+        const tempoRestante = 24 - Math.floor((new Date() - new Date(r.timestamp)) / (1000 * 60 * 60));
+
+        if (tempoRestante <= 0) {
+          reservas.splice(i, 1);
+          localStorage.setItem('reservas', JSON.stringify(reservas));
+          renderCalendar();
+          return;
+        }
+
+        li.innerHTML = `${r.data} - ${tempoRestante}h restantes <button onclick="confirmarReserva('${r.data}')">Confirmar</button>`;
+        lista.appendChild(li);
+      });
+    }
+
+    function confirmarReserva(data) {
+      const index = reservas.findIndex(r => r.data === data);
+      if (index > -1) reservas[index].status = 'reservado';
+      localStorage.setItem('reservas', JSON.stringify(reservas));
+      renderCalendar();
+      renderAdminPanel();
+    }
+
+    renderCalendar();
+  </script>
+</body>
+</html>
