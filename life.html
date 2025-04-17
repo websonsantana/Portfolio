@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espaço life - Reservas</title>
+  <title>Reserva Espaço life Festas</title>
   <style>
     body, html {
       margin: 0;
@@ -22,9 +22,9 @@
       background-position: center;
     }
     @keyframes bgSlide {
-      0% { background-image: url('life1.jpg'); }
+      0% { background-image: url('life.jpg'); }
       33% { background-image: url('life.jpg'); }
-      66% { background-image: url('life1.jpg'); }
+      66% { background-image: url('life.jpg'); }
       100% { background-image: url('life.jpg'); }
     }
     .content {
@@ -76,12 +76,18 @@
     margin-top: 20px;
   }
 </style>
+<!-- Firebase App -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<!-- Firestore -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
 </head>
+
 <body>
   <div class="background"></div>
   <div class="content">
   <img src = "life.png" height = "150px ">
-    <h1>Espaço life - Reservas</h1>
+    <h1>Reserva Espaço life Festas</h1>
     <div>
      <div class="calendar-container">
   <div style="margin-bottom: 10px;">
@@ -229,5 +235,18 @@
 
     renderCalendar();
   </script>
+  <script>
+  const firebaseConfig = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "SUA_AUTH_DOMAIN",
+  projectId: "SUA_PROJECT_ID",
+  storageBucket: "SUA_BUCKET",
+  messagingSenderId: "SEU_SENDER_ID",
+  appId: "SEU_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
 </body>
 </html>
