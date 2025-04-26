@@ -2,42 +2,28 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Leitor NFC Detalhado</title>
+  <title>Leitor NFC Compatível</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 30px; text-align: center; }
-    button {
-      padding: 12px 25px; font-size: 18px; cursor: pointer;
-      background-color: #00337a; color: white;
-      border: none; border-radius: 8px;
-    }
-    #saida {
-      margin-top: 30px;
-      text-align: left;
-      white-space: pre-wrap;
-      background: #f7f7f7;
-      padding: 20px;
-      border-radius: 8px;
-      font-family: monospace;
-    }
+    body { font-family: Arial; text-align: center; padding: 30px; }
+    button { padding: 12px 24px; font-size: 18px; background: #00337a; color: #fff; border: none; border-radius: 6px; }
+    #saida { white-space: pre-wrap; text-align: left; margin-top: 30px; background: #eee; padding: 20px; border-radius: 8px; font-family: monospace; }
   </style>
 </head>
 <body>
 
-<h2>Leitor de Cartão NFC - Avançado</h2>
-<p>Aproxime o cartão quando solicitado</p>
-<button onclick="lerCartao()">📶 Ler Cartão NFC</button>
+<h2>Leitor NFC Compatível</h2>
+<p>Aproxime o cartão para leitura</p>
+<button onclick="lerCartao()">📶 Ler Cartão</button>
 <div id="saida"></div>
 
 <script>
-function toHex(buffer) {
-  return [...new Uint8Array(buffer)]
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join(' ');
+function toHex(arr) {
+  return [...new Uint8Array(arr)].map(b => b.toString(16).padStart(2, '0')).join(' ');
 }
 
 async function lerCartao() {
   const saida = document.getElementById('saida');
-  saida.textContent = "Aguardando aproximação do cartão...";
+  saida.textContent = "⏳ Aguardando cartão NFC...";
 
   if ("NDEFReader" in window) {
     try {
@@ -45,48 +31,47 @@ async function lerCartao() {
       await reader.scan();
 
       reader.onreading = event => {
+        let output = `✔ Cartão detectado!\n\n`;
         const records = event.message.records;
-        let resultado = `✔ Cartão detectado!\nTotal de registros: ${records.length}\n\n`;
+
+        if (records.length === 0) {
+          output += "⚠️ Nenhum registro NDEF encontrado.";
+        }
 
         records.forEach((record, i) => {
-          resultado += `🔹 Registro ${i + 1}\n`;
-          resultado += `- recordType: ${record.recordType}\n`;
-          resultado += `- mediaType: ${record.mediaType || 'N/A'}\n`;
-          resultado += `- id: ${record.id || 'N/A'}\n`;
+          output += `🔹 Registro ${i + 1}\n`;
+          output += `recordType: ${record.recordType}\n`;
+          output += `mediaType: ${record.mediaType || 'N/A'}\n`;
+          output += `id: ${record.id || 'N/A'}\n`;
 
-          const raw = record.data;
-          const hex = toHex(raw.buffer);
-          resultado += `- Dados (hex): ${hex}\n`;
-
+          let decoded = '';
           try {
-            const texto = new TextDecoder().decode(raw);
-            resultado += `- Dados (texto): ${texto}\n`;
-
-            try {
-              const json = JSON.parse(texto);
-              resultado += `- Dados (JSON formatado):\n${JSON.stringify(json, null, 2)}\n`;
-            } catch {}
-          } catch (e) {
-            resultado += `- Dados (texto): [Erro ao decodificar]\n`;
+            decoded = new TextDecoder().decode(record.data);
+            output += `Texto: ${decoded}\n`;
+          } catch {
+            output += `Texto: [Não foi possível decodificar]\n`;
           }
 
-          resultado += '\n';
+          try {
+            const json = JSON.parse(decoded);
+            output += `JSON:\n${JSON.stringify(json, null, 2)}\n`;
+          } catch {}
+
+          output += `Hex: ${toHex(record.data)}\n\n`;
         });
 
-        saida.textContent = resultado;
+        saida.textContent = output;
       };
 
       reader.onreadingerror = () => {
-        saida.textContent = "❌ Erro ao tentar ler o cartão. Tente novamente.";
+        saida.textContent = "❌ Erro ao ler o cartão. Tente novamente.";
       };
 
-    } catch (erro) {
-      saida.textContent = "❌ Erro: " + erro.message;
-      console.error(erro);
+    } catch (e) {
+      saida.textContent = "❌ Erro: " + e.message;
     }
-
   } else {
-    saida.textContent = "⚠️ Este navegador não suporta Web NFC.";
+    saida.textContent = "⚠️ Web NFC não é suportado neste dispositivo.";
   }
 }
 </script>
