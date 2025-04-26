@@ -2,24 +2,45 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Leitor Completo de Cartão NFC</title>
+  <title>Leitor de Cartão NFC</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; text-align: center; }
-    button { padding: 10px 20px; font-size: 18px; }
-    #output { margin-top: 20px; font-size: 16px; text-align: left; white-space: pre-wrap; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      text-align: center;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #00337a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+    #saida {
+      margin-top: 30px;
+      text-align: left;
+      white-space: pre-wrap;
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
 
 <h2>Leitor de Cartão NFC</h2>
-<button onclick="lerCartao()">📶 Ler Cartão NFC</button>
+<p>Aproxime o cartão quando solicitado</p>
 
-<div id="output"></div>
+<button onclick="lerCartao()">📶 Iniciar Leitura</button>
+
+<div id="saida"></div>
 
 <script>
 async function lerCartao() {
-  const output = document.getElementById('output');
-  output.textContent = "Aguardando aproximação do cartão...";
+  const saida = document.getElementById('saida');
+  saida.textContent = "Aguardando cartão NFC...";
 
   if ("NDEFReader" in window) {
     try {
@@ -28,34 +49,45 @@ async function lerCartao() {
 
       reader.onreading = event => {
         const records = event.message.records;
-        let resultado = `✔ Cartão lido com sucesso! Total de registros: ${records.length}\n\n`;
+        let resultado = `✔ Cartão detectado! Total de registros: ${records.length}\n\n`;
 
-        records.forEach((record, i) => {
-          resultado += `🔹 Registro ${i + 1}:\n`;
+        records.forEach((record, index) => {
+          resultado += `🔹 Registro ${index + 1}:\n`;
           resultado += `- Tipo: ${record.recordType}\n`;
           resultado += `- Mídia: ${record.mediaType || 'N/A'}\n`;
-          const text = new TextDecoder().decode(record.data);
-          resultado += `- Valor: ${text}\n\n`;
+
+          try {
+            const texto = new TextDecoder().decode(record.data);
+            // Se for um JSON válido, mostrar formatado
+            if (record.mediaType === 'application/json') {
+              const obj = JSON.parse(texto);
+              resultado += `- Dados (JSON):\n`;
+              resultado += JSON.stringify(obj, null, 2) + "\n\n";
+            } else {
+              resultado += `- Dados: ${texto}\n\n`;
+            }
+          } catch (e) {
+            resultado += "- Dados: [Erro ao decodificar]\n\n";
+          }
         });
 
-        output.textContent = resultado;
+        saida.textContent = resultado;
       };
 
       reader.onreadingerror = () => {
-        output.textContent = "❌ Erro ao tentar ler o cartão.";
+        saida.textContent = "❌ Erro ao tentar ler o cartão. Tente novamente.";
       };
 
-    } catch (err) {
-      output.textContent = "❌ Erro: " + err.message;
-      console.error(err);
+    } catch (erro) {
+      saida.textContent = "❌ Erro: " + erro.message;
+      console.error(erro);
     }
 
   } else {
-    output.textContent = "⚠️ Este navegador não suporta NFC.";
+    saida.textContent = "⚠️ Este navegador não suporta Web NFC.";
   }
 }
 </script>
 
 </body>
 </html>
-
