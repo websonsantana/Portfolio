@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Leitor de Cartão NFC</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    button { padding: 15px 30px; font-size: 18px; }
+    #output { margin-top: 20px; font-size: 20px; color: green; }
+  </style>
+</head>
+<body>
+
+<h1>Leitor de Cartão NFC</h1>
+<button onclick="lerNFC()">Ler Cartão</button>
+
+<div id="output"></div>
+
+<script>
+async function lerNFC() {
+  if ("NDEFReader" in window) {
+    try {
+      const ndef = new NDEFReader();
+      await ndef.scan();
+      console.log("Escaneando NFC...");
+
+      ndef.onreading = event => {
+        const decoder = new TextDecoder();
+        for (const record of event.message.records) {
+          const info = decoder.decode(record.data);
+          document.getElementById('output').innerText = "Cartão Lido: " + info;
+          console.log("Dados do cartão:", info);
+        }
+      };
+
+      ndef.onreadingerror = () => {
+        document.getElementById('output').innerText = "Erro ao ler o cartão.";
+      };
+
+    } catch (error) {
+      console.error("Erro:", error);
+      alert("Erro ao iniciar leitura NFC: " + error);
+    }
+  } else {
+    alert("Este navegador não suporta leitura NFC.");
+  }
+}
+</script>
+
+</body>
+</html>
