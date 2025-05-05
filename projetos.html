@@ -1,323 +1,247 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-	<link rel="icon" href="https://websonsantana.github.io/Portfolio/fivecon.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta property="og:title" content="Curriculo">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="https://websonsantana.github.io/Portfolio/fivecon.png" type="image/x-icon">
+    <meta property="og:title" content="Curriculo">
     <meta property="og:description" content="Compartilho sobre Minhas experiencias e habilidades">
     <meta property="og:image" content="fivecon.png">
     <meta property="og:url" content="https://websonsantana.github.io/Portfolio/index.html">
     <title>Currículo de Webson Santana</title>
-	
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-			
-	 header {
-            position: fixed;
+        /* Custom styles that can't be done with Tailwind */
+        .project-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .gradient-btn {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+        .gradient-btn:hover {
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container video {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
+            height: 100%;
+            object-fit: cover;
         }
-	
-        body {
-            font-family: Arial, sans-serif;
-            margin-top: 80px;
-            
+        .dark-mode {
+            background-color: #1a202c;
+            color: #f7fafc;
         }
-
-        .cabecalho {
-            background-color: #333;
-            padding: 20px;
+        .dark-mode .project-card {
+            background-color: #2d3748;
+            color: #f7fafc;
         }
-
-        .cabecalho__menu {
-            display: flex;
-            justify-content: center;
+        .dark-mode .text-gray-800 {
+            color: #f7fafc;
         }
-
-        .cabecalho__menu__link {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
+        .dark-mode .bg-white {
+            background-color: #2d3748;
         }
-
-        .cabecalho__menu__link:hover {
-            text-decoration: underline;
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
         }
-
-
-        .rodape {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-
     </style>
 </head>
-
-<body>
-    <header class="cabecalho">
-        <nav class="cabecalho__menu">
-            <a class="cabecalho__menu__link" href="index.html">Home</a>
-            <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
-			<a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
-			<button id="toggle-dark-mode" style="font-size: 16px; background: none; border: none; cursor: pointer;">
-    <i id="dark-mode-icon" class="fa fa-moon"></i>
-</button>
+<body class="bg-gray-100 font-sans antialiased">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 bg-gray-800 text-white shadow-md z-50">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold">Webson Santana</div>
+            <div class="flex items-center space-x-6">
+                <a href="index.html" class="hover:text-blue-300 transition-colors">Home</a>
+                <a href="about.html" class="hover:text-blue-300 transition-colors">Sobre mim</a>
+                <a href="projetos.html" class="hover:text-blue-300 transition-colors">Projetos</a>
+                <button id="toggle-dark-mode" class="text-xl focus:outline-none">
+                    <i id="dark-mode-icon" class="fas fa-moon"></i>
+                </button>
+            </div>
         </nav>
     </header>
-	<center>
-	<div class="content">
-        <section class="secao">
-            <h2 class="secao__titulo">Bem-vindo a meu portfólio de Projetos</h2>
-            
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 container mx-auto px-4">
+        <!-- Hero Section -->
+        <section class="text-center mb-16 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Bem-vindo ao meu portfólio</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Aqui você encontrará meus projetos mais recentes e relevantes, demonstrando minhas habilidades e experiência.</p>
         </section>
-    </div>
-</center>
-<div class="container">
-        <main class="main-content">
-            <div class="left-column">
-			<h1>Sisteminha de controle em Excel</h1>
-            <p>Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção.
-			Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.
-        Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
-    </p>     
- <center><button class="change-btn">Ver mais</button></center>    
+
+        <!-- Projects Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Project 1 -->
+            <div class="project-card bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-3">Sisteminha de controle em Excel</h2>
+                            <p class="text-gray-600 mb-4">Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção. Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.</p>
+                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                        </div>
+                        <div class="flex-1">
+                            <div class="video-container rounded-lg overflow-hidden">
+                                <video autoplay muted loop class="w-full">
+                                    <source src="excel.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="right-column">
-                <video id="meuVideo" autoplay muted loop>
-            <source src="excel.mp4" type="video/mp4">
-        </video>
-		    
+
+            <!-- Project 2 -->
+            <div class="project-card bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-3">ERP LOJA DE MÓVEIS</h2>
+                            <p class="text-gray-600 mb-4">O cliente necessitava de uma página que pudesse gerenciar suas lojas, banco de controle de clientes, custos das lojas e acompanhamento de entregas, com dashboards para tomada de decisões.</p>
+                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                        </div>
+                        <div class="flex-1">
+                            <div class="video-container rounded-lg overflow-hidden">
+                                <video autoplay muted loop class="w-full">
+                                    <source src="front.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
-	
-	<!-- Fim Projeto 1 -->
-	<div class="container">
-        <main class="main-content">
-            <div class="left-column">
-			<h1>ERP LOJA DE MÓVEIS</h1>
-            <p>O cliente necessitava de uma página que pudesse gerenciar suas lojas, banco de controle de clientes, custos das lojas e acompanhamento de entregas, com dashboards para tomada de decisões. </p>     
-    <center><button class="change-btn">Ver mais</button></center>    
+
+            <!-- Project 3 -->
+            <div class="project-card bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-3">Sistema de Gestão</h2>
+                            <p class="text-gray-600 mb-4">Este projeto foi desenvolvido utilizando HTML, CSS e JavaScript. Desenvolvido para gerenciar metas de colaboradores dentro de empresas, onde gestores e colaboradores podem inserir metas, suas experiências e habilidades para facilitar a tomada de decisões no desenvolvimento da equipe.</p>
+                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                        </div>
+                        <div class="flex-1">
+                            <div class="video-container rounded-lg overflow-hidden">
+                                <video autoplay muted loop class="w-full">
+                                    <source src="carrer.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="right-column">
-                <video id="meuVideo" autoplay muted loop>
-            <source src="front.mp4" type="video/mp4">
-        </video>
-		    
+
+            <!-- Project 4 -->
+            <div class="project-card bg-white rounded-xl shadow-md overflow-hidden fade-in">
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-3">Projeto em 3D</h2>
+                            <p class="text-gray-600 mb-4">Este projeto foi desenvolvido utilizando a ferramenta SketchUp para modelagem tridimensional de uma casa. O modelo 3D da casa foi projetado com precisão para representar detalhes arquitetônicos e estruturais.</p>
+                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                        </div>
+                        <div class="flex-1">
+                            <div class="video-container rounded-lg overflow-hidden">
+                                <video autoplay muted loop class="w-full">
+                                    <source src="3d.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
-	
-	<!-- Fim Projeto 2 -->
-<div class="container">
-        <main class="main-content">
-            <div class="left-column">
-			<h1>Sistema de Gestão</h1>
-            <p>Este projeto foi desenvolvido utilizando HTML, CSS e JavaScript.
-Desenvolvido para gerenciar metas de colaboradores dentro de empresas, onde gestores e colaboradores podem inserir metas, suas experiências e habilidades para facilitar a tomada de decisões no desenvolvimento da equipe. Utilizado pelos setores de Gestão e RH.</p>     
- <center><button class="change-btn">Ver mais</button></center>    
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
+            <div class="flex justify-center space-x-4 mt-4">
+                <a href="#" class="hover:text-blue-300 transition-colors"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="hover:text-blue-300 transition-colors"><i class="fab fa-github"></i></a>
+                <a href="#" class="hover:text-blue-300 transition-colors"><i class="fab fa-twitter"></i></a>
             </div>
-            <div class="right-column">
-                <video id="meuVideo" autoplay muted loop>
-            <source src="carrer.mp4" type="video/mp4">
-        </video>
-		    
-            </div>
-        </main>
-    </div>
-	
-	<!-- Fim Projeto 3 -->
-	<div class="container">
-        <main class="main-content">
-            <div class="left-column">
-			<h1>Projeto em 3D</h1>
-            <p>Este projeto foi desenvolvido utilizando a ferramenta SketchUp para modelagem tridimensional de uma casa.O modelo 3D da casa foi projetado com precisão para representar detalhes arquitetônicos e estruturais. Com o uso do SketchUp, foi possível criar um design realista, permitindo visualizações imersivas dos espaços internos e externos. O projeto inclui disposição de móveis, iluminação e acabamentos, auxiliando na concepção e planejamento da construção. </p>     
-    <center><button class="change-btn">Ver mais</button></center>    
-            </div>
-            <div class="right-column">
-                <video id="meuVideo" autoplay muted loop>
-            <source src="3d.mp4" type="video/mp4">
-        </video>
-		    
-            </div>
-        </main>
-    </div>
-	
-	<!-- Fim Projeto 4 -->
-<style>
-.container {
-    width: 80%;
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 30px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	border-radius: 20Px;
-}
-
-.main-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.left-column {
-    flex: 1;
-    text-align: center;
-    padding: 5px;
-}
-
-.right-column {
-    flex: 1;
-    text-align: center;
-    padding-left: 5px;
-}
-
-img,video {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ccc;
-	border-radius: 20px;
-}
-
-.change-btn {
-    display: block;
-    margin-top: 10px;
-    background: linear-gradient(9deg, #0ff 0%, #fff );
-    color: black;
-    padding: 8px 15px;
-    border: none;
-    cursor: pointer;
-}
-
-.change-btn:hover {
-    background-color: #45a049;
-}
-
-.arrow {
-    font-size: 30px;
-    margin: 20px 0;
-}
-
-/* Media Query para telas menores */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column; /* Exibe as colunas em uma única coluna */
-    }
-
-</style>
-
-<style>
-    /* Estilo para modo escuro */
-    .dark-mode {
-        background-color: #121212;
-        color: #000;
-    }
-
-    /* Estilo para o botão */
-    #toggle-dark-mode i {
-        color: #f1c40f; /* Cor amarela para o sol */
-    }
-
-    .dark-mode #toggle-dark-mode i {
-        color: #ffffff; /* Cor branca para a lua */
-    }
-	
-	 header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
-        }
-</style>
-
-
-    <!-- Rodapé -->
-    <footer class="rodape">
-        <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
-    <!-- Script para alternar entre os modos -->
+    <!-- Scripts -->
     <script>
-        document.getElementById("toggle-dark-mode").addEventListener("click", function () {
+        // Dark mode toggle
+        document.getElementById("toggle-dark-mode").addEventListener("click", function() {
             document.body.classList.toggle("dark-mode");
-
-            // Alternar entre lua e sol
-            let icon = document.getElementById("dark-mode-icon");
+            
+            // Toggle icon between moon and sun
+            const icon = document.getElementById("dark-mode-icon");
             if (document.body.classList.contains("dark-mode")) {
                 icon.classList.remove("fa-moon");
                 icon.classList.add("fa-sun");
+                localStorage.setItem('darkMode', 'enabled');
             } else {
                 icon.classList.remove("fa-sun");
                 icon.classList.add("fa-moon");
+                localStorage.setItem('darkMode', 'disabled');
             }
         });
-    </script>
-	
-	<script>
-    // Seleciona o elemento de vídeo pelo seu ID
-    const meuVideo = document.getElementById("meuVideo");
 
-    // Define um tempo de 25 segundos para o autoplay
-    const tempoAutoplay = 25; 
-
-    // Define um evento que será executado quando o vídeo estiver pronto para ser reproduzido
-    meuVideo.addEventListener("loadeddata", () => {
-        // Inicia a reprodução do vídeo
-        meuVideo.play();
-
-        // Define um tempo limite para pausar o vídeo após 25 segundos
-        setTimeout(() => {
-            meuVideo.pause();
-        }, tempoAutoplay * 1000); // Multiplica por 1000 para converter segundos em milissegundos
-    });
-</script>
-
-<script>
-    function toggleDescricao(event) {
-        event.preventDefault();
-        
-        // Obtém os elementos específicos do projeto onde o botão foi clicado
-        let parent = event.target.closest('.project');
-        let descricaoCurta = parent.querySelector('#descricao-curta');
-        let descricaoCompleta = parent.querySelector('#descricao-completa');
-        let botaoVerMais = parent.querySelector('#verMaisBtn');
-
-        // Alterna a exibição dos textos
-        if (descricaoCompleta.style.display === "none" || descricaoCompleta.style.display === "") {
-            descricaoCompleta.style.display = "block";
-            botaoVerMais.textContent = "Ver menos";
-        } else {
-            descricaoCompleta.style.display = "none";
-            botaoVerMais.textContent = "Ver mais";
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add("dark-mode");
+            document.getElementById("dark-mode-icon").classList.remove("fa-moon");
+            document.getElementById("dark-mode-icon").classList.add("fa-sun");
         }
-    }
-</script>
 
+        // Video autoplay handling
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('loadeddata', () => {
+                video.play();
+                
+                // Pause after 25 seconds
+                setTimeout(() => {
+                    video.pause();
+                }, 25000);
+            });
+        });
 
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Project card interaction
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.tagName !== 'BUTTON') {
+                    const btn = this.querySelector('button');
+                    btn.click();
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>
-
-
