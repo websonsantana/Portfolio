@@ -1,815 +1,1055 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webson Santana</title>
-	<script type="module" crossorigin src="/assets/index-VEhfVR7y.js"></script>
-	<link rel="stylesheet" crossorigin href="/assets/index-DxOEZuBn.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="https://websonsantana.github.io/Portfolio/fivecon.png" type="image/x-icon">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta property="og:title" content="Curriculo">
-    <meta property="og:description" content="Compartilho sobre Minhas experiencias e habilidades">
+    <title>Webson Santana - Currículo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" href="https://websonsantana.github.io/Portfolio/fivecon.png" type="image/x-icon">
+    <meta property="og:title" content="Currículo Webson Santana">
+    <meta property="og:description" content="Analista de Sistemas | Desenvolvedor Full Stack">
     <meta property="og:image" content="https://websonsantana.github.io/Portfolio/fivecon.png">
     <meta property="og:url" content="https://websonsantana.github.io/Portfolio/index.html">
-		
-    <style>
-		 .dark-mode {
-        background-color: #121212;
-        color: #ffffff;
-    }
-
-        /* Estilo para o botão */
-        #toggle-dark-mode i {
-            color: #f1c40f; /* Cor amarela para o sol */
-        }
-
-        .dark-mode #toggle-dark-mode i {
-            color: #ffffff; /* Cor branca para a lua */
-        }
-
-		.secao__conteudo a {
-		text-decoration: none;
-		color: inherit;
-		}
-	
-		.apresentacao__links__navegacao {
-		display: flex;
-		align-items: center;
-		background: linear-gradient(9deg, #0ff 0%, #fff );
-		padding: 10px 20px;
-		border-radius: 25px;
-		color: white;
-		font-weight: bold;
-		transition: all 0.1s ease-in-out;
-		box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-		text-decoration: none;
-		}
-	
-        .curso-item, habilidade-item {
-        display: flex ;
-        align-items: center;
-        gap: 10px;
-        padding: 0px 0;
-        font-size: 16px;
-        font-family: montserrat;
-        text-decoration: none;
-         }
-
-		.curso-item img {
-		width: 30px; /* Ajuste a porcentagem conforme necessário */
-		height: auto; 
-		text-decoration: none;
-		border-radius: 20px;
-		}
-
-	
-		.habilidades-lista {
-		list-style: none;
-		padding: 0;
-		margin: 10px;
-		text-decoration: none;
-		}
-
-		.habilidade-item {
-		display: flex;
-		align-items: center; /* Alinha ícone e texto verticalmente */
-		gap: 10px; /* Espaçamento entre o ícone e o texto */
-		padding: 1px;
-		font-size: 15px;
-		font-family: Arial, sans-serif;
-}
-
-		.habilidade-item img {
-		width: 30px; /* Ajuste do tamanho da imagem */
-		height: auto;
-		border-radius: 20px;
-		}
-
-		header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
-        }
-
-	
-		img{
-		width: 30px;
-        border-radius: 20px;	
-		}
-        embed {
-            width: 30px;
-            
-        }
-
-		
-        .h2 {
-            font-size: 15px;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-image: linear-gradient(45deg, #6C6E71);
-            margin: 20px;
-            padding: 30px;
-            box-sizing: border-box;
-        }
-
-        .cabecalho {
-            background-color: #333;
-            padding: 10px;
-        }
-
-        .cabecalho__menu__link {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        .cabecalho__menu__link:hover {
-            text-decoration: underline;
-        }
-
-
-        .apresentacao {
-        display: flex;
-        padding: 0px;
-        text-align: left;
-        flex-wrap: nowrap;
-        align-content: center;
-        justify-content: left;
-        align-items: center;
-        flex-direction: row;
-        }
-
-        .apresentacao__conteudo {
-            max-width: 600px;
-            margin-bottom: 0px;
-        }
-
-        .apresentacao__conteudo__titulo {
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .apresentacao__conteudo__texto {
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .apresentacao__imagem {
-            width: 120px;
-            max-width: 0%
-            height: auto;
-            border-radius: 100%;
-            margin-bottom: 0px;
-	    margin-top: 20px;
-        }
-
-        .secao {
-            padding: 10px;
-            max-width: 680px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .secao__titulo {
-            font-size: 15px;
-            margin-bottom: 20px;
-
-        }
-
-		.secao__conteudoo {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr); /* Cria duas colunas */
-		gap: 10px; /* Espaçamento entre os itens */
-		font-size: 15px;
-		line-height: 1.2;
-		text-decoration: none;
-		}
-        .secao__conteudo {
-        font-size: 15px;
-        text-decoration: none;
-        }
-
-        .secao__conteudo__item {
-        margin-bottom: 0px;
-	    text-decoration: none;
-        }
-
-        .rodape {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-	    text-decoration: none;
-        }
-
-        @media (min-width: 700px) {
-        .apresentacao {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        text-align: left;
-        text-decoration: none;
-    }
-			
-	@media (max-width: 768px) { /* Para telas menores que 768px */
-	.curso-item img {
-	width: 30%; /* Ajuste a porcentagem conforme necessário */
-	}
-	.cabecalho__menu {
-    display: flex   ;
-    justify-content: center;
-    margin-left: 18%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: stretch;
-    align-items: center;
-}
-        .apresentacao__conteudo {
-        margin-right: 20px;
-	margin-top: 40px;
-        }
-        }
-		
-	.apresentacao__links {
-        align-items: flex-start;a
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#0f172a',
+                        accent: '#06b6d4',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
             }
         }
-	
-
-        .apresentacao__links__subtitulo {
-            font-size: 15px;
-            margin-bottom: 10px;
-            grid-column: span 0;
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
         }
-
-        .timeline {
-            position: relative;
-            padding-left: 40px;
+        
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(45deg, #0ea5e9, #06b6d4);
         }
-        .timeline::before {
-            content: "";
+        
+        .timeline-item::before {
+            content: '';
             position: absolute;
-            left: 10px;
+            left: -28px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0ea5e9;
+            z-index: 1;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: -20px;
             top: 0;
             width: 2px;
             height: 100%;
-            background: #0073b1;
+            background: #e2e8f0;
         }
-        .timeline-item {
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: -37px;
-            top: 5px;
-            width: 15px;
-            height: 15px;
-            background: #0073b1;
-            border-radius: 20%;
-        }
-        .job-title {
-            font-size: 15px;
-            font-weight: bold;
-        }
-        .company {
-            font-size: 16px;
-            color: #555;
-        }
-        .period {
-            font-size: 14px;
-            color: #777;
-        }
-        .description {
-            font-size: 14px;
-            color: #444;
-        }
-
-        .educacao__info p {
-    font-size: 14px;
-    margin: 3px 0;
-    color: #555;
-}
-.educacao__info h4 {
-    font-size: 15px;
-    margin: 0;
-
-}
-.educacao__info {
-    flex: 1;
-}
-.educacao__icone {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-}
-.educacao__item:last-child {
-    border-bottom: none;
-}
-.educacao__item {
-    display: flex;
-    align-items: le;
-    gap: 15px;
-    padding: 15px 5px;
-    border-bottom: 1px solid #ddd;
-}
-.educacao__lista {
-    list-style: none;
-    padding: 0;
-}
-.h1 {
-        font-size: 30px;
         
-      }
-
-      	
-      /* Estilo para modo escuro */
-      body.dark-mode {
-        background-color: black; /* Cor de fundo para o modo escuro */
-        color: white; /* Cor do texto para o modo escuro */
-      }
-
-      body.dark-mode .section {
-        background-color: #222; /* Cor de fundo das seções */
-      }
-
-      body.dark-mode a {
-        color: #1e90ff; /* Cor dos links */
-      }
-
-      body.dark-mode img {
-        filter: grayscale(100%); /* Deixa as imagens em preto e branco */
-      }
-
-      h1 {
-        font-size: 48px;
-        color: #04f0e8; /* Cor do título */
-      }
+        .dark .timeline::before {
+            background: #334155;
+        }
+        
+        .skill-badge {
+            transition: all 0.2s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.03);
+        }
+        
+        .card-hover:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .wave {
+            animation: wave 2s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
     </style>
-	</head>
-	
-	<body>
-    <header class="cabecalho">
-        <nav class="cabecalho__menu">
-            <a class="cabecalho__menu__link" href="index.html">Home</a>
-            <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
-			<a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
-			<button id="toggle-dark-mode" style="font-size: 18px; background: none; border: none; cursor: pointer;">
-    <i id="dark-mode-icon" class="fa fa-moon"></i>
-</button>
-        </nav>
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-primary dark:text-accent">Webson Santana</div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#sobre" class="hover:text-primary dark:hover:text-accent transition">Sobre</a>
+                <a href="#experiencia" class="hover:text-primary dark:hover:text-accent transition">Experiência</a>
+                <a href="#educacao" class="hover:text-primary dark:hover:text-accent transition">Educação</a>
+                <a href="#habilidades" class="hover:text-primary dark:hover:text-accent transition">Habilidades</a>
+                <a href="#contato" class="hover:text-primary dark:hover:text-accent transition">Contato</a>
+            </nav>
+            <button id="toggle-dark-mode" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <i id="dark-mode-icon" class="fas fa-moon text-gray-600 dark:text-yellow-300"></i>
+            </button>
+            <button id="mobile-menu-button" class="md:hidden p-2">
+                <i class="fas fa-bars text-gray-600 dark:text-gray-300"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#sobre" class="py-2 hover:text-primary dark:hover:text-accent transition">Sobre</a>
+                <a href="#experiencia" class="py-2 hover:text-primary dark:hover:text-accent transition">Experiência</a>
+                <a href="#educacao" class="py-2 hover:text-primary dark:hover:text-accent transition">Educação</a>
+                <a href="#habilidades" class="py-2 hover:text-primary dark:hover:text-accent transition">Habilidades</a>
+                <a href="#contato" class="py-2 hover:text-primary dark:hover:text-accent transition">Contato</a>
+            </div>
+        </div>
     </header>
-	<br>
-    <main class="apresentacao">
-	<img class="apresentacao__imagem" src="webson.png" alt="Foto de Webson Santana">
-        
-            <h1 class="h1">Webson José Albuquerque de Santana</h1>
-        
-    </main>
-    <section id="sobre" class="secao">
-        <h2 class="secao__titulo">Sobre Mim</h2>
-		<hr style="height: 2px; border: none; background: linear-gradient(to right, black, blue);">
-        <p class="secao__conteudo">Sou um profissional de tecnologia com 15 anos de experiência, sendo os últimos anos dedicados à análise de sistemas, suporte técnico e desenvolvimento Full Stack. Especializado em HTML, CSS, JavaScript e bancos de dados SQL, tenho ampla experiência em automação de processos, otimização de sistemas e suporte técnico. Atuo com JD Edwards, WMS e metodologias ágeis, desenvolvendo soluções eficientes para operações logísticas e processos corporativos. Sou formado em Sistemas de Informação e Logística, sempre em busca de inovação e aprimoramento contínuo.</p>
-    </section>
-    <section id="experiencia" class="secao">
-        <div class="container">
-            <h4>Experiência Profissional</h4>
-                <hr style="height: 2px; border: none; background: linear-gradient(to right, black, blue);">
-            <embed src="mb.png" >
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="job-title">Analista de Sistemas</div>
-                    <div class="company">Martin Brower</div>
-                    <div class="period">Fev. de 2021 - Atual</div>
-                    <div class="description">Responsável pelo desenvolvimento e manutenção de sistemas internos, colaborando com a equipe de TI para assegurar a eficiência operacional.</div>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 md:pt-32 md:pb-20 px-4">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0 flex justify-center">
+                <div class="relative">
+                    <img src="webson.png" alt="Webson Santana" class="w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-primary dark:border-accent shadow-lg animate-float">
+                    <div class="absolute -bottom-2 -right-2 bg-primary dark:bg-accent text-white rounded-full p-2 shadow-md">
+                        <i class="fas fa-code text-xl"></i>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="job-title">Assistente Suporte Operacional</div>
-                    <div class="company">Martin Brower</div>
-                    <div class="period">Set. de 2017 - Fev. de 2021</div>
-                    <div class="description">Atuação no suporte operacional, lidando com a logística e suporte técnico para garantir a continuidade dos serviços.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="job-title">Operador de Logística</div>
-                    <div class="company">Martin Brower</div>
-                    <div class="period">2015 - 2017</div>
-                    <div class="description">Responsável pelo controle e organização dos processos logísticos dentro do armazém.</div>
-                </div>
-                <div class="timeline-item">
-                    <div class="job-title">Auxiliar de Logística</div>
-                    <div class="company">Martin Brower</div>
-                    <div class="period">2013 - 2015</div>
-                    <div class="description">Suporte nas atividades logísticas, auxiliando na distribuição e no controle de estoque.</div>
+            </div>
+            <div class="md:w-1/2 text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2">Webson Santana</h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-4 gradient-text">Analista de Sistemas | Desenvolvedor Full Stack</h2>
+                <p class="text-lg mb-6 max-w-lg mx-auto md:mx-0">Especialista em desenvolvimento web, automação de processos e otimização de sistemas com 15+ anos de experiência.</p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <a href="#contato" class="bg-primary dark:bg-accent hover:bg-blue-700 dark:hover:bg-cyan-600 text-white px-6 py-3 rounded-full font-medium transition flex items-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Contato
+                    </a>
+                    <a href="https://www.linkedin.com/in/webson-santana-841534102/" target="_blank" class="bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 px-6 py-3 rounded-full font-medium transition flex items-center">
+                        <i class="fab fa-linkedin-in mr-2 text-blue-600 dark:text-blue-400"></i> LinkedIn
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-                    <embed src="design.png">
-                    <div class="timeline">
-                    <div class="timeline-item">
-                    <div class="job-title">Design Gráfico</div>
-                    <div class="company">Autônomo</div>
-                    <div class="period">2012 - 2013</div>
-                    <div class="description">Responsável pela criação de materiais gráficos para diversos clientes, desenvolvendo logotipos, cartões de visita, folhetos e outros materiais de marketing. Utilização de software de design gráfico para elaborar peças criativas e eficazes, atendendo às necessidades e expectativas dos clientes.</div>
-                </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-12 px-4 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                    <span class="bg-primary dark:bg-accent w-8 h-1 mr-4"></span>
+                    <span>Sobre Mim</span>
+                    <span class="bg-primary dark:bg-accent w-8 h-1 ml-4"></span>
+                </h2>
             </div>
-        
-                    <embed src="transval.png">
-                    <div class="timeline">
-                    <div class="timeline-item">
-                    <div class="job-title">Auxiliar Administrativo</div>
-                    <div class="company">Grupo Transval</div>
-                    <div class="period">2011 - 2012</div>
-                    <div class="description">Responsável por tarefas administrativas como controle de documentos, atendimento ao cliente, apoio na organização de eventos corporativos e suporte às áreas financeira e de recursos humanos. Realização de atividades de controle de entrada e saída de correspondências e manutenção de arquivos.</div>
+            
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-8 hover-scale card-hover transition">
+                <p class="text-lg leading-relaxed">
+                    Sou um profissional de tecnologia com 15 anos de experiência, sendo os últimos anos dedicados à análise de sistemas, suporte técnico e desenvolvimento Full Stack. 
+                    Especializado em HTML, CSS, JavaScript e bancos de dados SQL, tenho ampla experiência em automação de processos, otimização de sistemas e suporte técnico. 
+                    Atuo com JD Edwards, WMS e metodologias ágeis, desenvolvendo soluções eficientes para operações logísticas e processos corporativos. 
+                    Sou formado em Sistemas de Informação e Logística, sempre em busca de inovação e aprimoramento contínuo.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experiencia" class="py-12 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                    <span class="bg-primary dark:bg-accent w-8 h-1 mr-4"></span>
+                    <span>Experiência Profissional</span>
+                    <span class="bg-primary dark:bg-accent w-8 h-1 ml-4"></span>
+                </h2>
+            </div>
+            
+            <div class="relative pl-8">
+                <div class="absolute left-0 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-600"></div>
+                
+                <!-- Martin Brower -->
+                <div class="mb-12 relative">
+                    <div class="flex items-center mb-4">
+                        <img src="mb.png" alt="Martin Brower" class="w-12 h-12 rounded-full mr-4">
+                        <h3 class="text-xl font-bold">Martin Brower</h3>
+                    </div>
+                    
+                    <div class="pl-8 relative">
+                        <div class="absolute left-0 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-600"></div>
+                        
+                        <div class="mb-8 pl-6 relative">
+                            <div class="absolute -left-1 top-3 w-3 h-3 rounded-full bg-primary dark:bg-accent"></div>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover-scale transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold">Analista de Sistemas</h4>
+                                    <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2021 - Atual</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Responsável pelo desenvolvimento e manutenção de sistemas internos, colaborando com a equipe de TI para assegurar a eficiência operacional.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8 pl-6 relative">
+                            <div class="absolute -left-1 top-3 w-3 h-3 rounded-full bg-primary dark:bg-accent"></div>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover-scale transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold">Assistente Suporte Operacional</h4>
+                                    <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2017 - 2021</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Atuação no suporte operacional, lidando com a logística e suporte técnico para garantir a continuidade dos serviços.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-8 pl-6 relative">
+                            <div class="absolute -left-1 top-3 w-3 h-3 rounded-full bg-primary dark:bg-accent"></div>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover-scale transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold">Operador de Logística</h4>
+                                    <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2015 - 2017</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Responsável pelo controle e organização dos processos logísticos dentro do armazém.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="pl-6 relative">
+                            <div class="absolute -left-1 top-3 w-3 h-3 rounded-full bg-primary dark:bg-accent"></div>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover-scale transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold">Auxiliar de Logística</h4>
+                                    <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2013 - 2015</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Suporte nas atividades logísticas, auxiliando na distribuição e no controle de estoque.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-item">
-                    <div class="job-title">Ajudante de Montagem</div>
-                    <div class="company">Grupo Transval</div>
-                    <div class="period">2010 - 2011</div>
-                    <div class="description">Auxiliava na montagem e instalação de móveis, seguindo desenhos técnicos e instruções específicas. Garantia a qualidade e precisão na montagem, utilizando ferramentas adequadas e seguindo normas de segurança.</div>
+                
+                <!-- Design Gráfico -->
+                <div class="mb-12 relative">
+                    <div class="flex items-center mb-4">
+                        <img src="design.png" alt="Design Gráfico" class="w-12 h-12 rounded-full mr-4">
+                        <h3 class="text-xl font-bold">Design Gráfico Autônomo</h3>
+                    </div>
+                    
+                    <div class="pl-8 relative">
+                        <div class="absolute left-0 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-600"></div>
+                        
+                        <div class="pl-6 relative">
+                            <div class="absolute -left-1 top-3 w-3 h-3 rounded-full bg-primary dark:bg-accent"></div>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover-scale transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold">Design Gráfico</h4>
+                                    <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2012 - 2013</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Responsável pela criação de materiais gráficos para diversos clientes, desenvolvendo logotipos, cartões de visita, folhetos e outros materiais de marketing. 
+                                    Utilização de software de design gráfico para elaborar peças criativas e eficazes, atendendo às necessidades e expectativas dos clientes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grupo Transval -->
+                <div class="relative">
+                    <div class="flex items-center mb-4">
+                        <img src="transval.png" alt="Grupo Transval" class="w-12 h-12 rounded-full mr-4">
+                        <h3 class="text-xl font-bold">Grupo Transval</h3>
+                    </div>
+                    
+                    <div class="pl-8 relative">
+                        <div class="absolute left-0 top-0 h-full w-0.5 bg-gray-200 dark:bg-gray-600"></div>
+                        
+                        <div class="mb-8 pl-6 relative">
+                            <div class="absolute -left-1 top-3 w-3 h-3 rounded-full bg-primary dark:bg-accent"></div>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover-scale transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold">Auxiliar Administrativo</h4>
+                                    <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2011 - 2012</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Responsável por tarefas administrativas como controle de documentos, atendimento ao cliente, apoio na organização de eventos corporativos e suporte às áreas financeira e de recursos humanos. 
+                                    Realização de atividades de controle de entrada e saída de correspondências e manutenção de arquivos.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="pl-6 relative">
+                            <div class="absolute -left-1 top-3 w-3 h-3 rounded-full bg-primary dark:bg-accent"></div>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover-scale transition">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-semibold">Ajudante de Montagem</h4>
+                                    <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2010 - 2011</span>
+                                </div>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    Auxiliava na montagem e instalação de móveis, seguindo desenhos técnicos e instruções específicas. 
+                                    Garantia a qualidade e precisão na montagem, utilizando ferramentas adequadas e seguindo normas de segurança.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-	</section>		
     </section>
-    <section id="educacao" class="secao">
-        <h2 class="secao__titulo">Educação</h2>
-        <hr style="height: 2px; border: none; background: linear-gradient(to right, black, blue);">
-    
-        <ul class="educacao__lista">
-            <li class="educacao__item">
-                <img src="passaport.png" alt="Passaport Idiomas" class="educacao__icone">
-                <div class="educacao__info">
-                    <h4>Curso de Idiomas Inglês - Passaport Idiomas</h4>
-                    <p>2025 - 2027</p>
-                </div>
-            </li>
-    
-            <li class="educacao__item">
-                <img src="unifg.png" alt="UNIFG" class="educacao__icone">
-                <div class="educacao__info">
-                    <h4>Bacharelado em Sistemas de Informação - UNIFG</h4>
-                    <p>2021 - Cursando 8° Período</p>
-                    <p>Conclusão 1° Semestre de 2025</p>
-                </div>
-            </li>
-    
-            <li class="educacao__item">
-                <img src="unopar.png" alt="UNOPAR" class="educacao__icone">
-                <div class="educacao__info">
-                    <h4>Graduação em Logística - UNOPAR</h4>
-                    <p>2016 - 2018</p>
-                </div>
-            </li>
-    
-            <li class="educacao__item">
-                <img src="ete.jpg" alt="ETE Maximiano Accioly Campos" class="educacao__icone">
-                <div class="educacao__info">
-                    <h4>Redes de Computadores - ETE Maximiano Accioly Campos</h4>
-                    <p>2012 - 2013</p>
-                </div>
-            </li>
-        </ul>
-    </section>
-    
-    <section id="educacao" class="secao">
-        <h2 class="secao__titulo">Cursos de Extensão</h2>
-        <hr style="height: 2px; border: none; background: linear-gradient(to right, black, blue);">
-        <ul class="educacao__lista">
 
-            <li class="educacao__item">
-                <img src="hashtag.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Jornada Fullstack - Hashtag Treinamentos</h4>
+    <!-- Education Section -->
+    <section id="educacao" class="py-12 px-4 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                    <span class="bg-primary dark:bg-accent w-8 h-1 mr-4"></span>
+                    <span>Educação</span>
+                    <span class="bg-primary dark:bg-accent w-8 h-1 ml-4"></span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Passaport Idiomas -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover-scale card-hover transition">
+                    <div class="flex items-start">
+                        <img src="passaport.png" alt="Passaport Idiomas" class="w-16 h-16 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-1">Curso de Idiomas Inglês</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">Passaport Idiomas</p>
+                            <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2025 - 2027</span>
+                        </div>
+                    </div>
                 </div>
-            </li>
-            <li class="educacao__item">
-                <img src="hashtag.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Intensivão de JavaScript - Hashtag Treinamentos</h4>
-            </li>
-<li class="educacao__item">
-                <img src="datasul.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Design Gráfico - Datasul Cursos</h4>
-            </li>
-		     <li class="educacao__item">
-                <img src="empowerdata.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Intensivãode Python - Empowerdata</h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="senai1.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Eletricidade Industrial - Senai</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="unibratec.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Excel Avançado - Unibratec</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="expertise.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Power BI - Expertise</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Quality Assurance: plano de testes e gestão de bugs - Alura</h4> 
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Foco: trazendo mais resultados para o dia a dia - Alura</h4> 
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Hábitos: da produtividade às metas pessoais - Alura</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>SQL Server: consultas avançadas com Microsoft SQL Server 2017 - Alura</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Formação Certificação COBIT 5 - Alura</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Windows Prompt: Trabalhando na linha de comando - Alura</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Governança de TI: gestão de demandas de serviços - Alura</h4>
-            </li>
-             <li class="educacao__item">
-                <img src="fiap.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>IT Business Partner - <b>FIAP</h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Redes parte 1: conceitos e prática - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Redes parte 2: montando um projeto do cliente até o provedor de serviços -Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Redes parte 3: defina as listas de controle e políticas de acesso de usuários - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Redes parte 4: configuração de protocolos de roteamento e IPv6 - Alura </h4>
-            </li>
-             <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Redes parte 5: Wi-FI - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Segurança de redes: conheça as vulnerabilidades de servidores e clientes - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Segurança de redes: crie um firewall com pfSense e iptables - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>HTML e CSS: praticando HTML/CSS - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>HTML e CSS: ambientes de desenvolvimento, estrutura de arquivos e tags - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>HTML e CSS: trabalhando com responsividade e publicação de projetos - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>HTML e CSS: Classes, posicionamento e Flexbox - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>HTML e CSS: cabeçalho, footer e variáveis CSS - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Linux I: conhecendo e utilizando o terminal - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Linux II: programas, processos e pacotes - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Windows Prompt: Trabalhando na linha de comando -Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>WSQL Server: Introdução ao SQL com Microsoft SQL Server 2017 - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>SQL Server: consultas avançadas com Microsoft SQL Server 2017 -Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Modelagem de banco de dados: entidades, relacionamentos e atributos - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Hábitos: da produtividade às metas pessoais - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Foco: trazendo mais resultados para o dia a dia - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Pontos fortes parte 1: descubra os seus e aprenda a gerenciá-los - Alura </h4>
-            </li>
-			 <li class="educacao__item">
-                <img src="alura.png" alt="Curso"class="educacao__icone">
-                <div class="educacao__info">
-                <h4>Governança de TI: gestão de demandas de serviços - Alura </h4>
-            </li>
-        </li>
-    </div>
-</section>
-
-   <section id="habilidades" class="secao">
-    <h2 class="secao__titulo">Habilidades</h2>
-    <hr style="height: 2px; border: none; background: linear-gradient(to right, black, blue);">
-    <div class="secao__conteudoo">
-        
-            <li class="habilidade-item">
-                <img src="js.png" alt="JavaScript">
-                <span>JavaScript</span>
-            </li>
-            <li class="habilidade-item">
-                <img src="html.png" alt="HTML">
-                <span>HTML</span>
-            </li>
-            <li class="habilidade-item">
-                <img src="css.svg" alt="CSS">
-                <span>CSS</span>
-            </li>
-            <li class="habilidade-item">
-                <img src="excel.png" alt="React">
-                <span>Excel</span>
-            </li>
-            <li class="habilidade-item">
-                <img src="dbeaver.png" alt="Git">
-                <span>Dbeaver</span>
-            </li>
-            <li class="habilidade-item">
-                <img src="github.png" alt="GitHub">
-                <span>GitHub</span>
-            </li>
-            <li class="habilidade-item">
-                <img src="sql.png" alt="Bancos de Dados SQL">
-                <span>SQL</span>
-            </li>
-	    <li class="habilidade-item">
-                <img src="mongodb.png" alt="MongoDB">
-                <span>MongoDB</span>
-            </li>
-            <li class="habilidade-item">
-                <img src="ageis.png" alt="Metodologias Ágeis">
-                <span>Metodologias Ágeis</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="figma.png" alt="Metodologias Ágeis">
-                <span>Figma</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="corel.png" alt="Metodologias Ágeis">
-                <span>Corel Draw</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="photoshop.png" alt="Metodologias Ágeis">
-                <span>Photoshop</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="ilustrator.png" alt="Metodologias Ágeis">
-                <span>Ilustrator</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="sketchup.png" alt="Metodologias Ágeis">
-                <span>Sketchup</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="indesign.png" alt="Metodologias Ágeis">
-                <span>Indesign</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="jde.jpg" alt="Metodologias Ágeis">
-                <span>JD EDWARDS</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="jira.png" alt="Metodologias Ágeis">
-                <span>JIRA</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="oracle.jpg" alt="Metodologias Ágeis">
-                <span>ORACLE</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="confluence.jpeg" alt="Metodologias Ágeis">
-                <span>Confluence</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="miro.png" alt="Miro">
-                <span>Miro</span>
-            </li>
-			<li class="habilidade-item">
-                <img src="canva.jpeg" alt="Metodologias Ágeis">
-                <span>Canva</span>
-            </li>
-	    	<li class="habilidade-item">
-                <img src="vscode.png" alt="VSCode">
-                <span>vscode</span>
-            </li>
-	    <li class="habilidade-item">
-                <img src="vba.png" alt="VBA">
-                <span>VBA</span>
-            </li>
-    </div>
-</section>
-
-
-    <section id="contato" class="secao">
-        <h2 class="secao__titulo">Contato</h2>
-        <hr style="height: 2px; border: none; background: linear-gradient(to right, black, blue);">
-        <div class="secao__conteudo">
-            <p><b><h5>Telefone:</b> <a href="https://wa.me/+5581981521109"></i> 81 98152-1109&nbsp;&nbsp;&nbsp; <i class="fa-brands fa-whatsapp fa-bounce" style="font-size:28px; color:#25D366;"></i></a></p></h5>
-            <p><b><h5>LinkedIn:<a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana &nbsp;&nbsp;&nbsp;<i class="fa-brands fa-linkedin fa-shake" style="font-size:26px; color:#0077B5;"></i></i></a></p></h5>
-            <p><b><h5>Email:</b>  <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope fa-beat" style="font-size:26px; color:#D14836;"></i></a></p></h5>
+                
+                <!-- UNIFG -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover-scale card-hover transition">
+                    <div class="flex items-start">
+                        <img src="unifg.png" alt="UNIFG" class="w-16 h-16 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-1">Bacharelado em Sistemas de Informação</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">UNIFG</p>
+                            <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2021 - Cursando (8° Período)</span>
+                            <p class="text-sm mt-1">Conclusão 1° Semestre de 2025</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- UNOPAR -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover-scale card-hover transition">
+                    <div class="flex items-start">
+                        <img src="unopar.png" alt="UNOPAR" class="w-16 h-16 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-1">Graduação em Logística</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">UNOPAR</p>
+                            <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2016 - 2018</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ETE Maximiano Accioly Campos -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover-scale card-hover transition">
+                    <div class="flex items-start">
+                        <img src="ete.jpg" alt="ETE Maximiano Accioly Campos" class="w-16 h-16 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-1">Redes de Computadores</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-2">ETE Maximiano Accioly Campos</p>
+                            <span class="bg-primary/10 dark:bg-accent/10 text-primary dark:text-accent px-3 py-1 rounded-full text-sm">2012 - 2013</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cursos de Extensão -->
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-center">Cursos de Extensão</h3>
+                
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Curso 1 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="hashtag.png" alt="Hashtag Treinamentos" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Jornada Fullstack</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Hashtag Treinamentos</p>
+                    </div>
+                    
+                    <!-- Curso 2 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="hashtag.png" alt="Hashtag Treinamentos" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Intensivão de JavaScript</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Hashtag Treinamentos</p>
+                    </div>
+                    
+                    <!-- Curso 3 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="datasul.png" alt="Datasul Cursos" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Design Gráfico</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Datasul Cursos</p>
+                    </div>
+                    
+                    <!-- Curso 4 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="empowerdata.png" alt="Empowerdata" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Intensivão de Python</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Empowerdata</p>
+                    </div>
+                    
+                    <!-- Curso 5 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="senai1.png" alt="Senai" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Eletricidade Industrial</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Senai</p>
+                    </div>
+                    
+                    <!-- Curso 6 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="unibratec.png" alt="Unibratec" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Excel Avançado</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Unibratec</p>
+                    </div>
+                    
+                    <!-- Botão para mostrar mais cursos -->
+                    <div id="show-more-courses" class="bg-primary/10 dark:bg-accent/10 rounded-lg shadow p-4 hover-scale transition cursor-pointer flex items-center justify-center">
+                        <span class="text-primary dark:text-accent font-medium">Ver mais cursos</span>
+                        <i class="fas fa-chevron-down ml-2 text-primary dark:text-accent"></i>
+                    </div>
+                </div>
+                
+                <!-- Cursos adicionais (inicialmente ocultos) -->
+                <div id="additional-courses" class="hidden grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+                    <!-- Curso 7 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="expertise.png" alt="Expertise" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Power BI</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Expertise</p>
+                    </div>
+                    
+                    <!-- Curso 8 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Quality Assurance</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 9 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Foco: trazendo mais resultados</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 10 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Hábitos: produtividade e metas</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 11 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">SQL Server: consultas avançadas</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 12 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Certificação COBIT 5</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 13 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Windows Prompt</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 14 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Governança de TI</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 15 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="fiap.png" alt="FIAP" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">IT Business Partner</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">FIAP</p>
+                    </div>
+                    
+                    <!-- Curso 16 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Redes parte 1: conceitos e prática</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 17 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Redes parte 2: projeto do cliente ao provedor</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 18 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Redes parte 3: controle de acesso</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 19 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Redes parte 4: protocolos de roteamento e IPv6</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 20 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Redes parte 5: Wi-FI</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 21 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Segurança de redes: vulnerabilidades</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 22 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Segurança de redes: firewall com pfSense</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 23 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">HTML e CSS: praticando</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 24 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">HTML e CSS: estrutura de arquivos e tags</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 25 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">HTML e CSS: responsividade</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 26 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">HTML e CSS: Classes e Flexbox</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 27 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">HTML e CSS: cabeçalho e variáveis CSS</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 28 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Linux I: utilizando o terminal</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 29 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Linux II: programas e processos</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 30 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Windows Prompt: linha de comando</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 31 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">SQL Server: introdução</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 32 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Modelagem de banco de dados</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                    
+                    <!-- Curso 33 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 hover-scale transition">
+                        <div class="flex items-center mb-2">
+                            <img src="alura.png" alt="Alura" class="w-8 h-8 rounded-full mr-3">
+                            <h4 class="font-medium">Pontos fortes parte 1</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Alura</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <footer class="rodape">
-        <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="py-12 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                    <span class="bg-primary dark:bg-accent w-8 h-1 mr-4"></span>
+                    <span>Habilidades</span>
+                    <span class="bg-primary dark:bg-accent w-8 h-1 ml-4"></span>
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Minhas principais habilidades técnicas e ferramentas que utilizo no dia a dia.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Habilidade 1 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="js.png" alt="JavaScript" class="w-12 h-12 mb-2">
+                    <span class="font-medium">JavaScript</span>
+                </div>
+                
+                <!-- Habilidade 2 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="html.png" alt="HTML" class="w-12 h-12 mb-2">
+                    <span class="font-medium">HTML</span>
+                </div>
+                
+                <!-- Habilidade 3 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="css.svg" alt="CSS" class="w-12 h-12 mb-2">
+                    <span class="font-medium">CSS</span>
+                </div>
+                
+                <!-- Habilidade 4 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="excel.png" alt="Excel" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Excel</span>
+                </div>
+                
+                <!-- Habilidade 5 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="dbeaver.png" alt="Dbeaver" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Dbeaver</span>
+                </div>
+                
+                <!-- Habilidade 6 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="github.png" alt="GitHub" class="w-12 h-12 mb-2">
+                    <span class="font-medium">GitHub</span>
+                </div>
+                
+                <!-- Habilidade 7 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="sql.png" alt="SQL" class="w-12 h-12 mb-2">
+                    <span class="font-medium">SQL</span>
+                </div>
+                
+                <!-- Habilidade 8 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="mongodb.png" alt="MongoDB" class="w-12 h-12 mb-2">
+                    <span class="font-medium">MongoDB</span>
+                </div>
+                
+                <!-- Habilidade 9 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="ageis.png" alt="Metodologias Ágeis" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Metodologias Ágeis</span>
+                </div>
+                
+                <!-- Habilidade 10 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="figma.png" alt="Figma" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Figma</span>
+                </div>
+                
+                <!-- Habilidade 11 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="corel.png" alt="Corel Draw" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Corel Draw</span>
+                </div>
+                
+                <!-- Habilidade 12 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="photoshop.png" alt="Photoshop" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Photoshop</span>
+                </div>
+                
+                <!-- Habilidade 13 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="ilustrator.png" alt="Illustrator" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Illustrator</span>
+                </div>
+                
+                <!-- Habilidade 14 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="sketchup.png" alt="Sketchup" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Sketchup</span>
+                </div>
+                
+                <!-- Habilidade 15 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="indesign.png" alt="InDesign" class="w-12 h-12 mb-2">
+                    <span class="font-medium">InDesign</span>
+                </div>
+                
+                <!-- Habilidade 16 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="jde.jpg" alt="JD Edwards" class="w-12 h-12 mb-2">
+                    <span class="font-medium">JD Edwards</span>
+                </div>
+                
+                <!-- Habilidade 17 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="jira.png" alt="JIRA" class="w-12 h-12 mb-2">
+                    <span class="font-medium">JIRA</span>
+                </div>
+                
+                <!-- Habilidade 18 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="oracle.jpg" alt="Oracle" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Oracle</span>
+                </div>
+                
+                <!-- Habilidade 19 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="confluence.jpeg" alt="Confluence" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Confluence</span>
+                </div>
+                
+                <!-- Habilidade 20 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="miro.png" alt="Miro" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Miro</span>
+                </div>
+                
+                <!-- Habilidade 21 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="canva.jpeg" alt="Canva" class="w-12 h-12 mb-2">
+                    <span class="font-medium">Canva</span>
+                </div>
+                
+                <!-- Habilidade 22 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="vscode.png" alt="VSCode" class="w-12 h-12 mb-2">
+                    <span class="font-medium">VSCode</span>
+                </div>
+                
+                <!-- Habilidade 23 -->
+                <div class="bg-white dark:bg-gray-700 rounded-lg shadow p-4 flex flex-col items-center skill-badge">
+                    <img src="vba.png" alt="VBA" class="w-12 h-12 mb-2">
+                    <span class="font-medium">VBA</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contato" class="py-12 px-4 bg-gray-100 dark:bg-gray-800">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 flex items-center justify-center">
+                    <span class="bg-primary dark:bg-accent w-8 h-1 mr-4"></span>
+                    <span>Contato</span>
+                    <span class="bg-primary dark:bg-accent w-8 h-1 ml-4"></span>
+                </h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Entre em contato comigo através dos canais abaixo.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Telefone -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover-scale card-hover transition">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-primary/10 dark:bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-phone-alt text-primary dark:text-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Telefone</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">81 98152-1109</p>
+                        <a href="https://wa.me/+5581981521109" class="bg-primary dark:bg-accent hover:bg-blue-700 dark:hover:bg-cyan-600 text-white px-6 py-2 rounded-full font-medium transition flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- LinkedIn -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover-scale card-hover transition">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-primary/10 dark:bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                            <i class="fab fa-linkedin-in text-primary dark:text-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">LinkedIn</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">webson-santana-841534102</p>
+                        <a href="https://www.linkedin.com/in/webson-santana-841534102/" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-medium transition flex items-center">
+                            <i class="fab fa-linkedin-in mr-2"></i> Visitar
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Email -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg p-6 hover-scale card-hover transition">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-primary/10 dark:bg-accent/10 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-envelope text-primary dark:text-accent text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">Email</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Webson.jose@gmail.com</p>
+                        <a href="mailto:Webson.jose@gmail.com" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-full font-medium transition flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i> Enviar Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">Webson Santana</h3>
+                    <p class="text-gray-400">Analista de Sistemas | Desenvolvedor Full Stack</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="https://www.linkedin.com/in/webson-santana-841534102/" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="https://wa.me/+5581981521109" target="_blank" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </a>
+                    <a href="mailto:Webson.jose@gmail.com" class="text-gray-400 hover:text-white transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>&copy; 2024 Webson Santana. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
-	
-	<script>
-    document.getElementById("toggle-dark-mode").addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
 
-        // Alternar entre lua e sol
-        let icon = document.getElementById("dark-mode-icon");
-        if (document.body.classList.contains("dark-mode")) {
-            icon.classList.remove("fa-moon");
-            icon.classList.add("fa-sun");
-        } else {
-            icon.classList.remove("fa-sun");
-            icon.classList.add("fa-moon");
+    <script>
+        // Dark Mode Toggle
+        document.getElementById("toggle-dark-mode").addEventListener("click", function() {
+            document.documentElement.classList.toggle("dark");
+            
+            // Alternar entre lua e sol
+            let icon = document.getElementById("dark-mode-icon");
+            if (document.documentElement.classList.contains("dark")) {
+                icon.classList.remove("fa-moon");
+                icon.classList.add("fa-sun");
+                localStorage.setItem("darkMode", "enabled");
+            } else {
+                icon.classList.remove("fa-sun");
+                icon.classList.add("fa-moon");
+                localStorage.setItem("darkMode", "disabled");
+            }
+        });
+        
+        // Verificar preferência de dark mode no carregamento
+        if (localStorage.getItem("darkMode") === "enabled" || 
+            (!localStorage.getItem("darkMode") && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add("dark");
+            document.getElementById("dark-mode-icon").classList.remove("fa-moon");
+            document.getElementById("dark-mode-icon").classList.add("fa-sun");
         }
-    });
-</script>
+        
+        // Mobile Menu Toggle
+        document.getElementById("mobile-menu-button").addEventListener("click", function() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+        
+        // Show More Courses
+        document.getElementById("show-more-courses").addEventListener("click", function() {
+            const additionalCourses = document.getElementById("additional-courses");
+            const showMoreButton = document.getElementById("show-more-courses");
+            
+            if (additionalCourses.classList.contains("hidden")) {
+                additionalCourses.classList.remove("hidden");
+                showMoreButton.innerHTML = '<span class="text-primary dark:text-accent font-medium">Ver menos cursos</span><i class="fas fa-chevron-up ml-2 text-primary dark:text-accent"></i>';
+            } else {
+                additionalCourses.classList.add("hidden");
+                showMoreButton.innerHTML = '<span class="text-primary dark:text-accent font-medium">Ver mais cursos</span><i class="fas fa-chevron-down ml-2 text-primary dark:text-accent"></i>';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (!document.getElementById("mobile-menu").classList.contains("hidden")) {
+                    document.getElementById("mobile-menu").classList.add("hidden");
+                }
+            });
+        });
+        
+        // Add wave animation to hand emoji on hover
+        const waveEmoji = document.createElement('span');
+        waveEmoji.innerHTML = '👋';
+        waveEmoji.classList.add('inline-block', 'wave');
+        waveEmoji.style.display = 'none';
+        
+        document.querySelectorAll('a[href="#contato"]').forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                if (!waveEmoji.parentNode) {
+                    button.appendChild(waveEmoji);
+                    waveEmoji.style.display = 'inline-block';
+                }
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                if (waveEmoji.parentNode) {
+                    waveEmoji.style.display = 'none';
+                    button.removeChild(waveEmoji);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
