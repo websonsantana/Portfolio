@@ -13,7 +13,6 @@
     <title>Currículo de Webson Santana</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles that can't be done with Tailwind */
         .project-card {
             transition: all 0.3s ease;
             transform: translateY(0);
@@ -30,7 +29,7 @@
         }
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
         }
@@ -63,6 +62,22 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .short-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .full-description {
+            display: none;
+        }
+        .show-full .short-description {
+            display: none;
+        }
+        .show-full .full-description {
+            display: block;
+        }
     </style>
 </head>
 <body class="bg-gray-100 font-sans antialiased">
@@ -86,7 +101,7 @@
         <!-- Hero Section -->
         <section class="text-center mb-16 fade-in">
             <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Bem-vindo ao meu portfólio</h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Aqui você encontrará meus projetos mais recentes e relevantes, demonstrando minhas habilidades e experiência.</p>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Aqui você encontrará meus projetos mais recentes e relevantes.</p>
         </section>
 
         <!-- Projects Grid -->
@@ -97,8 +112,15 @@
                     <div class="flex flex-col md:flex-row gap-6">
                         <div class="flex-1">
                             <h2 class="text-2xl font-bold text-gray-800 mb-3">Sisteminha de controle em Excel</h2>
-                            <p class="text-gray-600 mb-4">Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção. Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho.</p>
-                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                            <div class="project-description">
+                                <p class="text-gray-600 mb-4 short-description">
+                                    Projeto em Excel para empresa de frios com dashboards interativos para análise de dados e controle de indicadores.
+                                </p>
+                                <p class="text-gray-600 mb-4 full-description">
+                                    Este projeto em Excel foi desenvolvido para uma empresa de frios, com o objetivo de identificar perdas na produção. Utilizando dashboards interativos, painéis dinâmicos e ferramentas avançadas do Excel, a solução facilita a análise de dados, permitindo um controle mais preciso dos indicadores de desempenho. Com essa ferramenta, a empresa pode otimizar processos, reduzir desperdícios e tomar decisões mais assertivas, garantindo uma visão completa da produção.
+                                </p>
+                            </div>
+                            <button class="see-more-btn gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
                         </div>
                         <div class="flex-1">
                             <div class="video-container rounded-lg overflow-hidden">
@@ -117,8 +139,15 @@
                     <div class="flex flex-col md:flex-row gap-6">
                         <div class="flex-1">
                             <h2 class="text-2xl font-bold text-gray-800 mb-3">ERP LOJA DE MÓVEIS</h2>
-                            <p class="text-gray-600 mb-4">O cliente necessitava de uma página que pudesse gerenciar suas lojas, banco de controle de clientes, custos das lojas e acompanhamento de entregas, com dashboards para tomada de decisões.</p>
-                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                            <div class="project-description">
+                                <p class="text-gray-600 mb-4 short-description">
+                                    Sistema ERP completo para gestão de lojas de móveis com controle de clientes, custos e entregas.
+                                </p>
+                                <p class="text-gray-600 mb-4 full-description">
+                                    O cliente necessitava de uma página que pudesse gerenciar suas lojas, banco de controle de clientes, custos das lojas e acompanhamento de entregas, com dashboards para tomada de decisões. O sistema desenvolvido oferece uma solução completa para gestão do negócio, com módulos específicos para cada área da empresa, integração entre setores e relatórios personalizados para análise de desempenho.
+                                </p>
+                            </div>
+                            <button class="see-more-btn gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
                         </div>
                         <div class="flex-1">
                             <div class="video-container rounded-lg overflow-hidden">
@@ -137,8 +166,15 @@
                     <div class="flex flex-col md:flex-row gap-6">
                         <div class="flex-1">
                             <h2 class="text-2xl font-bold text-gray-800 mb-3">Sistema de Gestão</h2>
-                            <p class="text-gray-600 mb-4">Este projeto foi desenvolvido utilizando HTML, CSS e JavaScript. Desenvolvido para gerenciar metas de colaboradores dentro de empresas, onde gestores e colaboradores podem inserir metas, suas experiências e habilidades para facilitar a tomada de decisões no desenvolvimento da equipe.</p>
-                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                            <div class="project-description">
+                                <p class="text-gray-600 mb-4 short-description">
+                                    Sistema para gestão de metas de colaboradores com acompanhamento de habilidades e experiências.
+                                </p>
+                                <p class="text-gray-600 mb-4 full-description">
+                                    Este projeto foi desenvolvido utilizando HTML, CSS e JavaScript. Desenvolvido para gerenciar metas de colaboradores dentro de empresas, onde gestores e colaboradores podem inserir metas, suas experiências e habilidades para facilitar a tomada de decisões no desenvolvimento da equipe. Utilizado pelos setores de Gestão e RH, o sistema permite o acompanhamento individual e coletivo do desempenho, identificação de gaps de competências e planejamento de treinamentos.
+                                </p>
+                            </div>
+                            <button class="see-more-btn gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
                         </div>
                         <div class="flex-1">
                             <div class="video-container rounded-lg overflow-hidden">
@@ -157,8 +193,15 @@
                     <div class="flex flex-col md:flex-row gap-6">
                         <div class="flex-1">
                             <h2 class="text-2xl font-bold text-gray-800 mb-3">Projeto em 3D</h2>
-                            <p class="text-gray-600 mb-4">Este projeto foi desenvolvido utilizando a ferramenta SketchUp para modelagem tridimensional de uma casa. O modelo 3D da casa foi projetado com precisão para representar detalhes arquitetônicos e estruturais.</p>
-                            <button class="gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
+                            <div class="project-description">
+                                <p class="text-gray-600 mb-4 short-description">
+                                    Modelagem 3D de uma casa com SketchUp, incluindo detalhes arquitetônicos e disposição de móveis.
+                                </p>
+                                <p class="text-gray-600 mb-4 full-description">
+                                    Este projeto foi desenvolvido utilizando a ferramenta SketchUp para modelagem tridimensional de uma casa. O modelo 3D da casa foi projetado com precisão para representar detalhes arquitetônicos e estruturais. Com o uso do SketchUp, foi possível criar um design realista, permitindo visualizações imersivas dos espaços internos e externos. O projeto inclui disposição de móveis, iluminação e acabamentos, auxiliando na concepção e planejamento da construção.
+                                </p>
+                            </div>
+                            <button class="see-more-btn gradient-btn text-white px-6 py-2 rounded-full font-medium transition-all hover:shadow-lg">Ver mais</button>
                         </div>
                         <div class="flex-1">
                             <div class="video-container rounded-lg overflow-hidden">
@@ -191,7 +234,6 @@
         document.getElementById("toggle-dark-mode").addEventListener("click", function() {
             document.body.classList.toggle("dark-mode");
             
-            // Toggle icon between moon and sun
             const icon = document.getElementById("dark-mode-icon");
             if (document.body.classList.contains("dark-mode")) {
                 icon.classList.remove("fa-moon");
@@ -223,6 +265,22 @@
             });
         });
 
+        // Show more/less functionality
+        document.querySelectorAll('.see-more-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const projectCard = this.closest('.project-card');
+                const projectDescription = projectCard.querySelector('.project-description');
+                
+                projectDescription.classList.toggle('show-full');
+                
+                if (projectDescription.classList.contains('show-full')) {
+                    this.textContent = 'Ver menos';
+                } else {
+                    this.textContent = 'Ver mais';
+                }
+            });
+        });
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -230,16 +288,6 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-            });
-        });
-
-        // Project card interaction
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                if (e.target.tagName !== 'BUTTON') {
-                    const btn = this.querySelector('button');
-                    btn.click();
-                }
             });
         });
     </script>
