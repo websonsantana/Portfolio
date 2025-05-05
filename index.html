@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br">
 
+	<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webson Santana</title>
-	<script type="module" crossorigin src="/assets/index-VEhfVR7y.js"></script>
+<script type="module" crossorigin src="/assets/index-VEhfVR7y.js"></script>
 	<link rel="stylesheet" crossorigin href="/assets/index-DxOEZuBn.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,324 +14,280 @@
 	<meta property="og:title" content="Curriculo">
     <meta property="og:description" content="Compartilho sobre Minhas experiencias e habilidades">
     <meta property="og:image" content="https://websonsantana.github.io/Portfolio/fivecon.ico">
-    <meta property="og:url" content="https://websonsantana.github.io/Portfolio/index.html">
-	
-	<style>
-    /* Estilo para modo escuro */
-    .dark-mode {
-        background-color: #121212;
-        color: #ffffff;
-    }
-
-    /* Estilo para o botão */
-    #toggle-dark-mode i {
-        color: #f1c40f; /* Cor amarela para o sol */
-    }
-
-    .dark-mode #toggle-dark-mode i {
-        color: #ffffff; /* Cor branca para a lua */
-    }
-	
-	 header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            z-index: 1000; /* Garante que o cabeçalho fique acima de outros elementos */
-        }
-</style>
-	
-    <style>
-	
-		.secao__conteudo a {
-		text-decoration: none;
-		color: inherit;
-		}
-	
-		.apresentacao__links__navegacao {
-		display: flex;
-		align-items: center;
-		background: linear-gradient(9deg, #0ff 0%, #fff );
-		padding: 10px 20px;
-		border-radius: 25px;
-		color: white;
-		font-weight: bold;
-		transition: all 0.1s ease-in-out;
-		box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-	   }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin-top: 40px;
-            
-        }
-
-        .cabecalho {
-            background-color: #333;
-            padding: 10px;
-        }
-
-        .cabecalho__menu {
-            display: flex;
-            justify-content: center;
-        }
-
-        .cabecalho__menu__link {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-
-        .cabecalho__menu__link:hover {
-            text-decoration: underline;
-        }
-
-        .apresentacao {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .apresentacao__conteudo {
-            max-width: 600px;
-            margin-bottom: 20px;
-        }
-
-        .apresentacao__conteudo__titulo {
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-
-        .apresentacao__conteudo__texto {
-            font-size: 1.0em;
-            line-height: 1.6;
-        }
-
-        .apresentacao__imagem {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
-            border-radius: 50%;
-            margin-bottom: 0px;
-        }
-
-        .apresentacao__links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .apresentacao__links__subtitulo {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-
-        .apresentacao__links__navegacao {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .apresentacao__links__navegacao img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-        }
-
-        .rodape {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-
-        @media (min-width: 700px) {
-            .apresentacao {
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                text-align: left;
-            }
-
-            .apresentacao__conteudo {
-                margin-right: 20px;
-            }
-
-            .apresentacao__imagem {
-                margin: 0;
-            }
-
-            .apresentacao__links {
-                align-items: flex-start;a
+    <meta property="og:url" content="https://websonsantana.github.io/Portfolio/index.html">	
+    <title>Webson Santana | Desenvolvedor Full Stack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#0ff',
+                            dark: '#04f0e8'
+                        },
+                        secondary: {
+                            light: '#333',
+                            dark: '#1a1a1a'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 5s infinite',
+                    }
+                }
             }
         }
-		.apresentacao__links {
-            display: grid;
-            grid-template-columns: repeat(2, 6fr);
-            gap: 6px;
-            
-            
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-primary-dark;
+            }
+            .bg-gradient {
+                @apply bg-gradient-to-r from-primary-light to-primary-dark;
+            }
+            .social-card {
+                @apply flex items-center justify-center p-4 rounded-xl transition-all duration-300 hover:scale-105;
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
         }
-
-        .apresentacao__links__subtitulo {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            grid-column: span 2;
-        }
-		
-		
-      /* Estilo para modo escuro */
-      body.dark-mode {
-        background-color: black; /* Cor de fundo para o modo escuro */
-        color: white; /* Cor do texto para o modo escuro */
-      }
-
-      body.dark-mode .section {
-        background-color: #222; /* Cor de fundo das seções */
-      }
-
-      body.dark-mode a {
-        color: #1e90ff; /* Cor dos links */
-      }
-
-      body.dark-mode img {
-        filter: grayscale(100%); /* Deixa as imagens em preto e branco */
-      }
-
-      h1 {
-        font-size: 48px;
-        color: #04f0e8; /* Cor do título */
-      }
     </style>
 </head>
-
-<body>
-    <header class="cabecalho">
-        <nav class="cabecalho__menu">
-            <a class="cabecalho__menu__link" href="index.html">Home</a>
-            <a class="cabecalho__menu__link" href="about.html">Sobre mim</a>
-			<a class="cabecalho__menu__link" href="projetos.html">Projetos</a>
-			<button id="toggle-dark-mode" style="font-size: 16px; background: none; border: none; cursor: pointer;">
-    <i id="dark-mode-icon" class="fa fa-moon"></i>
-</button>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold text-gradient">Webson Santana</div>
+            <div class="flex items-center space-x-6">
+                <a href="index.html" class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition-colors">Home</a>
+                <a href="about.html" class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition-colors">Sobre mim</a>
+                <a href="projetos.html" class="font-medium hover:text-primary-light dark:hover:text-primary-dark transition-colors">Projetos</a>
+                <button id="toggle-dark-mode" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i id="dark-mode-icon" class="fas fa-moon text-gray-600 dark:text-yellow-300"></i>
+                </button>
+            </div>
         </nav>
     </header>
-    <main class="apresentacao">
-        <section class="apresentacao__conteudo">
-            <h1 class="apresentacao__conteudo__titulo">Transforme suas ideias em realidade  <strong class="titulo-destaque">digital com excelência!</strong></h1>
-            <p class="apresentacao__conteudo__texto">Bem-vindo! Sou Webson Santana, desenvolvedor Back-end e Front-end, especializado em JavaScript, HTML, CSS e outras tecnologias. Com minha expertise, ajudo empresas e designers a concretizarem seus projetos digitais de forma eficiente e impactante, tanto no front-end quanto no back-end. Vamos transformar seu negócio? Entre em contato e descubra como posso ajudar!</p>
-        	<section id="contato" class="secao">
-               <hr>
-			   <hr>
-        <div class="secao__conteudo">
-            <p><b>Telefone:</b> &nbsp;&nbsp;&nbsp;<a href="https://wa.me/+5581981521109"></i> 81 98152-1109&nbsp;&nbsp;&nbsp; <i class="fa-brands fa-whatsapp fa-bounce" style="font-size:28px; color:#25D366;"></i></a></p>
-            <p><b>LinkedIn:</b>	&nbsp;&nbsp;&nbsp; <a href="https://www.linkedin.com/in/webson-santana-841534102/">linkedin.com/in/webson-santana &nbsp;&nbsp;&nbsp;<i class="fa-brands fa-linkedin fa-shake" style="font-size:28px; color:#0077B5;"></i></i></a></p>
-            <p><b>Email:</b> &nbsp;&nbsp;&nbsp; <a href="mailto:Webson.jose@gmail.com">Webson.jose@gmail.com &nbsp;&nbsp;&nbsp;<i class="fa-solid fa-envelope fa-beat" style="font-size:28px; color:#D14836;"></i></a></p>
-        </div>
-    </section>
-			</section>
-	        <img class="apresentacao__imagem" src="webson.png" alt="Foto de Webson Santana">
-			        <section class="apresentacao__conteudo">
-            <div class="apresentacao__links">
-                <h4 class="apresentacao__links__subtitulo"><center>Conecte-se comigo</center></h4>
-                <a class="apresentacao__links__navegacao" href="https://github.com/websonsantana">
-                    <img src="github.png" alt="Ícone do Github">
-                    Github
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12">
+        <!-- Hero Section -->
+        <section class="container mx-auto px-6 py-12 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div class="lg:w-1/2 space-y-8">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                    Transforme suas ideias em realidade <span class="text-gradient">digital com excelência!</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300">
+                    Bem-vindo! Sou Webson Santana, desenvolvedor Full Stack especializado em JavaScript, HTML, CSS e outras tecnologias modernas. Com minha expertise, ajudo empresas e designers a concretizarem seus projetos digitais de forma eficiente e impactante.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#contato" class="px-8 py-3 bg-gradient text-white font-bold rounded-full hover:shadow-lg hover:shadow-primary-light/30 transition-all">
+                        Entre em contato
+                    </a>
+                    <a href="projetos.html" class="px-8 py-3 border-2 border-primary-light text-primary-light dark:text-primary-dark font-bold rounded-full hover:bg-primary-light/10 transition-all">
+                        Ver projetos
+                    </a>
+                </div>
+            </div>
+            <div class="lg:w-1/2 flex justify-center">
+                <div class="relative">
+                    <img src="webson.png" alt="Foto de Webson Santana" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-xl border-4 border-primary-light dark:border-primary-dark animate-float">
+                    <div class="absolute -bottom-4 -right-4 bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full shadow-lg">
+                        <i class="fas fa-code text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contato" class="container mx-auto px-6 py-12">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center text-gradient">Entre em Contato</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Telefone/WhatsApp</h3>
+                                <a href="https://wa.me/+5581981521109" class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                                    81 98152-1109
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Email</h3>
+                                <a href="mailto:Webson.jose@gmail.com" class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                                    Webson.jose@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">LinkedIn</h3>
+                                <a href="https://www.linkedin.com/in/webson-santana-841534102/" class="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors">
+                                    linkedin.com/in/webson-santana
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl hover:shadow-md transition-shadow">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-primary-light dark:bg-primary-dark text-white p-3 rounded-full">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">Localização</h3>
+                                <span class="text-gray-600 dark:text-gray-300">Recife, PE - Brasil</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Section -->
+        <section class="container mx-auto px-6 py-12">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gradient">Conecte-se Comigo</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <a href="https://github.com/websonsantana" class="social-card bg-gray-800 text-white hover:bg-gray-700">
+                    <i class="fab fa-github text-2xl mr-2"></i>
+                    <span>GitHub</span>
                 </a>
-                <a class="apresentacao__links__navegacao" href="https://linkedin.com/in/websonsantana">
-                    <img src="linkedin.png" alt="Ícone do LinkedIn">
-                    LinkedIn
+                <a href="https://linkedin.com/in/websonsantana" class="social-card bg-blue-600 text-white hover:bg-blue-700">
+                    <i class="fab fa-linkedin-in text-2xl mr-2"></i>
+                    <span>LinkedIn</span>
                 </a>
-                <a class="apresentacao__links__navegacao" href="https://m.twitch.tv/websonsantana">
-                    <img src="twitch.png" alt="Ícone do Twitch">
-                    Twitch
+                <a href="https://m.twitch.tv/websonsantana" class="social-card bg-purple-600 text-white hover:bg-purple-700">
+                    <i class="fab fa-twitch text-2xl mr-2"></i>
+                    <span>Twitch</span>
                 </a>
-                <a class="apresentacao__links__navegacao" href="https://www.instagram.com/webson.santana/">
-                    <img src="instagran.png" alt="Ícone do Instagran">
-                    Instagram
+                <a href="https://www.instagram.com/webson.santana/" class="social-card bg-pink-600 text-white hover:bg-pink-700">
+                    <i class="fab fa-instagram text-2xl mr-2"></i>
+                    <span>Instagram</span>
                 </a>
-                <a class="apresentacao__links__navegacao" href="https://x.com/websonsantana10">
-                    <img src="x.png" alt="Ícone do x">
-                   Twitter
+                <a href="https://x.com/websonsantana10" class="social-card bg-black text-white hover:bg-gray-800">
+                    <i class="fab fa-x-twitter text-2xl mr-2"></i>
+                    <span>Twitter</span>
                 </a>
-                <a class="apresentacao__links__navegacao" href="https://www.facebook.com/websonartes/">
-                    <img src="facebook.png" alt="Ícone do Facebook">
-                    Facebook
+                <a href="https://www.facebook.com/websonartes/" class="social-card bg-blue-700 text-white hover:bg-blue-800">
+                    <i class="fab fa-facebook-f text-2xl mr-2"></i>
+                    <span>Facebook</span>
                 </a>
-		    <a class="apresentacao__links__navegacao" href="https://discord.com/">
-                    <img src="discord.png" alt="Ícone do Discord">
-                    Discord
+                <a href="https://discord.com/" class="social-card bg-indigo-600 text-white hover:bg-indigo-700">
+                    <i class="fab fa-discord text-2xl mr-2"></i>
+                    <span>Discord</span>
                 </a>
-		    <a class="apresentacao__links__navegacao" href="https://www.youtube.com/@webson.santana">
-                    <img src="youtube.png" alt="Ícone do youtube">
-                    Youtube
+                <a href="https://www.youtube.com/@webson.santana" class="social-card bg-red-600 text-white hover:bg-red-700">
+                    <i class="fab fa-youtube text-2xl mr-2"></i>
+                    <span>YouTube</span>
                 </a>
-		    <a class="apresentacao__links__navegacao" href="https://t.me/+5581987930949">
-                    <img src="telegran.png" alt="Ícone do Telegran">
-                    Telegram
+                <a href="https://t.me/+5581987930949" class="social-card bg-blue-500 text-white hover:bg-blue-600">
+                    <i class="fab fa-telegram-plane text-2xl mr-2"></i>
+                    <span>Telegram</span>
                 </a>
-		      <a class="apresentacao__links__navegacao" href="https://www.threads.net/@webson.santana">
-                    <img src="threads.png" alt="Ícone do threads">
-                    Threads
+                <a href="https://www.threads.net/@webson.santana" class="social-card bg-black text-white hover:bg-gray-800">
+                    <i class="fas fa-at text-2xl mr-2"></i>
+                    <span>Threads</span>
                 </a>
             </div>
         </section>
-		
     </main>
-	    <footer class="rodape">
-        <p>© 2024 Webson Santana. Todos os direitos reservados.</p>
-    </footer>
-	
 
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="https://github.com/websonsantana" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/websonsantana" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="https://wa.me/+5581981521109" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            <p class="text-gray-400">© 2024 Webson Santana. Todos os direitos reservados.</p>
+            <p class="text-gray-500 text-sm mt-2">Desenvolvido com <i class="fas fa-heart text-red-500"></i> e muito código</p>
+        </div>
+    </footer>
 
     <script>
-      // Seleciona o botão
-      const toggleButton = document.getElementById('toggle-dark-mode');
-
-      // Verifica o estado do modo escuro
-      let darkMode = localStorage.getItem('dark-mode') === 'true';
-
-      // Aplica o modo escuro se necessário
-      if (darkMode) {
-        document.body.classList.add('dark-mode');
-      }
-
-      // Adiciona um evento de clique ao botão
-      toggleButton.addEventListener('click', () => {
-        // Alterna a classe 'dark-mode' no body
-        document.body.classList.toggle('dark-mode');
-
-        // Atualiza o estado do modo escuro
-        darkMode = !darkMode;
-
-        // Salva a preferência do usuário no localStorage
-        localStorage.setItem('dark-mode', darkMode);
-      });
-
-      // Código de rolagem suave para links de âncora
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetSection = document.querySelector(this.getAttribute("href"));
-          if (targetSection) {
-            window.scrollTo({
-              top: targetSection.offsetTop - 100, // ajuste para evitar sobreposição do cabeçalho
-              behavior: "smooth"
-            });
-          }
+        // Dark mode toggle
+        const toggleButton = document.getElementById('toggle-dark-mode');
+        const darkModeIcon = document.getElementById('dark-mode-icon');
+        
+        // Check for saved user preference
+        if (localStorage.getItem('dark-mode') === 'true' || 
+            (!localStorage.getItem('dark-mode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            darkModeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        toggleButton.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('dark-mode', isDark);
+            
+            if (isDark) {
+                darkModeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                darkModeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
         });
-      });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update URL without page reload
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    } else {
+                        location.hash = targetId;
+                    }
+                }
+            });
+        });
+        
+        // Add animation to social cards on hover
+        const socialCards = document.querySelectorAll('.social-card');
+        socialCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('animate-pulse-slow');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('animate-pulse-slow');
+            });
+        });
     </script>
 </body>
-
 </html>
