@@ -3,54 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Checklist - Coletores de Dados</title>
+    <title>Sistema de Checklist - Coletores e Equipamentos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #0a1a19 0%, #0a1a19 50%, #0a1a19 100%);
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
         }
+        
+        /* Títulos globais */
+        h1, h2, h3, h4, h5, h6 {
+            color: #84cc16 !important;
+        }
+        
+        .title, .page-title, .equipa-header {
+            color: #84cc16 !important;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #0a1a19 0%, #0a1a19 100%);
+        }
+        
         .equipment-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(92, 233, 5, 0.1);
+            box-shadow: 0 10px 25px rgba(30, 64, 175, 0.2);
         }
+        
         .progress-bar {
             transition: width 0.5s ease-in-out;
         }
+        
         .slide-in {
             animation: slideIn 0.5s forwards;
         }
+        
         .slide-out {
             animation: slideOut 0.5s forwards;
         }
+        
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
+        
         @keyframes slideOut {
             from { transform: translateX(0); opacity: 1; }
             to { transform: translateX(-100%); opacity: 0; }
         }
-        .report-row:hover {
-            background-color: #f8fafc;
+        
+        .dropzone {
+            border: 2px dashed #d1d5db;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .dropzone.active {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+        }
+        
+        .checklist-item {
+            transition: all 0.3s ease;
+        }
+        
+        .checklist-item:hover {
+            background-color: #f3f4f6;
+            transform: translateX(5px);
+        }
+        
+        .equipment-image {
+            height: 120px;
+            object-fit: contain;
+        }
+        
+        .status-badge {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
         }
     </style>
 </head>
-<body class="font-sans bg-gray-100">
+<body class="font-sans bg-gray-50">
     <!-- Tela de Login -->
     <div id="login-screen" class="min-h-screen flex items-center justify-center p-4">
         <div class="w-full max-w-md">
             <div class="gradient-bg text-white rounded-t-2xl p-6 text-center">
                 <div class="flex justify-center mb-4">
-                    <img src="mb.png" alt="Logo" class="w-60 h-16">
-                    <br>
-                    <br>
-
+                    <div class="flex items-center">
+                        <img src="coletor.png" alt="Coletor" style="height: 2.5rem; width: auto; margin-right: 0.75rem; display: inline-block; vertical-align: middle;" />
+                        <h1 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-white">CheckList</h1>
+                    </div>
                 </div>
-                <h1 class="text-2xl font-bold mb-2">Sistema de Checklist</h1>
-                <p class="opacity-90">Controle de equipamentos</p>
+
+                <p class="opacity-90">Controle de coletores e equipamentos</p>
             </div>
             <div class="bg-white rounded-b-2xl shadow-xl p-8">
                 <form id="login-form" class="space-y-6">
@@ -60,9 +113,9 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-id-card text-gray-400"></i>
                             </div>
-                            <input type="text" id="matricula" name="matricula" required 
-                                   class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                                   placeholder="Digite sua matrícula">
+                            <input type="text" id="matricula" name="matricula" required
+                                    class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Digite sua matrícula">
                         </div>
                     </div>
                     <div>
@@ -71,9 +124,9 @@
                             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <i class="fas fa-key text-gray-400"></i>
                             </div>
-                            <input type="password" id="senha" name="senha" required 
-                                   class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                                   placeholder="Digite sua senha">
+                            <input type="password" id="senha" name="senha" required
+                                    class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Digite sua senha">
                         </div>
                     </div>
                     <div>
@@ -83,6 +136,17 @@
                         </button>
                     </div>
                 </form>
+                <div class="mt-4 text-center">
+                    <p class="text-sm text-gray-600 mb-2">Credenciais de teste:</p>
+                    <p class="text-xs text-gray-500">Admin: matrícula <span class="font-bold">admin</span>, senha <span class="font-bold">admin123</span></p>
+                    <p class="text-xs text-gray-500">Usuário: matrícula <span class="font-bold">12345</span>, senha <span class="font-bold">1001</span></p>
+                </div>
+                <div class="mt-4 text-center">
+                    <button id="admin-access-btn" 
+                            class="text-blue-600 text-sm font-medium hover:text-blue-800">
+                        <i class="fas fa-user-shield mr-1"></i> Acesso Administrativo
+                    </button>
+                </div>
             </div>
             <div class="mt-6 text-center text-sm text-gray-600">
                 <p>Problemas para acessar? Contate o suporte técnico</p>
@@ -90,19 +154,400 @@
         </div>
     </div>
 
-    <!-- Tela de Informações do Operador -->
-    <div id="operator-screen" class="min-h-screen hidden p-6">
+    <!-- Tela de Administração -->
+    <div id="admin-screen" class="min-h-screen hidden p-4 md:p-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="gradient-bg text-white rounded-t-2xl p-6">
+                <div class="flex justify-between items-center flex-col md:flex-row gap-4 md:gap-0">
+                    <div class="text-center md:text-left">
+                        <h1 class="text-2xl font-bold">Painel Administrativo</h1>
+                        <p class="opacity-90">Gerenciamento de usuários e equipamentos</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button id="back-to-login" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-arrow-left mr-2"></i> Voltar
+                        </button>
+                        <button id="logout-admin-btn" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-sign-out-alt mr-2"></i> Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-b-2xl shadow-xl p-6">
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="w-full md:w-1/2">
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold text-gray-800 mb-4">Gerenciar Usuários</h2>
+                            
+                            <div class="mb-6">
+                                <div id="dropzone" class="dropzone p-6 text-center cursor-pointer">
+                                    <div class="space-y-2">
+                                        <i class="fas fa-file-excel text-4xl text-green-600"></i>
+                                        <p class="font-medium">Importar usuários em massa</p>
+                                        <p class="text-sm text-gray-500">Arraste e solte um arquivo Excel ou clique para selecionar</p>
+                                        <button type="button" id="select-file-btn" class="mt-2 text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm">
+                                            Selecionar Arquivo
+                                        </button>
+                                    </div>
+                                    <input type="file" id="file-input" accept=".xlsx,.xls" class="hidden">
+                                </div>
+                                <div id="file-info" class="mt-4 hidden">
+                                    <div class="flex items-center justify-between bg-gray-50 p-3 rounded-lg">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-file-excel text-green-600 mr-2"></i>
+                                            <span id="file-name" class="font-medium"></span>
+                                        </div>
+                                        <button id="remove-file" class="text-red-500 hover:text-red-700">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <button id="import-users-btn" disabled class="w-full gradient-bg text-white py-3 px-4 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center justify-center">
+                                        <i class="fas fa-upload mr-2"></i> Importar Usuários
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="border-t border-gray-200 pt-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">Usuários Cadastrados</h3>
+                                    <div class="relative">
+                                        <input type="text" id="search-users" placeholder="Buscar usuário..." class="pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm w-full">
+                                        <div class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+                                            <i class="fas fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="overflow-x-auto max-h-96 overflow-y-auto border border-gray-200 rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50 sticky top-0">
+                                            <tr>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Matrícula</th>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200" id="users-list">
+                                            <!-- Usuários serão carregados aqui -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="mt-4 flex justify-between items-center text-sm">
+                                    <div id="users-pagination-info" class="text-gray-600"></div>
+                                    <div class="flex space-x-2">
+                                        <button id="users-prev" disabled class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <button id="users-next" disabled class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2">
+                        <div class="mb-8">
+                            <h2 class="text-xl font-bold text-gray-800 mb-4">Gerenciar Equipamentos</h2>
+                            
+                            <div class="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
+                                <h3 class="font-medium text-blue-800 mb-2"><i class="fas fa-info-circle mr-1"></i> Tipos de Equipamentos</h3>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                    <div class="bg-white p-3 rounded-lg border border-gray-200 text-center">
+                                        <i class="fas fa-barcode text-2xl text-blue-500 mb-2"></i>
+                                        <p class="text-sm font-medium">Coletores</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg border border-gray-200 text-center">
+                                        <i class="fas fa-tablet-alt text-2xl text-blue-500 mb-2"></i>
+                                        <p class="text-sm font-medium">Terminais</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg border border-gray-200 text-center">
+                                        <i class="fas fa-print text-2xl text-blue-500 mb-2"></i>
+                                        <p class="text-sm font-medium">Impressoras</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <button id="add-equipment-btn" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-medium flex items-center justify-center">
+                                    <i class="fas fa-plus mr-2"></i> Adicionar Equipamento
+                                </button>
+                            </div>
+                            
+                            <div class="border-t border-gray-200 pt-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-lg font-semibold text-gray-800">Equipamentos Cadastrados</h3>
+                                    <div class="relative">
+                                        <input type="text" id="search-equipment" placeholder="Buscar equipamento..." class="pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm w-full">
+                                        <div class="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+                                            <i class="fas fa-search text-gray-400"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="overflow-x-auto max-h-96 overflow-y-auto border border-gray-200 rounded-lg">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50 sticky top-0">
+                                            <tr>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Equipamento</th>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Série</th>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200" id="equipment-list">
+                                            <!-- Equipamentos serão carregados aqui -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Importação de Usuários -->
+    <div id="import-result-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="gradient-bg text-white rounded-t-lg p-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-medium">Resultado da Importação</h3>
+                    <button id="close-import-modal" class="text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <div id="import-success" class="hidden">
+                    <div class="text-center py-6">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                            <i class="fas fa-check text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-medium text-gray-900 mb-2">Importação concluída com sucesso!</h4>
+                        <p class="text-gray-600"><span id="import-success-count">0</span> usuários foram importados/cadastrados.</p>
+                    </div>
+                </div>
+                
+                <div id="import-errors" class="hidden">
+                    <div class="text-center mb-6">
+                        <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100">
+                            <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+                        </div>
+                        <h4 class="text-lg font-medium text-gray-900 mt-3">Erros encontrados na importação</h4>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h5 class="text-sm font-medium text-gray-500 mb-2">Erros encontrados:</h5>
+                            <div class="space-y-2 max-h-40 overflow-y-auto p-2 bg-gray-50 rounded-lg" id="error-list">
+                                <!-- Erros serão mostrados aqui -->
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-sm font-medium text-gray-500 mb-2">Linhas com problemas:</h5>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full border border-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Linha</th>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Nome</th>
+                                            <th class="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase">Matrícula</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="problematic-rows" class="text-sm">
+                                        <!-- Linhas problemáticas serão mostradas aqui -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b-lg border-t border-gray-200">
+                <button type="button" id="confirm-import-modal" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 sm:ml-3 sm:w-auto sm:text-sm">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Edição de Usuário -->
+    <div id="edit-user-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+            <div class="gradient-bg text-white rounded-t-lg p-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-medium" id="edit-modal-title">Editar Usuário</h3>
+                    <button id="close-edit-modal" class="text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <form id="edit-user-form" class="space-y-4">
+                    <input type="hidden" id="edit-user-id">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="edit-user-name" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                            <input type="text" id="edit-user-name" required
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="Digite o nome completo">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="edit-user-registration" class="block text-sm font-medium text-gray-700 mb-1">Matrícula</label>
+                                <input type="text" id="edit-user-registration" required
+                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                       placeholder="Número da matrícula">
+                            </div>
+                            <div>
+                                <label for="edit-user-badge" class="block text-sm font-medium text-gray-700 mb-1">Nº Crachá</label>
+                                <input type="text" id="edit-user-badge" required
+                                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                       placeholder="Número do crachá">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="edit-user-branch" class="block text-sm font-medium text-gray-700 mb-1">Filial</label>
+                            <select id="edit-user-branch" required
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <option value="" disabled selected>Selecione a filial</option>
+                                <option value="CARJ">CARJ</option>
+                                <option value="CDNE">CDNE</option>
+                                <option value="CDFT">CDFT</option>
+                                <option value="CDGR">CDGR</option>
+                                <option value="CDJC">CDJC</option>
+                                <option value="CDPR">CDPR</option>
+                                <option value="CDSC">CDSC</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <button type="submit"
+                                class="w-full gradient-bg text-white py-3 px-4 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-save mr-2"></i> Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Adicionar/Editar Equipamento -->
+    <div id="equipment-modal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+            <div class="gradient-bg text-white rounded-t-lg p-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-medium" id="equipment-modal-title">Adicionar Equipamento</h3>
+                    <button id="close-equipment-modal" class="text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <form id="equipment-form" class="space-y-4">
+                    <input type="hidden" id="equipment-id">
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de Equipamento</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div>
+                                <input type="radio" id="type-collector" name="equipment-type" value="Coletor" class="hidden peer" checked>
+                                <label for="type-collector" class="flex flex-col items-center p-3 border rounded-lg cursor-pointer peer-checked:border-blue-500 peer-checked:bg-blue-50">
+                                    <i class="fas fa-barcode text-2xl text-blue-500 mb-2"></i>
+                                    <span class="text-sm">Coletor</span>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="type-terminal" name="equipment-type" value="Terminal" class="hidden peer">
+                                <label for="type-terminal" class="flex flex-col items-center p-3 border rounded-lg cursor-pointer peer-checked:border-blue-500 peer-checked:bg-blue-50">
+                                    <i class="fas fa-tablet-alt text-2xl text-blue-500 mb-2"></i>
+                                    <span class="text-sm">Terminal</span>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="type-printer" name="equipment-type" value="Impressora" class="hidden peer">
+                                <label for="type-printer" class="flex flex-col items-center p-3 border rounded-lg cursor-pointer peer-checked:border-blue-500 peer-checked:bg-blue-50">
+                                    <i class="fas fa-print text-2xl text-blue-500 mb-2"></i>
+                                    <span class="text-sm">Impressora</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="equipment-name" class="block text-sm font-medium text-gray-700 mb-1">Nome/Modelo</label>
+                        <input type="text" id="equipment-name" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="Ex: Coletor Zebra TC20">
+                    </div>
+                    
+                    <div>
+                        <label for="equipment-serial" class="block text-sm font-medium text-gray-700 mb-1">Número de Série</label>
+                        <input type="text" id="equipment-serial" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="Ex: SN-12345678">
+                    </div>
+                    
+                    <div>
+                        <label for="equipment-status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select id="equipment-status" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <option value="Disponível" selected>Disponível</option>
+                            <option value="Em uso">Em uso</option>
+                            <option value="Em manutenção">Em manutenção</option>
+                            <option value="Desativado">Desativado</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="equipment-image" class="block text-sm font-medium text-gray-700 mb-1">Imagem (Opcional)</label>
+                        <input type="file" id="equipment-image" accept="image/*" class="hidden">
+                        <div class="flex items-center justify-center w-full">
+                            <label for="equipment-image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <i class="fas fa-camera text-2xl text-gray-400 mb-2"></i>
+                                    <p class="text-sm text-gray-500">Clique para enviar uma imagem</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div id="image-preview" class="mt-2 hidden">
+                            <img id="preview-img" src="" alt="Preview" class="h-20 object-cover rounded">
+                            <button type="button" id="remove-image" class="text-red-500 text-sm mt-1">
+                                <i class="fas fa-times mr-1"></i>Remover imagem
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit"
+                                class="w-full gradient-bg text-white py-3 px-4 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-save mr-2"></i> Salvar Equipamento
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela do Operador -->
+    <div id="operator-screen" class="min-h-screen hidden p-4 md:p-6">
         <div class="max-w-4xl mx-auto">
             <div class="gradient-bg text-white rounded-t-2xl p-6">
-                <div class="flex justify-between items-center">
-                    <div>
+                <div class="flex justify-between items-center flex-col md:flex-row gap-4 md:gap-0">
+                    <div class="text-center md:text-left">
                         <h1 class="text-2xl font-bold">Informações do Operador</h1>
                         <p class="opacity-90">Preencha os dados para continuar</p>
                     </div>
                     <div class="flex space-x-2">
-                        <button id="report-btn" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
-                            <i class="fas fa-chart-bar mr-2"></i> Relatórios
-                        </button>
                         <button id="logout-btn" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
                             <i class="fas fa-sign-out-alt mr-2"></i> Sair
                         </button>
@@ -110,18 +555,18 @@
                 </div>
                 <div class="mt-4">
                     <div class="w-full bg-gray-200 rounded-full h-2.5">
-                        <div class="progress-bar h-2.5 rounded-full" style="width: 25%; background-color: #bef91b;"></div>
-
+                        <div class="progress-bar h-2.5 rounded-full" style="width: 25%; background-color: #84cc16;"></div>
                     </div>
                     <p class="text-xs mt-1 text-white opacity-80">Progresso: 25%</p>
                 </div>
             </div>
-            <div class="bg-white rounded-b-2xl shadow-xl p-8">
+            
+            <div class="bg-white rounded-b-2xl shadow-xl p-6 md:p-8">
                 <form id="operator-form" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="filial" class="block text-sm font-medium text-gray-700 mb-1">Unidade/Filial</label>
-                            <select id="filial" name="filial" required 
+                            <select id="filial" name="filial" required
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 <option value="" disabled selected>Selecione sua filial</option>
                                 <option value="CARJ">CARJ</option>
@@ -135,30 +580,32 @@
                         </div>
                         <div>
                             <label for="turno" class="block text-sm font-medium text-gray-700 mb-1">Turno de Trabalho</label>
-                            <select id="turno" name="turno" required 
+                            <select id="turno" name="turno" required
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 <option value="" disabled selected>Selecione seu turno</option>
-                                <option value="Manhã">1° turno</option>
-                                <option value="Tarde">2° turno</option>
-                                <option value="Noite">3° turno</option>
+                                <option value="Manhã">1° turno (06:00 - 14:00)</option>
+                                <option value="Tarde">2° turno (14:00 - 22:00)</option>
+                                <option value="Noite">3° turno (22:00 - 06:00)</option>
                             </select>
                         </div>
                     </div>
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="matricula-info" class="block text-sm font-medium text-gray-700 mb-1">Matrícula</label>
-                            <input type="text" id="matricula-info" name="matricula-info" readonly 
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100">
+                            <input type="text" id="matricula-info" name="matricula-info" readonly
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50">
                         </div>
                         <div>
                             <label for="nome" class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
-                            <input type="text" id="nome" name="nome" required 
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                                   placeholder="Digite seu nome completo">
+                            <input type="text" id="nome" name="nome" required
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="Digite seu nome completo">
                         </div>
                     </div>
+                    
                     <div class="pt-4">
-                        <button type="submit" 
+                        <button type="submit"
                                 class="w-full gradient-bg text-white py-3 px-4 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center justify-center">
                             <i class="fas fa-arrow-right mr-2"></i> Selecionar Equipamento
                         </button>
@@ -169,137 +616,167 @@
     </div>
 
     <!-- Tela de Seleção de Equipamento -->
-    <div id="equipment-screen" class="min-h-screen hidden p-6">
+    <div id="equipment-screen" class="min-h-screen hidden p-4 md:p-6">
         <div class="max-w-4xl mx-auto">
             <div class="gradient-bg text-white rounded-t-2xl p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h1 class="text-2xl font-bold">Seleção de Equipamento</h1>
-                        <p class="opacity-90">Selecione o coletor que está utilizando</p>
+                <div class="flex justify-between items-center flex-col md:flex-row gap-4 md:gap-0">
+                    <div class="text-center md:text-left">
+                        <h1 class="text-2xl font-bold">Selecione o Equipamento</h1>
+                        <p class="opacity-90">Escolha o coletor ou equipamento que será verificado</p>
                     </div>
-                    <button id="back-to-operator" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
-                        <i class="fas fa-arrow-left mr-2"></i> Voltar
-                    </button>
+                    <div class="flex space-x-2">
+                        <button id="back-to-operator" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-arrow-left mr-2"></i> Voltar
+                        </button>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <div class="w-full bg-gray-200 rounded-full h-2.5">
-                        <div class="progress-bar h-2.5 rounded-full" style="width: 50%; background-color: #bef91b;"></div>
+                        <div class="progress-bar h-2.5 rounded-full" style="width: 50%; background-color: #84cc16;"></div>
                     </div>
                     <p class="text-xs mt-1 text-white opacity-80">Progresso: 50%</p>
                 </div>
             </div>
-            <div class="bg-white rounded-b-2xl shadow-xl p-8">
+            
+            <div class="bg-white rounded-b-2xl shadow-xl p-6 md:p-8">
                 <div class="mb-6">
-                    <h2 class="text-lg font-medium text-gray-800">Coletores Disponíveis</h2>
-                    <p class="text-sm text-gray-600">Selecione o equipamento que está utilizando</p>
+                    <div class="relative">
+                        <input type="text" id="filter-equipment" placeholder="Pesquisar equipamento..." class="pl-10 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="equipment-list">
-                    <!-- Equipamentos serão adicionados dinamicamente via JavaScript -->
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="equipment-list-operator">
+                    <!-- Equipamentos serão carregados aqui -->
                 </div>
-                <div class="mt-6 pt-4 border-t border-gray-200">
+                
+                <div class="mt-8 flex justify-center">
                     <button id="equipment-next-btn" disabled
-                            class="w-full gradient-bg text-white py-3 px-4 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center justify-center opacity-50">
-                        <i class="fas fa-arrow-right mr-2"></i> Verificar Estado do Equipamento
+                            class="gradient-bg text-white py-3 px-8 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center opacity-50 cursor-not-allowed">
+                        <i class="fas fa-arrow-right mr-2"></i> Continuar
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Tela de Checklist do Equipamento -->
-    <div id="checklist-screen" class="min-h-screen hidden p-6">
+    <!-- Tela de Checklist -->
+    <div id="checklist-screen" class="min-h-screen hidden p-4 md:p-6">
         <div class="max-w-4xl mx-auto">
             <div class="gradient-bg text-white rounded-t-2xl p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h1 class="text-2xl font-bold">Checklist do Equipamento</h1>
-                        <p class="opacity-90">Verifique o estado do coletor de dados</p>
+                <div class="flex justify-between items-center flex-col md:flex-row gap-4 md:gap-0">
+                    <div class="text-center md:text-left">
+                        <h1 class="text-xl md:text-2xl font-bold">Checklist do Equipamento</h1>
+                        <p class="opacity-90" id="equipment-name-title">Coletor Zebra TC20</p>
                     </div>
-                    <button id="back-to-equipment" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
-                        <i class="fas fa-arrow-left mr-2"></i> Voltar
-                    </button>
+                    <div class="flex space-x-2">
+                        <button id="back-to-equipment" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-arrow-left mr-2"></i> Voltar
+                        </button>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <div class="w-full bg-gray-200 rounded-full h-2.5">
-                        <div class="progress-bar h-2.5 rounded-full" style="width: 75%; background-color: #bef91b;"></div>
-
+                        <div class="progress-bar h-2.5 rounded-full" style="width: 75%; background-color: #84cc16;"></div>
                     </div>
                     <p class="text-xs mt-1 text-white opacity-80">Progresso: 75%</p>
                 </div>
             </div>
-            <div class="bg-white rounded-b-2xl shadow-xl p-8">
-                <div class="mb-6">
-                    <h2 class="text-lg font-medium text-gray-800" id="equipment-name-title">Motorola MC 9090</h2>
-                    <p class="text-sm text-gray-600">Verifique todos os itens abaixo</p>
-                </div>
-                
+            
+            <div class="bg-white rounded-b-2xl shadow-xl p-6 md:p-8">
                 <form id="checklist-form" class="space-y-6">
                     <div class="space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="bateria" name="bateria" type="checkbox" 
-                                       class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
-                            </div>
-                            <div class="ml-3 text-sm">
-                                <label for="bateria" class="font-medium text-gray-700">Bateria</label>
-                                <p class="text-gray-500">Verifique se a bateria está carregada e funcionando corretamente</p>
+                        <h3 class="text-lg font-medium text-gray-800 mb-4 border-b pb-2">Itens de Verificação</h3>
+                        
+                        <div class="checklist-item bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="bateria" name="bateria" type="checkbox" class="focus:ring-blue-500 h-6 w-6 text-blue-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-battery-three-quarters text-blue-500 mr-2"></i>
+                                        <label for="bateria" class="block text-sm font-medium text-gray-700">Bateria</label>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-1">Verifique se a bateria está carregada e funcionando corretamente</p>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="tela" name="tela" type="checkbox" 
-                                       class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
-                            </div>
-                            <div class="ml-3 text-sm">
-                                <label for="tela" class="font-medium text-gray-700">Tela</label>
-                                <p class="text-gray-500">Verifique se a tela está intacta, sem rachaduras ou pixels mortos</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="teclado" name="teclado" type="checkbox" 
-                                       class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
-                            </div>
-                            <div class="ml-3 text-sm">
-                                <label for="teclado" class="font-medium text-gray-700">Teclado</label>
-                                <p class="text-gray-500">Verifique se todas as teclas estão funcionando corretamente</p>
+                        <div class="checklist-item bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="tela" name="tela" type="checkbox" class="focus:ring-blue-500 h-6 w-6 text-blue-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-mobile-screen text-blue-500 mr-2"></i>
+                                        <label for="tela" class="block text-sm font-medium text-gray-700">Tela</label>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-1">Verifique se a tela está funcionando sem problemas ou fissuras</p>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="scanner" name="scanner" type="checkbox" 
-                                       class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
-                            </div>
-                            <div class="ml-3 text-sm">
-                                <label for="scanner" class="font-medium text-gray-700">Scanner</label>
-                                <p class="text-gray-500">Teste o scanner para garantir que está lendo códigos corretamente</p>
+                        <div class="checklist-item bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="teclado" name="teclado" type="checkbox" class="focus:ring-blue-500 h-6 w-6 text-blue-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-keyboard text-blue-500 mr-2"></i>
+                                        <label for="teclado" class="block text-sm font-medium text-gray-700">Teclado</label>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-1">Verifique se todas as teclas estão funcionando corretamente</p>
+                                </div>
                             </div>
                         </div>
                         
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                                <input id="conectividade" name="conectividade" type="checkbox" 
-                                       class="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded">
+                        <div class="checklist-item bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="scanner" name="scanner" type="checkbox" class="focus:ring-blue-500 h-6 w-6 text-blue-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-barcode-read text-blue-500 mr-2"></i>
+                                        <label for="scanner" class="block text-sm font-medium text-gray-700">Scanner</label>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-1">Verifique se o scanner está funcionando corretamente</p>
+                                </div>
                             </div>
-                            <div class="ml-3 text-sm">
-                                <label for="conectividade" class="font-medium text-gray-700">Conectividade</label>
-                                <p class="text-gray-500">Verifique conexão Wi-Fi и Bluetooth (se aplicável)</p>
+                        </div>
+                        
+                        <div class="checklist-item bg-gray-50 p-4 rounded-lg border border-gray-200">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="conectividade" name="conectividade" type="checkbox" class="focus:ring-blue-500 h-6 w-6 text-blue-600 border-gray-300 rounded">
+                                </div>
+                                <div class="ml-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-wifi text-blue-500 mr-2"></i>
+                                        <label for="conectividade" class="block text-sm font-medium text-gray-700">Conectividade</label>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mt-1">Verifique conexão Wi-Fi, Bluetooth e redes móveis</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <div class="pt-4">
-                        <label for="observacoes" class="block text-sm font-medium text-gray-700 mb-1">Observações</label>
-                        <textarea id="observacoes" name="observacoes" rows="3" 
-                                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
-                                  placeholder="Descreva qualquer problema ou observação sobre o equipamento"></textarea>
+                        <label for="observacoes" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-comment-alt mr-1 text-gray-500"></i> Observações
+                        </label>
+                        <textarea id="observacoes" name="observacoes" rows="3"
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                  placeholder="Descreva qualquer problema ou observação"></textarea>
                     </div>
                     
-                    <div class="pt-6">
-                        <button type="submit" 
+                    <div class="pt-4">
+                        <button type="submit"
                                 class="w-full gradient-bg text-white py-3 px-4 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center justify-center">
                             <i class="fas fa-check-circle mr-2"></i> Finalizar Checklist
                         </button>
@@ -310,181 +787,127 @@
     </div>
 
     <!-- Tela de Confirmação -->
-    <div id="confirmation-screen" class="min-h-screen hidden p-6">
+    <div id="confirmation-screen" class="min-h-screen hidden p-4 md:p-6">
         <div class="max-w-4xl mx-auto">
             <div class="gradient-bg text-white rounded-t-2xl p-6">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h1 class="text-2xl font-bold">Checklist Finalizado</h1>
-                        <p class="opacity-90">Confira os dados registrados</p>
+                <div class="flex justify-between items-center flex-col md:flex-row gap-4 md:gap-0">
+                    <div class="text-center md:text-left">
+                        <h1 class="text-xl md:text-2xl font-bold">Checklist Finalizado</h1>
+                        <p class="opacity-90">Confira as informações abaixo</p>
                     </div>
-                    <button id="new-checklist-btn" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
-                        <i class="fas fa-plus mr-2"></i> Novo Checklist
-                    </button>
+                    <div class="flex space-x-2">
+                        <button id="new-checklist-btn" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-plus mr-2"></i> Novo Checklist
+                        </button>
+                        <button id="print-btn" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-print mr-2"></i> Imprimir
+                        </button>
+                    </div>
                 </div>
                 <div class="mt-4">
                     <div class="w-full bg-gray-200 rounded-full h-2.5">
-                        <div class="progress-bar h-2.5 rounded-full" style="width: 100%; background-color: #bef91b;"></div>
-
+                        <div class="progress-bar h-2.5 rounded-full" style="width: 100%; background-color: #84cc16;"></div>
                     </div>
                     <p class="text-xs mt-1 text-white opacity-80">Progresso: 100%</p>
                 </div>
             </div>
-            <div class="bg-white rounded-b-2xl shadow-xl p-8">
-                <div class="text-center mb-8">
-                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-                        <i class="fas fa-check text-green-600 text-xl"></i>
+            
+            <div class="bg-white rounded-b-2xl shadow-xl p-6 md:p-8">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-center justify-center">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-check-circle text-3xl text-green-500"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-lg font-medium text-green-800">Checklist aprovado</h3>
+                            <p class="mt-1 text-sm text-green-700">Todos os itens foram verificados com sucesso</p>
+                        </div>
                     </div>
-                    <h2 class="mt-3 text-lg font-medium text-gray-900">Checklist registrado com sucesso!</h2>
-                    <p class="mt-1 text-sm text-gray-500">O equipamento está liberado para uso.</p>
                 </div>
                 
-                <div class="border-t border-gray-200 pt-6">
-                    <h3 class="text-lg font-medium text-gray-900 mb-4">Resumo do Checklist</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-4">
-                            <div>
-                                <h4 class="text-sm font-medium text-gray-500">Operador</h4>
-                                <p class="mt-1 text-sm text-gray-900" id="conf-nome"></p>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-gray-500">Matrícula</h4>
-                                <p class="mt-1 text-sm text-gray-900" id="conf-matricula"></p>
-                            </div>
-                            <div>
-                                <h4 class="text-sm font-medium text-gray-500">Filial/Turno</h4>
-                                <p class="mt-1 text-sm text-gray-900" id="conf-filial-turno"></p>
-                            </div>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-md font-medium text-gray-800 mb-4 border-b pb-2">Dados do Operador</h3>
                         
                         <div class="space-y-4">
                             <div>
-                                <h4 class="text-sm font-medium text-gray-500">Equipamento</h4>
-                                <p class="mt-1 text-sm text-gray-900" id="conf-equipamento"></p>
+                                <p class="text-sm text-gray-500">Nome</p>
+                                <p class="text-md font-medium text-gray-900" id="conf-nome">João da Silva</p>
                             </div>
+                            
                             <div>
-                                <h4 class="text-sm font-medium text-gray-500">Data/Hora</h4>
-                                <p class="mt-1 text-sm text-gray-900" id="conf-datahora"></p>
+                                <p class="text-sm text-gray-500">Matrícula</p>
+                                <p class="text-md font-medium text-gray-900" id="conf-matricula">12345</p>
                             </div>
+                            
                             <div>
-                                <h4 class="text-sm font-medium text-gray-500">Status</h4>
-                                <p class="mt-1 text-sm font-medium text-green-600">Aprovado para uso</p>
+                                <p class="text-sm text-gray-500">Filial/Turno</p>
+                                <p class="text-md font-medium text-gray-900" id="conf-filial-turno">CDNE - Manhã</p>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mt-6 pt-6 border-t border-gray-200">
-                        <h4 class="text-sm font-medium text-gray-500">Observações</h4>
-                        <p class="mt-1 text-sm text-gray-900" id="conf-observacoes">Nenhuma observação registrada.</p>
-                    </div>
-                    
-                    <div class="mt-8 flex justify-center">
-                        <button id="print-btn" class="flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50">
-                            <i class="fas fa-print mr-2"></i> Imprimir Comprovante
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tela de Relatórios -->
-    <div id="report-screen" class="min-h-screen hidden p-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="gradient-bg text-white rounded-t-2xl p-6">
-                <div class="flex justify-between items-center">
                     <div>
-                        <h1 class="text-2xl font-bold">Relatórios de Checklist</h1>
-                        <p class="opacity-90">Consulte os checklists registrados no sistema</p>
-                    </div>
-                    <button id="back-to-operator-from-report" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-medium flex items-center">
-                        <i class="fas fa-arrow-left mr-2"></i> Voltar
-                    </button>
-                </div>
-            </div>
-            <div class="bg-white rounded-b-2xl shadow-xl p-8">
-                <div class="mb-6">
-                    <h2 class="text-lg font-medium text-gray-800">Filtros de Pesquisa</h2>
-                    <div class="mt-4 grid grid-cols-1 md:grid-cols-4 gap-4">
-                        <div>
-                            <label for="report-period" class="block text-sm font-medium text-gray-700 mb-1">Período</label>
-                            <select id="report-period" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="hoje">Hoje</option>
-                                <option value="semana">Esta semana</option>
-                                <option value="mes">Este mês</option>
-                                <option value="personalizado" selected>Personalizado</option>
-                            </select>
+                        <h3 class="text-md font-medium text-gray-800 mb-4 border-b pb-2">Dados do Equipamento</h3>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <p class="text-sm text-gray-500">Equipamento</p>
+                                <p class="text-md font-medium text-gray-900" id="conf-equipamento">Zebra TC20</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-sm text-gray-500">Número de Série</p>
+                                <p class="text-md font-medium text-gray-900" id="conf-serie">SN-12345678</p>
+                            </div>
+                            
+                            <div>
+                                <p class="text-sm text-gray-500">Data/Hora</p>
+                                <p class="text-md font-medium text-gray-900" id="conf-datahora">05/07/2023, 14:30:45</p>
+                            </div>
                         </div>
-                        <div>
-                            <label for="report-start-date" class="block text-sm font-medium text-gray-700 mb-1">Data Inicial</label>
-                            <input type="date" id="report-start-date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-                        <div>
-                            <label for="report-end-date" class="block text-sm font-medium text-gray-700 mb-1">Data Final</label>
-                            <input type="date" id="report-end-date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-                        <div>
-                            <label for="report-filial" class="block text-sm font-medium text-gray-700 mb-1">Filial</label>
-                            <select id="report-filial" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                <option value="">Todas</option>
-                                <option value="CARJ">CARJ</option>
-                                <option value="CDNE">CDNE</option>
-                                <option value="CDFT">CDFT</option>
-                                <option value="CDGR">CDGR</option>
-                                <option value="CDJC">CDJC</option>
-                                <option value="CDPR">CDPR</option>
-                                <option value="CDSC">CDSC</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mt-4 flex justify-end space-x-3">
-                        <button id="report-filter-btn" class="gradient-bg text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center">
-                            <i class="fas fa-filter mr-2"></i> Filtrar
-                        </button>
-                        <button id="report-export-excel" class="text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center" style="background-color: #bef91b;">
-
-                            <i class="fas fa-file-excel mr-2"></i> Excel
-                        </button>
-                        <button id="report-export-pdf" class="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition duration-300 flex items-center">
-                            <i class="fas fa-file-pdf mr-2"></i> PDF
-                        </button>
                     </div>
                 </div>
                 
-                <div class="mt-6">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-medium text-gray-800">Resultados</h2>
-                        <p class="text-sm text-gray-600" id="report-count">0 checklists encontrados</p>
-                    </div>
+                <div class="mt-8">
+                    <h3 class="text-md font-medium text-gray-800 mb-4 border-b pb-2">Itens Verificados</h3>
                     
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data/Hora</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Operador</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Filial</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Equipamento</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200" id="report-results">
-                                <!-- Resultados serão preenchidos dinamicamente -->
-                            </tbody>
-                        </table>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm font-medium">Bateria - OK</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm font-medium">Tela - OK</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm font-medium">Teclado - OK</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm font-medium">Scanner - OK</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm font-medium">Conectividade - OK</span>
+                            </li>
+                        </ul>
+                        
+                        <div id="conf-observations" class="mt-4 pt-4 border-t border-gray-200 hidden">
+                            <p class="text-sm text-gray-500 mb-1">Observações</p>
+                            <p class="text-sm text-gray-700" id="conf-observacoes"></p>
+                        </div>
                     </div>
-                    
-                    <div class="mt-4 flex justify-between items-center">
-                        <div class="text-sm text-gray-600" id="report-pagination-info">Mostrando 0 de 0</div>
-                        <div class="flex space-x-2">
-                            <button id="report-prev" disabled class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button id="report-next" disabled class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <div class="flex justify-center">
+                        <div class="flex items-center space-x-2">
+                            <img src="coletor.png" alt="Logo" class="h-8">
+                            <p class="text-xs text-gray-500">CheckList - Controle de Coletores</p>
                         </div>
                     </div>
                 </div>
@@ -492,58 +915,65 @@
         </div>
     </div>
 
+    <!-- Script principal -->
     <script>
-        // Dados de exemplo para os equipamentos
-        const equipamentos = [
-            { id: 1, nome: "CONE01", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 2, nome: "CONE02", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 3, nome: "CONE03", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 4, nome: "CONE04", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 5, nome: "CONE05", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 6, nome: "CONE06", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 7, nome: "CONE07", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 8, nome: "CONE08", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 9, nome: "CONE09", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 10, nome: "CONE10", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 11, nome: "CONE11", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 12, nome: "CONE12", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 13, nome: "CONE13", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 14, nome: "CONE14", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 15, nome: "CONE15", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 16, nome: "CONE16", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 17, nome: "CONE17", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 18, nome: "CONE18", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 19, nome: "CONE19", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 20, nome: "CONE20", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 21, nome: "CONE21", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 22, nome: "CONE22", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 23, nome: "CONE23", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 24, nome: "CONE24", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 25, nome: "CONE25", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 26, nome: "CONE26", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 27, nome: "CONE27", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 28, nome: "CONE28", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 29, nome: "CONE29", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 30, nome: "CONE30", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 31, nome: "CONE31", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 32, nome: "CONE32", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 33, nome: "CONE33", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 34, nome: "CONE34", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 35, nome: "CONE35", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 36, nome: "CONE36", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 37, nome: "CONE37", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 38, nome: "CONE38", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 39, nome: "CONE39", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 40, nome: "CONE40", numeroSerie: "SN-9090-005", status: "Disponível" },
-			{ id: 41, nome: "CONE41", numeroSerie: "SN-9090-001", status: "Disponível" },
-            { id: 42, nome: "CONE42", numeroSerie: "SN-9090-002", status: "Disponível" },
-            { id: 43, nome: "CONE43", numeroSerie: "SN-9090-003", status: "Em manutenção" },
-            { id: 44, nome: "CONE44", numeroSerie: "SN-9090-004", status: "Disponível" },
-            { id: 45, nome: "CONE45", numeroSerie: "SN-9090-005", status: "Disponível" },
-            { id: 46, nome: "CONE46", numeroSerie: "SN-9090-006", status: "Reservado" }
+        // Dados de exemplo
+        const exemploUsuarios = [
+            { id: 1, name: "João da Silva", registration: "12345", badgeNumber: "1001", branch: "CDNE", status: "ativo" },
+            { id: 2, name: "Maria Oliveira", registration: "12346", badgeNumber: "1002", branch: "CDGR", status: "ativo" },
+            { id: 3, name: "Carlos Souza", registration: "12347", badgeNumber: "1003", branch: "CDJC", status: "ativo" }
         ];
 
-        // Variáveis para armazenamento e relatórios
+        // Dados de equipamentos com imagens
+        const equipamentos = [
+            { 
+                id: 1, 
+                name: "Zebra TC20", 
+                type: "Coletor", 
+                serialNumber: "SN-ZB-2023-001", 
+                status: "Disponível",
+                image: "https://www.zebra.com/content/dam/zebra/products/mobile-computers/handheld/tc20/zebra-tc20-mobile-computers.png.thumb.1280.1280.png",
+                description: "Coletor de dados resistente com Android e scanner 1D/2D"
+            },
+            { 
+                id: 2, 
+                name: "Honeywell CT60", 
+                type: "Coletor", 
+                serialNumber: "SN-HW-2023-002", 
+                status: "Disponível",
+                image: "https://www.honeywellaidc.com/-/media/honeywell/files/product-images/ct40-ct60-product-family.jpg",
+                description: "Coletor empresarial com Windows CE e scanner de longa distância"
+            },
+            { 
+                id: 3, 
+                name: "Zebra ET51", 
+                type: "Terminal", 
+                serialNumber: "SN-ZB-2023-003", 
+                status: "Em manutenção",
+                image: "https://www.zebra.com/content/dam/zebra/products/mobile-computers/enterprise-tablets/et51/zebra-et51-enterprise-tablet.png.thumb.1280.1280.png",
+                description: "Terminal móvel robusto com Android e tela de 8 polegadas"
+            },
+            { 
+                id: 4, 
+                name: "Zebra ZT410", 
+                type: "Impressora", 
+                serialNumber: "SN-ZB-2023-004", 
+                status: "Disponível",
+                image: "https://www.zebra.com/content/dam/zebra/products/printers/industrial/zt400-series/zt410/zebra-zt410-industrial-printer.png.thumb.1280.1280.png",
+                description: "Impressora térmica industrial para etiquetas"
+            },
+            { 
+                id: 5, 
+                name: "Motorola MC67", 
+                type: "Coletor", 
+                serialNumber: "SN-MT-2023-005", 
+                status: "Em uso",
+                image: "https://www.motorolasolutions.com/content/dam/msi/images/products/mobile-computers/hc1n/mc67-na0/mc67-na0-1.png.thumb.1280.1280.png",
+                description: "Coletor rugged com Windows CE e scanner 1D/2D"
+            }
+        ];
+
+        // Armazenamento local
         let formData = {
             login: {},
             operator: {},
@@ -551,107 +981,94 @@
             checklist: {}
         };
 
-        let reportData = {
-            currentPage: 1,
-            itemsPerPage: 10,
-            filteredChecklists: []
-        };
-
         // Elementos da tela
         const screens = {
             login: document.getElementById('login-screen'),
+            admin: document.getElementById('admin-screen'),
             operator: document.getElementById('operator-screen'),
             equipment: document.getElementById('equipment-screen'),
             checklist: document.getElementById('checklist-screen'),
-            confirmation: document.getElementById('confirmation-screen'),
-            report: document.getElementById('report-screen')
+            confirmation: document.getElementById('confirmation-screen')
         };
 
-        // Inicialização do sistema
+        // Inicialização
         document.addEventListener('DOMContentLoaded', function() {
-            // Configurar datas padrão para relatórios
-            const today = new Date();
-            document.getElementById('report-start-date').valueAsDate = today;
-            document.getElementById('report-end-date').valueAsDate = today;
+            // Inicializar dados no localStorage se não existirem
+            if (!localStorage.getItem('users')) {
+                localStorage.setItem('users', JSON.stringify(exemploUsuarios));
+            }
             
-            // Preencher lista de equipamentos
-            const equipmentList = document.getElementById('equipment-list');
-            equipamentos.forEach(equip => {
-                const statusColor = equip.status === 'Disponível' ? 'bg-green-100 text-green-800' : 
-                                  equip.status === 'Em manutenção' ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800';
-                
-                const card = document.createElement('div');
-                card.className = `equipment-card bg-white p-4 rounded-lg border border-gray-200 cursor-pointer transition duration-300 ${equip.status !== 'Disponível' ? 'opacity-50' : ''}`;
-                card.innerHTML = `
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 bg-blue-50 p-3 rounded-lg">
-                            <i class="fas fa-mobile-alt text-blue-600 text-xl"></i>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-lg font-medium text-gray-900">${equip.nome}</h3>
-                            <p class="text-sm text-gray-500">S/N: ${equip.numeroSerie}</p>
-                            <span class="mt-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor}">
-                                ${equip.status}
-                            </span>
-                        </div>
-                    </div>
-                `;
-                
-                if (equip.status === 'Disponível') {
-                    card.addEventListener('click', () => selectEquipment(equip));
-                }
-                
-                equipmentList.appendChild(card);
-            });
+            if (!localStorage.getItem('equipments')) {
+                localStorage.setItem('equipments', JSON.stringify(equipamentos));
+            }
+            
+            if (!localStorage.getItem('checklists')) {
+                localStorage.setItem('checklists', JSON.stringify([]));
+            }
 
             // Evento de login
             document.getElementById('login-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const matricula = document.getElementById('matricula').value;
                 const senha = document.getElementById('senha').value;
-                
-                // Validação simples
+
                 if (matricula && senha) {
-                    formData.login = { matricula, senha };
-                    
-                    // Preencher matrícula na próxima tela
-                    document.getElementById('matricula-info').value = matricula;
-                    
-                    // Transição entre telas
-                    screens.login.classList.add('hidden');
-                    screens.operator.classList.remove('hidden');
-                    screens.operator.classList.add('slide-in');
+                    // Verificar se é admin
+                    if (matricula === 'wsantana' && senha === 'admin123') {
+                        formData.login = { matricula, senha };
+                        screens.login.classList.add('hidden');
+                        screens.admin.classList.remove('hidden');
+                        loadUsers();
+                        loadEquipments();
+                        return;
+                    }
+
+                    // Verificar usuário normal
+                    const users = JSON.parse(localStorage.getItem('users')) || [];
+                    const user = users.find(u => u.registration === matricula && u.badgeNumber === senha);
+
+                    if (user) {
+                        formData.login = { matricula, senha };
+                        document.getElementById('matricula-info').value = matricula;
+                        document.getElementById('nome').value = user.name;
+                        document.getElementById('filial').value = user.branch;
+                        
+                        screens.login.classList.add('hidden');
+                        screens.operator.classList.remove('hidden');
+                    } else {
+                        alert('Matrícula ou senha incorretas!');
+                    }
                 } else {
                     alert('Por favor, preencha matrícula e senha!');
                 }
             });
 
-            // Evento de logout
+            // Evento de acesso administrativo
+            document.getElementById('admin-access-btn').addEventListener('click', function() {
+                screens.login.classList.add('hidden');
+                screens.admin.classList.remove('hidden');
+                loadUsers();
+                loadEquipments();
+            });
+
+            // Eventos de navegação
+            document.getElementById('back-to-login').addEventListener('click', function() {
+                screens.admin.classList.add('hidden');
+                screens.login.classList.remove('hidden');
+            });
+            
+            document.getElementById('logout-admin-btn').addEventListener('click', function() {
+                screens.admin.classList.add('hidden');
+                screens.login.classList.remove('hidden');
+                document.getElementById('login-form').reset();
+            });
+            
             document.getElementById('logout-btn').addEventListener('click', function() {
                 screens.operator.classList.add('hidden');
                 screens.login.classList.remove('hidden');
-                
-                // Limpar formulário de login
                 document.getElementById('login-form').reset();
             });
-
-            // Evento para acessar relatórios
-            document.getElementById('report-btn').addEventListener('click', function() {
-                screens.operator.classList.add('hidden');
-                screens.report.classList.remove('hidden');
-                screens.report.classList.add('slide-in');
-                
-                // Carregar relatórios
-                loadReports();
-            });
-
-            // Evento de voltar para informações do operador
-            document.getElementById('back-to-operator-from-report').addEventListener('click', function() {
-                screens.report.classList.add('hidden');
-                screens.operator.classList.remove('hidden');
-            });
-
-            // Evento de informações do operador
+            
             document.getElementById('operator-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -662,27 +1079,23 @@
                 
                 formData.operator = { filial, turno, nome, matricula };
                 
-                // Transição entre telas
+                // Carregar equipamentos disponíveis
+                loadAvailableEquipments(filial);
+                
                 screens.operator.classList.add('hidden');
                 screens.equipment.classList.remove('hidden');
-                screens.equipment.classList.add('slide-in');
             });
-
-            // Evento de voltar para informações do operador
+            
             document.getElementById('back-to-operator').addEventListener('click', function() {
                 screens.equipment.classList.add('hidden');
                 screens.operator.classList.remove('hidden');
             });
-
-            // Evento de seleção de equipamento (via selectEquipment function)
-
-            // Evento de voltar para seleção de equipamento
+            
             document.getElementById('back-to-equipment').addEventListener('click', function() {
                 screens.checklist.classList.add('hidden');
                 screens.equipment.classList.remove('hidden');
             });
-
-            // Evento de checklist
+            
             document.getElementById('checklist-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -695,235 +1108,137 @@
                 
                 formData.checklist = { bateria, tela, teclado, scanner, conectividade, observacoes };
                 
-                // Salvar checklist completo
+                // Salvar checklist
                 saveChecklist();
                 
                 // Preencher tela de confirmação
-                document.getElementById('conf-nome').textContent = formData.operator.nome;
-                document.getElementById('conf-matricula').textContent = formData.operator.matricula;
-                document.getElementById('conf-filial-turno').textContent = `${formData.operator.filial} - ${formData.operator.turno}`;
-                document.getElementById('conf-equipamento').textContent = formData.equipment.nome;
+                fillConfirmationScreen();
                 
-                const now = new Date();
-                document.getElementById('conf-datahora').textContent = now.toLocaleString('pt-BR');
-                
-                if (observacoes) {
-                    document.getElementById('conf-observacoes').textContent = observacoes;
-                }
-                
-                // Transição entre telas
                 screens.checklist.classList.add('hidden');
                 screens.confirmation.classList.remove('hidden');
-                screens.confirmation.classList.add('slide-in');
             });
-
-            // Evento de novo checklist
+            
             document.getElementById('new-checklist-btn').addEventListener('click', function() {
-                // Limpar formulários (exceto login)
+                // Resetar formulários
                 document.getElementById('operator-form').reset();
-                document.getElementById('checklist-form').reset();
-                document.getElementById('matricula-info').value = formData.login.matricula;
+                document.getElementById('filial').value = formData.operator.filial;
+                document.getElementById('turno').value = formData.operator.turno;
+                document.getElementById('nome').value = formData.operator.nome;
+                document.getElementById('matricula-info').value = formData.operator.matricula;
                 
-                // Resetar seleção de equipamento
-                document.getElementById('equipment-next-btn').disabled = true;
-                formData.equipment = {};
+                document.getElementById('checklist-form').reset();
                 
                 // Voltar para tela de operador
                 screens.confirmation.classList.add('hidden');
                 screens.operator.classList.remove('hidden');
             });
-
-            // Evento de impressão
+            
             document.getElementById('print-btn').addEventListener('click', function() {
                 window.print();
             });
-
-            // Eventos de relatórios
-            document.getElementById('report-period').addEventListener('change', function() {
-                const period = this.value;
-                const today = new Date();
-                const startDate = document.getElementById('report-start-date');
-                const endDate = document.getElementById('report-end-date');
+            
+            // Configurar filtro de equipamentos
+            document.getElementById('filter-equipment').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const equipmentCards = document.querySelectorAll('#equipment-list-operator .equipment-card');
                 
-                if (period === 'hoje') {
-                    startDate.valueAsDate = today;
-                    endDate.valueAsDate = today;
-                } else if (period === 'semana') {
-                    const firstDay = new Date(today.setDate(today.getDate() - today.getDay()));
-                    const lastDay = new Date(today.setDate(today.getDate() - today.getDay() + 6));
-                    startDate.valueAsDate = firstDay;
-                    endDate.valueAsDate = lastDay;
-                } else if (period === 'mes') {
-                    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1);
-                    const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0);
-                    startDate.valueAsDate = firstDay;
-                    endDate.valueAsDate = lastDay;
+                equipmentCards.forEach(card => {
+                    const name = card.getAttribute('data-name').toLowerCase();
+                    const serial = card.getAttribute('data-serial').toLowerCase();
+                    
+                    if (name.includes(searchTerm) || serial.includes(searchTerm)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+            
+            // Configurar seleção de equipamento
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.select-equipment-btn')) {
+                    const btn = e.target.closest('.select-equipment-btn');
+                    const equipmentId = btn.getAttribute('data-id');
+                    const allEquipments = JSON.parse(localStorage.getItem('equipments')) || [];
+                    const selectedEquipment = allEquipments.find(eq => eq.id == equipmentId);
+                    
+                    if (selectedEquipment) {
+                        selectEquipment(selectedEquipment);
+                    }
                 }
             });
-
-            document.getElementById('report-filter-btn').addEventListener('click', function() {
-                loadReports();
+            
+            // Configurar botão de próximo
+            document.getElementById('equipment-next-btn').addEventListener('click', function() {
+                if (!formData.equipment.id) {
+                    alert('Por favor, selecione um equipamento!');
+                    return;
+                }
+                
+                screens.equipment.classList.add('hidden');
+                screens.checklist.classList.remove('hidden');
             });
-
-            document.getElementById('report-export-excel').addEventListener('click', function() {
-                exportToExcel();
+            
+            // Configurar modal de equipamentos
+            document.getElementById('add-equipment-btn').addEventListener('click', function() {
+                document.getElementById('equipment-modal-title').textContent = 'Adicionar Equipamento';
+                document.getElementById('equipment-form').reset();
+                document.getElementById('equipment-id').value = '';
+                document.getElementById('image-preview').classList.add('hidden');
+                document.getElementById('equipment-modal').classList.remove('hidden');
             });
-
-            document.getElementById('report-export-pdf').addEventListener('click', function() {
-                exportToPDF();
+            
+            document.getElementById('close-equipment-modal').addEventListener('click', function() {
+                document.getElementById('equipment-modal').classList.add('hidden');
             });
-
-            document.getElementById('report-prev').addEventListener('click', function() {
-                if (reportData.currentPage > 1) {
-                    reportData.currentPage--;
-                    renderReportTable();
+            
+            document.getElementById('equipment-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveEquipment();
+            });
+            
+            document.getElementById('equipment-image').addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(event) {
+                        document.getElementById('preview-img').src = event.target.result;
+                        document.getElementById('image-preview').classList.remove('hidden');
+                    };
+                    
+                    reader.readAsDataURL(e.target.files[0]);
                 }
             });
-
-            document.getElementById('report-next').addEventListener('click', function() {
-                const totalPages = Math.ceil(reportData.filteredChecklists.length / reportData.itemsPerPage);
-                if (reportData.currentPage < totalPages) {
-                    reportData.currentPage++;
-                    renderReportTable();
-                }
+            
+            document.getElementById('remove-image').addEventListener('click', function() {
+                document.getElementById('equipment-image').value = '';
+                document.getElementById('preview-img').src = '';
+                document.getElementById('image-preview').classList.add('hidden');
             });
         });
-
-        // Função para selecionar equipamento
-        function selectEquipment(equip) {
-            formData.equipment = equip;
-            
-            // Atualizar título na tela de checklist
-            document.getElementById('equipment-name-title').textContent = equip.nome;
-            
-            // Habilitar botão de próximo
-            document.getElementById('equipment-next-btn').disabled = false;
-            document.getElementById('equipment-next-btn').classList.remove('opacity-50');
-            
-            // Transição entre telas
-            screens.equipment.classList.add('hidden');
-            screens.checklist.classList.remove('hidden');
-            screens.checklist.classList.add('slide-in');
-            
-            // Rolar para o topo
-            window.scrollTo(0, 0);
-        }
-
-        // Configurar botão de próximo na tela de equipamentos
-        document.getElementById('equipment-next-btn').addEventListener('click', function() {
-            if (!formData.equipment.id) {
-                alert('Por favor, selecione um equipamento!');
-                return;
-            }
-            
-            screens.equipment.classList.add('hidden');
-            screens.checklist.classList.remove('hidden');
-            screens.checklist.classList.add('slide-in');
-        });
-
-        // Função para salvar checklist no localStorage
-        function saveChecklist() {
-            // Obter checklists existentes ou criar um novo array
-            const checklists = JSON.parse(localStorage.getItem('checklists')) || [];
-            
-            // Criar objeto com dados completos
-            const now = new Date();
-            const checklistData = {
-                id: Date.now(),
-                date: now.toISOString(),
-                operator: formData.operator,
-                equipment: formData.equipment,
-                checklist: formData.checklist,
-                status: 'Aprovado'
-            };
-            
-            // Adicionar novo checklist
-            checklists.push(checklistData);
-            
-            // Salvar no localStorage
-            localStorage.setItem('checklists', JSON.stringify(checklists));
-        }
-
-        // Função para carregar relatórios
-        function loadReports() {
-            const startDate = document.getElementById('report-start-date').value;
-            const endDate = document.getElementById('report-end-date').value;
-            const filial = document.getElementById('report-filial').value;
-            
-            // Obter todos os checklists
-            const allChecklists = JSON.parse(localStorage.getItem('checklists')) || [];
-            
-            // Filtrar por período e filial
-            reportData.filteredChecklists = allChecklists.filter(checklist => {
-                const checklistDate = new Date(checklist.date);
-                const filterStartDate = new Date(startDate);
-                const filterEndDate = new Date(endDate);
-                
-                // Ajustar data final para incluir todo o dia
-                filterEndDate.setHours(23, 59, 59, 999);
-                
-                // Verificar data
-                const dateMatch = checklistDate >= filterStartDate && checklistDate <= filterEndDate;
-                
-                // Verificar filial
-                const filialMatch = filial ? checklist.operator.filial === filial : true;
-                
-                return dateMatch && filialMatch;
-            });
-            
-            // Ordenar por data (mais recente primeiro)
-            reportData.filteredChecklists.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            // Resetar paginação
-            reportData.currentPage = 1;
-            
-            // Atualizar contagem
-            document.getElementById('report-count').textContent = `${reportData.filteredChecklists.length} checklists encontrados`;
-            
-            // Renderizar tabela
-            renderReportTable();
-        }
-
-        // Função para renderizar a tabela de relatórios
-        function renderReportTable() {
-            const tableBody = document.getElementById('report-results');
+        
+        // Funções de usuários
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const tableBody = document.getElementById('users-list');
             tableBody.innerHTML = '';
             
-            // Calcular índices para paginação
-            const startIndex = (reportData.currentPage - 1) * reportData.itemsPerPage;
-            const endIndex = startIndex + reportData.itemsPerPage;
-            const paginatedChecklists = reportData.filteredChecklists.slice(startIndex, endIndex);
-            
-            // Preencher tabela
-            paginatedChecklists.forEach(checklist => {
+            users.forEach(user => {
                 const row = document.createElement('tr');
-                row.className = 'report-row hover:bg-gray-50';
-                
-                const checklistDate = new Date(checklist.date);
+                row.className = 'hover:bg-gray-50';
                 
                 row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        ${checklistDate.toLocaleString('pt-BR')}
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                        ${user.name}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        ${checklist.operator.nome} (${checklist.operator.matricula})
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                        ${user.registration}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        ${checklist.operator.filial}
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        ${checklist.equipment.nome} (${checklist.equipment.numeroSerie})
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            ${checklist.status}
-                        </span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <button class="text-blue-600 hover:text-blue-900 mr-3 view-checklist" data-id="${checklist.id}">
-                            <i class="fas fa-eye"></i>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                        <button class="text-blue-600 hover:text-blue-900 mr-3 edit-user" data-id="${user.id}">
+                            <i class="fas fa-edit"></i>
                         </button>
-                        <button class="text-red-600 hover:text-red-900 delete-checklist" data-id="${checklist.id}">
+                        <button class="text-red-600 hover:text-red-900 delete-user" data-id="${user.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -932,256 +1247,378 @@
                 tableBody.appendChild(row);
             });
             
-            // Configurar botões de visualização
-            document.querySelectorAll('.view-checklist').forEach(btn => {
+            // Configurar eventos de edição/exclusão
+            document.querySelectorAll('.edit-user').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const checklistId = parseInt(this.getAttribute('data-id'));
-                    viewChecklistDetails(checklistId);
+                    const userId = this.getAttribute('data-id');
+                    editUser(userId);
                 });
             });
             
-            // Configurar botões de exclusão
-            document.querySelectorAll('.delete-checklist').forEach(btn => {
+            document.querySelectorAll('.delete-user').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const checklistId = parseInt(this.getAttribute('data-id'));
-                    if (confirm('Tem certeza que deseja excluir este checklist?')) {
-                        deleteChecklist(checklistId);
+                    const userId = this.getAttribute('data-id');
+                    deleteUser(userId);
+                });
+            });
+        }
+        
+        function editUser(userId) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.id == userId);
+            
+            if (!user) return;
+            
+            document.getElementById('edit-user-id').value = user.id;
+            document.getElementById('edit-user-name').value = user.name;
+            document.getElementById('edit-user-registration').value = user.registration;
+            document.getElementById('edit-user-badge').value = user.badgeNumber;
+            document.getElementById('edit-user-branch').value = user.branch;
+            document.getElementById('edit-modal-title').textContent = `Editar Usuário - ${user.name}`;
+            
+            document.getElementById('edit-user-modal').classList.remove('hidden');
+        }
+        
+        document.getElementById('edit-user-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userId = document.getElementById('edit-user-id').value;
+            const name = document.getElementById('edit-user-name').value;
+            const registration = document.getElementById('edit-user-registration').value;
+            const badgeNumber = document.getElementById('edit-user-badge').value;
+            const branch = document.getElementById('edit-user-branch').value;
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const updatedUsers = users.map(user => {
+                if (user.id == userId) {
+                    return { ...user, name, registration, badgeNumber, branch };
+                }
+                return user;
+            });
+            
+            localStorage.setItem('users', JSON.stringify(updatedUsers));
+            loadUsers();
+            document.getElementById('edit-user-modal').classList.add('hidden');
+        });
+        
+        function deleteUser(userId) {
+            if (confirm('Tem certeza que deseja excluir este usuário?')) {
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+                const updatedUsers = users.filter(user => user.id != userId);
+                
+                localStorage.setItem('users', JSON.stringify(updatedUsers));
+                loadUsers();
+            }
+        }
+        
+        // Funções de equipamentos
+        function loadEquipments() {
+            const equipments = JSON.parse(localStorage.getItem('equipments')) || [];
+            const tableBody = document.getElementById('equipment-list');
+            tableBody.innerHTML = '';
+            
+            equipments.forEach(equip => {
+                const statusColor = 
+                    equip.status === 'Disponível' ? 'bg-green-100 text-green-800' :
+                    equip.status === 'Em uso' ? 'bg-blue-100 text-blue-800' :
+                    equip.status === 'Em manutenção' ? 'bg-yellow-100 text-yellow-800' :
+                    equip.status === 'Desativado' ? 'bg-red-100 text-red-800' : 'bg-gray-100 text-gray-800';
+                
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-gray-50';
+                
+                row.innerHTML = `
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                        ${equip.name}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-900">
+                        ${equip.serialNumber}
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                            ${equip.status}
+                        </span>
+                    </td>
+                    <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                        <button class="text-blue-600 hover:text-blue-900 mr-3 edit-equipment" data-id="${equip.id}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="text-red-600 hover:text-red-900 delete-equipment" data-id="${equip.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Configurar eventos de edição/exclusão
+            document.querySelectorAll('.edit-equipment').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const equipmentId = this.getAttribute('data-id');
+                    editEquipment(equipmentId);
+                });
+            });
+            
+            document.querySelectorAll('.delete-equipment').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const equipmentId = this.getAttribute('data-id');
+                    deleteEquipment(equipmentId);
+                });
+            });
+        }
+        
+        function editEquipment(equipmentId) {
+            const equipments = JSON.parse(localStorage.getItem('equipments')) || [];
+            const equipment = equipments.find(eq => eq.id == equipmentId);
+            
+            if (!equipment) return;
+            
+            document.getElementById('equipment-modal-title').textContent = `Editar ${equipment.name}`;
+            document.getElementById('equipment-id').value = equipment.id;
+            document.getElementById('equipment-name').value = equipment.name;
+            document.getElementById('equipment-serial').value = equipment.serialNumber;
+            document.getElementById('equipment-status').value = equipment.status;
+            
+            // Configurar tipo de equipamento
+            document.querySelectorAll('[name="equipment-type"]').forEach(radio => {
+                if (radio.value === equipment.type) {
+                    radio.checked = true;
+                }
+            });
+            
+            // Configurar imagem se existir
+            if (equipment.image) {
+                document.getElementById('preview-img').src = equipment.image;
+                document.getElementById('image-preview').classList.remove('hidden');
+            }
+            
+            document.getElementById('equipment-modal').classList.remove('hidden');
+        }
+        
+        function deleteEquipment(equipmentId) {
+            if (confirm('Tem certeza que deseja excluir este equipamento?')) {
+                const equipments = JSON.parse(localStorage.getItem('equipments')) || [];
+                const updatedEquipments = equipments.filter(eq => eq.id != equipmentId);
+                
+                localStorage.setItem('equipments', JSON.stringify(updatedEquipments));
+                loadEquipments();
+            }
+        }
+        
+        function saveEquipment() {
+            const id = document.getElementById('equipment-id').value;
+            const name = document.getElementById('equipment-name').value;
+            const serialNumber = document.getElementById('equipment-serial').value;
+            const status = document.getElementById('equipment-status').value;
+            const type = document.querySelector('[name="equipment-type"]:checked').value;
+            
+            // Obter imagem (se existir)
+            const imageFile = document.getElementById('equipment-image').files[0];
+            let image = document.getElementById('preview-img').src || '';
+            
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    image = e.target.result;
+                    updateEquipmentData(id, name, type, serialNumber, status, image);
+                };
+                reader.readAsDataURL(imageFile);
+            } else {
+                updateEquipmentData(id, name, type, serialNumber, status, image);
+            }
+        }
+        
+        function updateEquipmentData(id, name, type, serialNumber, status, image) {
+            const equipments = JSON.parse(localStorage.getItem('equipments')) || [];
+            
+            if (id) {
+                // Editar equipamento existente
+                const updatedEquipments = equipments.map(eq => {
+                    if (eq.id == id) {
+                        return { 
+                            ...eq, 
+                            name, 
+                            type, 
+                            serialNumber, 
+                            status,
+                            image: image || eq.image
+                        };
                     }
+                    return eq;
                 });
-            });
+                
+                localStorage.setItem('equipments', JSON.stringify(updatedEquipments));
+            } else {
+                // Adicionar novo equipamento
+                const newId = equipments.length > 0 ? Math.max(...equipments.map(eq => eq.id)) + 1 : 1;
+                
+                equipments.push({
+                    id: newId,
+                    name,
+                    type,
+                    serialNumber,
+                    status,
+                    image,
+                    description: ''
+                });
+                
+                localStorage.setItem('equipments', JSON.stringify(equipments));
+            }
             
-            // Atualizar controles de paginação
-            updatePaginationControls();
+            // Recarregar e fechar modal
+            loadEquipments();
+            loadAvailableEquipments();
+            document.getElementById('equipment-modal').classList.add('hidden');
         }
-
-        // Função para atualizar controles de paginação
-        function updatePaginationControls() {
-            const totalItems = reportData.filteredChecklists.length;
-            const totalPages = Math.ceil(totalItems / reportData.itemsPerPage);
+        
+        // Funções de checklist
+        function loadAvailableEquipments(filial = null) {
+            const equipments = JSON.parse(localStorage.getItem('equipments')) || [];
+            const container = document.getElementById('equipment-list-operator');
+            container.innerHTML = '';
             
-            document.getElementById('report-pagination-info').textContent = 
-                `Mostrando ${Math.min(reportData.currentPage * reportData.itemsPerPage, totalItems)} de ${totalItems}`;
+            const availableEquipments = equipments.filter(eq => eq.status === 'Disponível');
             
-            document.getElementById('report-prev').disabled = reportData.currentPage <= 1;
-            document.getElementById('report-next').disabled = reportData.currentPage >= totalPages;
-        }
-
-        // Função para visualizar detalhes do checklist
-        function viewChecklistDetails(checklistId) {
-            const checklist = reportData.filteredChecklists.find(c => c.id === checklistId);
-            if (!checklist) return;
+            if (availableEquipments.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-2 bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
+                        <i class="fas fa-exclamation-triangle text-yellow-500 text-2xl mb-2"></i>
+                        <p class="text-yellow-800">Nenhum equipamento disponível no momento.</p>
+                    </div>
+                `;
+                return;
+            }
             
-            // Criar modal com detalhes
-            const modalHTML = `
-                <div class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50">
-                    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-                        <div class="gradient-bg text-white rounded-t-lg p-4">
-                            <div class="flex justify-between items-center">
-                                <h3 class="text-lg font-medium">Detalhes do Checklist</h3>
-                                <button id="close-modal" class="text-white hover:text-gray-200">
-                                    <i class="fas fa-times"></i>
+            availableEquipments.forEach(equip => {
+                const typeIcon = 
+                    equip.type === 'Coletor' ? 'fa-barcode' :
+                    equip.type === 'Terminal' ? 'fa-tablet-alt' :
+                    equip.type === 'Impressora' ? 'fa-print' : 'fa-box';
+                
+                const card = document.createElement('div');
+                card.className = 'equipment-card bg-white p-4 rounded-lg border border-gray-200 cursor-pointer transition duration-300 hover:shadow-md';
+                card.setAttribute('data-name', equip.name);
+                card.setAttribute('data-serial', equip.serialNumber);
+                
+                card.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 bg-blue-50 p-3 rounded-lg">
+                            <i class="fas ${typeIcon} text-blue-600 text-xl"></i>
+                        </div>
+                        <div class="ml-4 flex-1">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="text-lg font-medium text-gray-900">${equip.name}</h3>
+                                    <p class="text-sm text-gray-500">S/N: ${equip.serialNumber}</p>
+                                    <p class="text-xs text-gray-500 mt-1">${equip.type}</p>
+                                </div>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    Disponível
+                                </span>
+                            </div>
+                            ${equip.image ? `
+                            <div class="mt-3 flex justify-center">
+                                <img src="${equip.image}" alt="${equip.name}" class="h-24 object-contain rounded">
+                            </div>
+                            ` : ''}
+                            <div class="mt-3 text-center">
+                                <button class="select-equipment-btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-sm font-medium" data-id="${equip.id}">
+                                    Selecionar Equipamento
                                 </button>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <h4 class="text-sm font-medium text-gray-500">Data/Hora</h4>
-                                    <p class="mt-1 text-sm text-gray-900">${new Date(checklist.date).toLocaleString('pt-BR')}</p>
-                                </div>
-                                <div>
-                                    <h4 class="text-sm font-medium text-gray-500">Status</h4>
-                                    <p class="mt-1 text-sm font-medium text-green-600">${checklist.status}</p>
-                                </div>
-                                <div>
-                                    <h4 class="text-sm font-medium text-gray-500">Operador</h4>
-                                    <p class="mt-1 text-sm text-gray-900">${checklist.operator.nome} (${checklist.operator.matricula})</p>
-                                </div>
-                                <div>
-                                    <h4 class="text-sm font-medium text-gray-500">Filial/Turno</h4>
-                                    <p class="mt-1 text-sm text-gray-900">${checklist.operator.filial} - ${checklist.operator.turno}</p>
-                                </div>
-                                <div>
-                                    <h4 class="text-sm font-medium text-gray-500">Equipamento</h4>
-                                    <p class="mt-1 text-sm text-gray-900">${checklist.equipment.nome} (${checklist.equipment.numeroSerie})</p>
-                                </div>
-                            </div>
-                            
-                            <div class="border-t border-gray-200 pt-4">
-                                <h4 class="text-sm font-medium text-gray-500 mb-3">Itens Verificados</h4>
-                                <div class="space-y-3">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-5 w-5 ${checklist.checklist.bateria ? 'text-green-500' : 'text-red-500'}">
-                                            <i class="fas ${checklist.checklist.bateria ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-700">Bateria</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-5 w-5 ${checklist.checklist.tela ? 'text-green-500' : 'text-red-500'}">
-                                            <i class="fas ${checklist.checklist.tela ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-700">Tela</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-5 w-5 ${checklist.checklist.teclado ? 'text-green-500' : 'text-red-500'}">
-                                            <i class="fas ${checklist.checklist.teclado ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-700">Teclado</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-5 w-5 ${checklist.checklist.scanner ? 'text-green-500' : 'text-red-500'}">
-                                            <i class="fas ${checklist.checklist.scanner ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-700">Scanner</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-5 w-5 ${checklist.checklist.conectividade ? 'text-green-500' : 'text-red-500'}">
-                                            <i class="fas ${checklist.checklist.conectividade ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-                                        </div>
-                                        <div class="ml-3">
-                                            <p class="text-sm font-medium text-gray-700">Conectividade</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            ${checklist.checklist.observacoes ? `
-                            <div class="mt-6 border-t border-gray-200 pt-4">
-                                <h4 class="text-sm font-medium text-gray-500">Observações</h4>
-                                <p class="mt-1 text-sm text-gray-900">${checklist.checklist.observacoes}</p>
-                            </div>
-                            ` : ''}
-                        </div>
-                        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse rounded-b-lg">
-                            <button type="button" id="print-checklist" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm">
-                                <i class="fas fa-print mr-2"></i> Imprimir
-                            </button>
-                            <button type="button" id="close-modal-btn" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                                Fechar
-                            </button>
-                        </div>
                     </div>
-                </div>
-            `;
-            
-            // Adicionar modal ao DOM
-            const modalDiv = document.createElement('div');
-            modalDiv.innerHTML = modalHTML;
-            document.body.appendChild(modalDiv);
-            
-            // Configurar eventos do modal
-            document.getElementById('close-modal').addEventListener('click', () => {
-                modalDiv.remove();
+                `;
+                
+                container.appendChild(card);
             });
             
-            document.getElementById('close-modal-btn').addEventListener('click', () => {
-                modalDiv.remove();
-            });
+            // Habilitar botão de próximo se já houver um equipamento selecionado
+            if (formData.equipment.id) {
+                document.getElementById('equipment-next-btn').disabled = false;
+                document.getElementById('equipment-next-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+            }
+        }
+        
+        function selectEquipment(equip) {
+            formData.equipment = equip;
             
-            document.getElementById('print-checklist').addEventListener('click', () => {
-                window.print();
+            // Atualizar título na tela de checklist
+            document.getElementById('equipment-name-title').textContent = equip.name;
+            
+            // Habilitar botão de próximo
+            document.getElementById('equipment-next-btn').disabled = false;
+            document.getElementById('equipment-next-btn').classList.remove('opacity-50', 'cursor-not-allowed');
+            
+            // Destacar card selecionado
+            document.querySelectorAll('.equipment-card').forEach(card => {
+                card.classList.remove('ring-2', 'ring-blue-500');
+                if (card.getAttribute('data-name') === equip.name && 
+                    card.getAttribute('data-serial') === equip.serialNumber) {
+                    card.classList.add('ring-2', 'ring-blue-500');
+                }
             });
         }
-
-        // Função para excluir checklist
-        function deleteChecklist(checklistId) {
-            // Obter todos os checklists
-            const allChecklists = JSON.parse(localStorage.getItem('checklists')) || [];
+        
+        function saveChecklist() {
+            const checklists = JSON.parse(localStorage.getItem('checklists')) || [];
+            const now = new Date();
             
-            // Filtrar para remover o checklist com o ID especificado
-            const updatedChecklists = allChecklists.filter(c => c.id !== checklistId);
+            const checklistData = {
+                id: Date.now(),
+                date: now.toISOString(),
+                operator: formData.operator,
+                equipment: formData.equipment,
+                checklist: formData.checklist,
+                status: 'Concluído'
+            };
             
-            // Atualizar localStorage
-            localStorage.setItem('checklists', JSON.stringify(updatedChecklists));
+            checklists.push(checklistData);
+            localStorage.setItem('checklists', JSON.stringify(checklists));
             
-            // Recarregar relatórios
-            loadReports();
-            
-            alert('Checklist excluído com sucesso!');
-        }
-
-        // Função para exportar para Excel
-        function exportToExcel() {
-            // Criar dados para exportação
-            const exportData = reportData.filteredChecklists.map(checklist => {
-                return {
-                    'Data/Hora': new Date(checklist.date).toLocaleString('pt-BR'),
-                    'Operador': `${checklist.operator.nome} (${checklist.operator.matricula})`,
-                    'Filial': checklist.operator.filial,
-                    'Turno': checklist.operator.turno,
-                    'Equipamento': `${checklist.equipment.nome} (${checklist.equipment.numeroSerie})`,
-                    'Status': checklist.status,
-                    'Bateria': checklist.checklist.bateria ? 'OK' : 'Problema',
-                    'Tela': checklist.checklist.tela ? 'OK' : 'Problema',
-                    'Teclado': checklist.checklist.teclado ? 'OK' : 'Problema',
-                    'Scanner': checklist.checklist.scanner ? 'OK' : 'Problema',
-                    'Conectividade': checklist.checklist.conectividade ? 'OK' : 'Problema',
-                    'Observações': checklist.checklist.observacoes || 'Nenhuma'
-                };
+            // Atualizar status do equipamento
+            const equipments = JSON.parse(localStorage.getItem('equipments')) || [];
+            const updatedEquipments = equipments.map(eq => {
+                if (eq.id == formData.equipment.id) {
+                    return { ...eq, status: 'Em uso' };
+                }
+                return eq;
             });
             
-            // Criar planilha
-            const ws = XLSX.utils.json_to_sheet(exportData);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Checklists");
-            
-            // Gerar arquivo e fazer download
-            const fileName = `checklists_${new Date().toISOString().slice(0, 10)}.xlsx`;
-            XLSX.writeFile(wb, fileName);
+            localStorage.setItem('equipments', JSON.stringify(updatedEquipments));
         }
-
-        // Função para exportar para PDF
-        function exportToPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+        
+        function fillConfirmationScreen() {
+            document.getElementById('conf-nome').textContent = formData.operator.nome;
+            document.getElementById('conf-matricula').textContent = formData.operator.matricula;
+            document.getElementById('conf-filial-turno').textContent = `${formData.operator.filial} - ${formData.operator.turno}`;
+            document.getElementById('conf-equipamento').textContent = formData.equipment.name;
+            document.getElementById('conf-serie').textContent = formData.equipment.serialNumber;
             
-            // Adicionar título
-            doc.setFontSize(18);
-            doc.text('Relatório de Checklists', 105, 15, { align: 'center' });
+            const now = new Date();
+            document.getElementById('conf-datahora').textContent = now.toLocaleString('pt-BR');
             
-            // Adicionar período do relatório
-            doc.setFontSize(12);
-            const startDate = document.getElementById('report-start-date').value;
-            const endDate = document.getElementById('report-end-date').value;
-            doc.text(`Período: ${startDate} até ${endDate}`, 105, 25, { align: 'center' });
-            
-            // Adicionar data de emissão
-            doc.text(`Emitido em: ${new Date().toLocaleDateString('pt-BR')}`, 105, 35, { align: 'center' });
-            
-            // Configurar tabela
-            const headers = [
-                ['Data/Hora', 'Operador', 'Filial', 'Equipamento', 'Status']
-            ];
-            
-            const data = reportData.filteredChecklists.map(checklist => [
-                new Date(checklist.date).toLocaleString('pt-BR'),
-                `${checklist.operator.nome} (${checklist.operator.matricula})`,
-                checklist.operator.filial,
-                `${checklist.equipment.nome} (${checklist.equipment.numeroSerie})`,
-                checklist.status
-            ]);
-            
-            // Adicionar tabela
-            doc.autoTable({
-                head: headers,
-                body: data,
-                startY: 45,
-                styles: { fontSize: 8 },
-                headStyles: { fillColor: [30, 58, 138] } // Cor azul escuro
-            });
-            
-            // Salvar PDF
-            const fileName = `checklists_${new Date().toISOString().slice(0, 10)}.pdf`;
-            doc.save(fileName);
+            if (formData.checklist.observacoes) {
+                document.getElementById('conf-observacoes').textContent = formData.checklist.observacoes;
+                document.getElementById('conf-observations').classList.remove('hidden');
+            } else {
+                document.getElementById('conf-observations').classList.add('hidden');
+            }
         }
+        
+        // Configuração dos modais
+        document.getElementById('close-edit-modal').addEventListener('click', function() {
+            document.getElementById('edit-user-modal').classList.add('hidden');
+        });
+        
+        document.getElementById('close-import-modal').addEventListener('click', function() {
+            document.getElementById('import-result-modal').classList.add('hidden');
+        });
+        
+        document.getElementById('confirm-import-modal').addEventListener('click', function() {
+            document.getElementById('import-result-modal').classList.add('hidden');
+        });
     </script>
 </body>
 </html>
